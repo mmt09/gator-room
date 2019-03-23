@@ -1,0 +1,22 @@
+{
+  "name": "csc648-sp19-team103",
+  "version": "1.0.0",
+  "description": "# This base repo is for Dr. HyoJung Song Class.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSC-648-SFSU/csc648-sp19-team103.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSC-648-SFSU/csc648-sp19-team103/issues"
+  },
+  "homepage": "https://github.com/CSC-648-SFSU/csc648-sp19-team103#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
