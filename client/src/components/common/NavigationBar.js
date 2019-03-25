@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -13,9 +12,11 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import Info from '@material-ui/icons/Info';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { Link as RouterLink } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -124,8 +125,22 @@ class NavigationBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        {[
+          ['Feona Mae Garcia', '/feona'],
+          ['Michael McDonald Tran', '/michaelTran'],
+          ['Carlos Velasco', '/carlos'],
+          ['Nico Graves', '/nico'],
+          ['Jakhongir Khusanov', '/jakhongir'],
+          ['Michael Nelson', 'michaelNelson'],
+          ['David Hernandez', 'david'],
+        ].map((text, index) => (
+          <Link underline={'none'} component={RouterLink} to={text[1]}>
+            <MenuItem key={text[0]}>
+              <ListItemText primary={text[0]} />
+            </MenuItem>
+          </Link>
+        ))}
+        <MenuItem onClick={this.handleMenuClose}>Close</MenuItem>
       </Menu>
     );
 
@@ -153,9 +168,12 @@ class NavigationBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Gator Room
-            </Typography>
+            <Link component={RouterLink} color="inherit" underline="none" to="/">
+              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                Gator Room
+              </Typography>
+            </Link>
+
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
