@@ -133,7 +133,7 @@ class NavigationBar extends React.Component {
           ['Michael Nelson', 'michaelNelson'],
           ['David Hernandez', 'david'],
         ].map((text, index) => (
-          <Link underline={'none'} component={RouterLink} to={text[1]}>
+          <Link underline={'none'} component={RouterLink} to={text[1]} key={text[0]}>
             <MenuItem key={text[0]}>
               <ListItemText primary={text[0]} />
             </MenuItem>

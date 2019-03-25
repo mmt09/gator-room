@@ -1,5 +1,6 @@
 //importing modules
 const express = require('express');
+const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
 // Connection to database
@@ -14,10 +15,17 @@ const app = express();
 
 app.use(express.static('client/build'));
 
-//route handler
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.json());
 
-app.get('/hello/', (req, res) => {
-  res.send({ hi: 'there! It is a response from node server' });
+//route handler
+app.post('/api/search_apartment', (req, res) => {
+  console.log(req.body.searchParams);
+  res.send({ 'Your search': req.body.searchParams });
 });
 
 //listen to this port, either server provided port or local port
