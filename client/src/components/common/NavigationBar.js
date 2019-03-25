@@ -14,7 +14,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import Info from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link as RouterLink } from 'react-router-dom';
 
