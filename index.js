@@ -31,11 +31,14 @@ app.use(bodyParser.json());
 app.post('/api/search_apartment', (req, res) => {
   let result;
   connection.query(
-    `SELECT * FROM listing WHERE postal_code = ${req.body.searchParams}`,
+    `SELECT listing_id, address, city, postal_code, amount FROM listing WHERE postal_code=${
+      req.body.searchParams
+    }`,
     (err, rows) => {
       if (err) throw err;
       var ObjStr = JSON.stringify(rows);
-      result = ObjStr;
+      var parsed = JSON.parse(ObjStr);
+      result = parsed;
       process.exit();
     }
   );
