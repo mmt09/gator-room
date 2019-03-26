@@ -21,7 +21,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: 1875,
+    width: 1700,
     height: 1080,
   },
   icon: {
@@ -42,8 +42,8 @@ class TitlebarGridList extends React.Component {
               <ListSubheader component="div" />
             </GridListTile>
             {this.props.search.globalJSON.map(tile => (
-              <GridListTile key={tile.img}>
-                <img src={image1} alt={tile.address} />
+              <GridListTile key={tile.picture}>
+                <img src={tile.picture} alt={tile.address} />
                 <GridListTileBar
                   title={tile.address}
                   subtitle={<span>{tile.city}, {tile.postal_code} - ${tile.amount}</span>}
