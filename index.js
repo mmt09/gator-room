@@ -15,6 +15,11 @@ const app = express();
 
 app.use(express.static('client/build'));
 
+const path = require('path');
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -44,5 +49,3 @@ app.listen(PORT);
 app.use(express.bodyParser());
 
 app.post('/api/listings', (req, res) => {**/
-
-
