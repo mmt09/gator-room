@@ -31,6 +31,7 @@ const styles = theme => ({
 
 class TitlebarGridList extends React.Component {
   render() {
+    console.log(this.props.search);
     const { classes } = this.props;
 
     return (
