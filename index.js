@@ -42,7 +42,7 @@ app.post('/api/search_apartment', (req, res) => {
       process.exit();
     }
   );
-  res.send(result);
+  res.send({ hi: 'hello' });
 });
 
 //listen to this port, either server provided port or local port
