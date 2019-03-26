@@ -11,7 +11,7 @@ import NavigationBar from './common/NavigationBar';
 //import tileData from './tileData';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import image1 from '../images/bedroom1.jpg';
+import image1 from '../images/bedroom4.jpg';
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -46,7 +46,7 @@ class TitlebarGridList extends React.Component {
                 <img src={image1} alt={tile.address} />
                 <GridListTileBar
                   title={tile.address}
-                  subtitle={<span>{tile.amount}</span>}
+                  subtitle={<span>{tile.city}, {tile.postal_code} - ${tile.amount}</span>}
                   actionIcon={
                     <IconButton className={classes.icon}>
                       <InfoIcon />
