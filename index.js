@@ -29,8 +29,17 @@ app.use(bodyParser.json());
 
 //route handler
 app.post('/api/search_apartment', (req, res) => {
-  console.log(req.body.searchParams);
-  res.send({ 'Your search': req.body.searchParams });
+  let result;
+  connection.query(
+    `SELECT * FROM listing WHERE postal_code ${req.body.searchParams}`,
+    (err, rows) => {
+      if (err) throw err;
+      var ObjStr = JSON.stringify(rows);
+      result = ObjStr;
+      process.exit();
+    }
+  );
+  res.send({ 'Your search': result });
 });
 
 //listen to this port, either server provided port or local port
