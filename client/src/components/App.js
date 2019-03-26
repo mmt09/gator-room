@@ -5,7 +5,7 @@ import * as actions from '../actions';
 
 import SearchBox from './common/SearchBox';
 import NavigationBar from './common/NavigationBar';
-
+import TitlebarGridList from './TitlebarGridList';
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -26,6 +26,7 @@ class App extends React.Component {
         <NavigationBar />
         <main className={classes.content}>
           <SearchBox />
+          <TitlebarGridList />
           {/** Thi below is to get direct response from server */}
           {/* <a href="/hello">To test api routes and get response click here</a> */}
         </main>

@@ -38,7 +38,6 @@ const styles = theme => ({
   },
 });
 
-
 const tileData = [
   {
     img: image1,
@@ -97,27 +96,26 @@ function TitlebarGridList(props) {
 
   return (
     <div className={classes.root}>
-        <NavigationBar />
-        <main className={classes.content}>
-      <GridList cellHeight={360} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div"></ListSubheader>
-        </GridListTile>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.address} />
-            <GridListTileBar
-              title={tile.address}
-              subtitle={<span>{tile.price}</span>}
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
+      <main className={classes.content}>
+        <GridList cellHeight={360} className={classes.gridList}>
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+            <ListSubheader component="div" />
           </GridListTile>
-        ))}
-      </GridList>
+          {tileData.map(tile => (
+            <GridListTile key={tile.img}>
+              <img src={tile.img} alt={tile.address} />
+              <GridListTileBar
+                title={tile.address}
+                subtitle={<span>{tile.price}</span>}
+                actionIcon={
+                  <IconButton className={classes.icon}>
+                    <InfoIcon />
+                  </IconButton>
+                }
+              />
+            </GridListTile>
+          ))}
+        </GridList>
       </main>
     </div>
   );
