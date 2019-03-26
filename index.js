@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 //  let result;
 //  connection.connect();
 //  connection.query(`SELECT listing_id, address, city, postal_code, amount FROM listing`,(err, rows) => {
-    // WHERE postal_code=${ req.body.searchParams }`,
+// WHERE postal_code=${ req.body.searchParams }`,
 //      if (err) throw err;
 //      var ObjStr = JSON.stringify(rows);
 //      var parsed = JSON.parse(ObjStr);
@@ -45,18 +45,23 @@ app.use(bodyParser.json());
 //  connection.end();
 //});
 var globalJSON;
-connection.connect();
-connection.query('SELECT listing_id, address, city, postal_code, amount FROM listing', (err, rows) => {
-        if(err) throw err;
-        var ObjStr = JSON.stringify(rows);
-        var result = JSON.parse(ObjStr);
-        globalJSON = result;
-});
-connection.end();
 
 //route handler
 app.post('/api/search_apartment', (req, res) => {
-  res.send({globalJSON});
+  connection.connect();
+  connection.query(
+    `SELECT listing_id, address, city, postal_code, amount FROM listing WHERE postal_code=${
+      req.body.searchParams
+    }`,
+    (err, rows) => {
+      if (err) throw err;
+      var ObjStr = JSON.stringify(rows);
+      var result = JSON.parse(ObjStr);
+      globalJSON = result;
+    }
+  );
+  connection.end();
+  res.send({ globalJSON });
 });
 //listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
