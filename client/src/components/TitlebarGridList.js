@@ -11,7 +11,7 @@ import NavigationBar from './common/NavigationBar';
 //import tileData from './tileData';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-
+import image1 from '../images/bedroom1.jpg';
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -41,9 +41,9 @@ class TitlebarGridList extends React.Component {
             <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
               <ListSubheader component="div" />
             </GridListTile>
-            {this.props.search.map(tile => (
+            {this.props.search.globalJSON.map(tile => (
               <GridListTile key={tile.img}>
-                <img src={tile.img} alt={tile.address} />
+                <img src={image1} alt={tile.address} />
                 <GridListTileBar
                   title={tile.address}
                   subtitle={<span>{tile.amount}</span>}
