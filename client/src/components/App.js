@@ -19,7 +19,7 @@ const styles = theme => ({
 
 class App extends React.Component {
   render() {
-    console.log(this.props.search);
+    // console.log(this.props.search);
     const { classes } = this.props;
     return (
       <div className={classes.root}>
