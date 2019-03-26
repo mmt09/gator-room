@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-//import App from './components/App';
-import TitlebarGridList from './components/TitlebarGridList';
+import App from './components/App';
 
 //Community Members
 import JakhongirProfile from './components/aboutPages/JakhongirKhusanov/Profile';
@@ -16,7 +15,7 @@ const Routes = props => {
   return (
     <Router {...props}>
       <Switch>
-        <Route exact path="/" component={TitlebarGridList} />
+        <Route exact path="/" component={App} />
         <Route exact path="/Feona" component={FeonaProfile} />
         <Route exact path="/MichaelTran" component={MichaelTranProfile} />
         <Route exact path="/Carlos" component={CarlosProfile} />
