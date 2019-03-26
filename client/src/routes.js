@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import App from './components/App';
 
+import TitlebarGridList from './components/TitlebarGridList';
+
 //Community Members
 import JakhongirProfile from './components/aboutPages/JakhongirKhusanov/Profile';
 import MichaelTranProfile from './components/aboutPages/MichaelTran/Profile';
@@ -23,6 +25,7 @@ const Routes = props => {
         <Route exact path="/MichaelNelson" component={MichaelNelsonProfile} />
         <Route exact path="/Jakhongir" component={JakhongirProfile} />
         <Route exact path="/David" component={DavidProfile} />
+        <Route exact path="/table" component={TitlebarGridList} />
       </Switch>
     </Router>
   );

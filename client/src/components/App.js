@@ -26,7 +26,8 @@ class App extends React.Component {
         <NavigationBar />
         <main className={classes.content}>
           <SearchBox />
-          <TitlebarGridList />
+          {this.props.search ? <TitlebarGridList /> : null}
+
           {/** Thi below is to get direct response from server */}
           {/* <a href="/hello">To test api routes and get response click here</a> */}
         </main>
