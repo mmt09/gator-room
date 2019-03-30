@@ -16,13 +16,14 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    //flexDirection: 'column',
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: 1700,
-    height: 1080,
+    width: '100%', //500,
+    height: '100%', //450,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -37,7 +38,7 @@ class TitlebarGridList extends React.Component {
     return (
       <div className={classes.root}>
         <main className={classes.content}>
-          <GridList cellHeight={360} className={classes.gridList}>
+          <GridList cellHeight={180} className={classes.gridList}>
             <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
               <ListSubheader component="div" />
             </GridListTile>

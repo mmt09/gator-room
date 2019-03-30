@@ -20,6 +20,10 @@ import { Link as RouterLink } from 'react-router-dom';
 const styles = theme => ({
   root: {
     width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
   },
   grow: {
     flexGrow: 1,
