@@ -9,6 +9,9 @@ import TitlebarGridList from './TitlebarGridList';
 const styles = theme => ({
   root: {
     display: 'flex',
+    //flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
     flexDirection: 'column',
   },
   content: {

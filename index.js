@@ -47,7 +47,7 @@ app.use(bodyParser.json());
 var globalJSON;
 connection.connect();
 connection.query(
-  'SELECT listing_id, address, city, postal_code, amount FROM listing',
+  'SELECT * FROM listing',
   (err, rows) => {
     if (err) throw err;
     var ObjStr = JSON.stringify(rows);
