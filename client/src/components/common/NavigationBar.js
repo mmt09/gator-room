@@ -15,7 +15,8 @@ import Info from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
+import SearchBox from './SearchBox';
 
 const styles = theme => ({
   root: {
@@ -67,10 +68,6 @@ const styles = theme => ({
     width: '100%',
   },
   inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -112,6 +109,24 @@ class NavigationBar extends React.Component {
 
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
+  };
+
+  renderSearchBox = () => {
+    const { classes } = this.props;
+
+    if (this.props.location.pathname === '/' || this.props.location.pathname === '/searchResults') {
+      return;
+    }
+    return (
+      <div className={classes.search}>
+        <SearchBox
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+        />
+      </div>
+    );
   };
 
   render() {
@@ -176,19 +191,7 @@ class NavigationBar extends React.Component {
                 Gator Room
               </Typography>
             </Link>
-
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
+            {this.renderSearchBox()}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton
@@ -220,4 +223,4 @@ NavigationBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NavigationBar);
+export default withRouter(withStyles(styles)(NavigationBar));

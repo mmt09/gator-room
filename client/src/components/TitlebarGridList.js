@@ -46,9 +46,15 @@ class TitlebarGridList extends React.Component {
                 <img src={tile.picture} alt={tile.address} />
                 <GridListTileBar
                   title={tile.address}
-                  subtitle={<span>{tile.city}, {tile.postal_code} | {tile.num_bedroom} bds | {tile.num_bathroom} ba</span>}
+                  subtitle={
+                    <span>
+                      {tile.city}, {tile.postal_code} | {tile.num_bedroom} bds | {tile.num_bathroom}{' '}
+                      ba
+                    </span>
+                  }
                   actionIcon={
-                    <IconButton className={classes.icon}>${tile.amount}
+                    <IconButton className={classes.icon}>
+                      ${tile.amount}
                       <InfoIcon />
                     </IconButton>
                   }
