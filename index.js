@@ -44,5 +44,5 @@ app.post('/api/search_apartment', (req, res) => {
 
 //listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
-console.log(process.env.PORT, process.env.NODE_ENV);
+console.log(process.env.PORT, process.env.NODE_ENV_MANUAL);
 app.listen(PORT);
