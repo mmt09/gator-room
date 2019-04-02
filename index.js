@@ -2,14 +2,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const devKeys = require('./config/dev');
+const keys = require('./config/keys');
 
 // Connection to database
 const connection = mysql.createConnection({
-  host: devKeys.host || '127.0.0.1',
-  user: 'root',
-  password: devKeys.password || 'password',
-  database: 'gatorroom',
+  host: keys.host,
+  user: keys.user,
+  password: keys.password,
+  database: keys.database,
 });
 
 const app = express();
