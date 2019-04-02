@@ -39,12 +39,19 @@ class SearchBox extends React.Component {
       searchQuery: '',
     };
     this.updateSearchField = this.updateSearchField.bind(this);
+    this.keyPress = this.keyPress.bind(this);
   }
 
   updateSearchField(event) {
     const target = event.target;
     const text = target.value;
     this.setState({ searchQuery: text });
+  }
+  keyPress(e) {
+    if (e.keyCode === 13) {
+      const { searchQuery } = this.state;
+      this.props.fetchSearch(searchQuery, () => {});
+    }
   }
   render() {
     const { classes } = this.props;
@@ -59,6 +66,7 @@ class SearchBox extends React.Component {
           placeholder="Enter address or ZIP code"
           value={searchQuery}
           onChange={this.updateSearchField}
+          onKeyDown={this.keyPress}
         />
         <Button color="primary" onClick={() => this.props.fetchSearch(searchQuery, () => {})}>
           Search
