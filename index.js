@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const keys = require('./config/keys');
 
 // Connection to database
+// Production keys are stored in config directory, local dev keys are not pushed to server
 const connection = mysql.createConnection({
   host: keys.host,
   user: keys.user,
@@ -44,5 +45,4 @@ app.post('/api/search_apartment', (req, res) => {
 
 //listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
-console.log(process.env.PORT, process.env.NODE_ENV_MANUAL);
 app.listen(PORT);
