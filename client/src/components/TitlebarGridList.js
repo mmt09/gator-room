@@ -8,13 +8,12 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import NavigationBar from './common/NavigationBar';
-//import tileData from './tileData';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import image1 from '../images/bedroom4.jpg';
+
 const styles = theme => ({
   root: {
-    display: 'flex',
+    //display: 'flex',
     flexWrap: 'wrap',
     //flexDirection: 'column',
     justifyContent: 'space-around',
@@ -47,9 +46,15 @@ class TitlebarGridList extends React.Component {
                 <img src={tile.picture} alt={tile.address} />
                 <GridListTileBar
                   title={tile.address}
-                  subtitle={<span>{tile.city}, {tile.postal_code} - ${tile.amount}</span>}
+                  subtitle={
+                    <span>
+                      {tile.city}, {tile.postal_code} | {tile.num_bedroom} bds | {tile.num_bathroom}{' '}
+                      ba
+                    </span>
+                  }
                   actionIcon={
                     <IconButton className={classes.icon}>
+                      ${tile.amount}
                       <InfoIcon />
                     </IconButton>
                   }

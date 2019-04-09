@@ -60,6 +60,8 @@ class Profile extends React.Component {
             <div class="header">
               <img
                 src="https://avatars0.githubusercontent.com/u/25942541?s=460&v=4"
+                width="300"
+                height="300"
                 alt="Photo of Jakhongir Khusanov"
                 class="profile-image"
               />

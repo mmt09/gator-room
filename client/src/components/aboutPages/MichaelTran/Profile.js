@@ -61,6 +61,8 @@ class Profile extends React.Component {
               <img
                 src="https://avatars2.githubusercontent.com/u/24262297?s=460&v=4"
                 alt="Photo of Michael McDonald Tran"
+                width="300"
+                height="300"
                 class="profile-image"
               />
 

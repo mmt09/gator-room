@@ -2,15 +2,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-
-// require('./server/listingJSON')
+const keys = require('./config/keys');
 
 // Connection to database
+// Production keys are stored in config directory, local dev keys are not pushed to server
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'password',
-  database: 'gatorroom',
+  host: keys.host,
+  user: keys.user,
+  password: keys.password,
+  database: keys.database,
 });
 
 const app = express();
@@ -27,53 +27,22 @@ app.use(
     extended: true,
   })
 );
+
 app.use(bodyParser.json());
 
 //route handler
-//app.post('/api/search_apartment', (req, res) => {
-//  let result;
-//  connection.connect();
-//  connection.query(`SELECT listing_id, address, city, postal_code, amount FROM listing`,(err, rows) => {
-// WHERE postal_code=${ req.body.searchParams }`,
-//      if (err) throw err;
-//      var ObjStr = JSON.stringify(rows);
-//      var parsed = JSON.parse(ObjStr);
-//      result = parsed;
-//    }
-//  );
-//  res.send({result});
-//  connection.end();
-//});
 var globalJSON;
-connection.connect();
-connection.query(
-  'SELECT * FROM listing',
-  (err, rows) => {
+app.post('/api/search_apartment', (req, res) => {
+  var zip = req.body.searchParams;
+  connection.query('SELECT * FROM listing WHERE postal_code = ?', [zip], function(err, rows) {
     if (err) throw err;
     var ObjStr = JSON.stringify(rows);
     var result = JSON.parse(ObjStr);
     globalJSON = result;
-  }
-);
-connection.end();
-
-//route handler
-app.post('/api/search_apartment', (req, res) => {
-  res.send({ globalJSON });
+    res.send({ globalJSON });
+  });
 });
+
 //listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
 app.listen(PORT);
-
-/**function displayListings(req, res, next) {
-    connection.connect();
-    connection.query('SELECT * FROM listing', (err, rows) => {
-        if(err) throw err;
-        res.send(JSON.stringify(rows));
-    });
-    connection.end();
- }
-
-app.use(express.bodyParser());
-
-app.post('/api/listings', (req, res) => {**/

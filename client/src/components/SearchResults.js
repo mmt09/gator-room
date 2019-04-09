@@ -20,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-class App extends React.Component {
+class SearchResults extends React.Component {
   render() {
     // console.log(this.props.search);
     const { classes } = this.props;
@@ -29,6 +29,7 @@ class App extends React.Component {
         <NavigationBar />
         <main className={classes.content}>
           <SearchBox />
+          {this.props.search ? <TitlebarGridList /> : null}
         </main>
       </div>
     );
@@ -42,4 +43,4 @@ function mapStateToProps({ search }) {
 export default connect(
   mapStateToProps,
   actions
-)(withStyles(styles, { withTheme: true })(App));
+)(withStyles(styles, { withTheme: true })(SearchResults));

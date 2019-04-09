@@ -1,0 +1,27 @@
+"listing_id";"address";"city";"postal_code";"picture";"smoking_filter";"pet_filter";"parking_filter";"laundry_filter";"num_bedroom";"num_bathroom";"num_kitchen";"amount"
+1;"258 Spruce Lane";"San Francisco";"94122";"https://images.unsplash.com/photo-1480129043491-6d5a4785b65c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=887&q=80";1;1;0;0;4;2;1;3500.0
+2;"160 Jim Rosas Lane";"San Francisco";"94122";"https://images.unsplash.com/photo-1530629013299-6cb10d168419?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80";0;0;0;0;3;2;1;3750.0
+3;"173 Sierra Street";"San Francisco";"94122";"https://images.unsplash.com/photo-1499916078039-922301b0eb9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";1;0;1;0;2;1;1;3500.0
+4;"450 San Pablo Court";"San Francisco";"94132";"https://images.unsplash.com/photo-1545083036-b175dd155a1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80";1;0;1;0;2;1;1;3500.0
+5;"83 Center Avenue";"San Francisco";"94132";"https://images.unsplash.com/photo-1426122402199-be02db90eb90?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";1;0;1;0;2;1;1;3500.0
+6;"323 E. Magnolia Street";"San Francisco";"94132";"https://images.unsplash.com/photo-1528161868439-f4f8d5e1e59e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80";1;1;0;0;1;1;1;3000.0
+7;"7812 East Willow Avenue";"San Francisco";"94132";"https://images.unsplash.com/photo-1488805990569-3c9e1d76d51c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";1;1;1;1;4;3;2;4500.0
+8;"581 Edgewater Street";"San Francisco";"94132";"https://images.unsplash.com/photo-1507038772120-7fff76f79d79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80";0;0;1;1;3;1;1;3850.0
+9;"42 Courland Street";"San Francisco";"94132";"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&auto=format&fit=crop&w=973&q=80";0;0;0;0;2;1;1;2850.0
+10;"658 Evergreen Drive";"San Francisco";"94132";"https://images.unsplash.com/photo-1538944495092-48fff71fbb0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";1;1;1;1;3;2;1;3600.0
+11;"912 SW. Mayfield Street";"San Francisco";"94122";"https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80";1;0;0;0;4;2;1;4000.0
+12;"84 Poor House Avenue";"San Francisco";"94122";"https://images.unsplash.com/photo-1541123603104-512919d6a96c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80";0;0;0;0;2;1;1;3350.0
+13;"7145 Corona Drive";"San Francisco";"94122";"https://images.unsplash.com/photo-1545060894-7b45236d00b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80";0;0;0;0;2;1;1;3175.0
+14;"8426 Smoky Hollow Street";"San Francisco";"94122";"https://images.unsplash.com/photo-1512916194211-3f2b7f5f7de3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80";0;0;0;0;3;2;1;3645.0
+15;"57 Proctor Avenue";"San Francisco";"94122";"https://images.unsplash.com/photo-1545060894-bee1dd9567f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80";0;0;0;0;2;2;1;3275.0
+16;"9205 W. Lees Creek Drive";"San Francisco";"94122";"https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";0;0;0;0;4;2;1;3800.0
+17;"60 North Kent Avenue";"San Francisco";"94112";"https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";0;0;0;0;2;1;1;2750.0
+18;"19 Edgewater Street";"San Francisco";"94112";"https://images.unsplash.com/photo-1521782462922-9318be1cfd04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80";1;1;0;0;3;2;1;3420.0
+19;"9826 Sage Avenue";"San Francisco";"94112";"https://images.unsplash.com/photo-1486304873000-235643847519?ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80";0;0;0;0;1;1;1;1450.0
+20;"705 Miller Lane";"San Francisco";"94112";"https://images.unsplash.com/photo-1484301548518-d0e0a5db0fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";1;0;0;0;2;1;1;2350.0
+21;"61 Bridge Street";"Daly City";"94014";"https://images.unsplash.com/photo-1519974719765-e6559eac2575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjI0MX0&auto=format&fit=crop&w=1350&q=80";1;1;0;0;4;2;1;3500.0
+22;"7066 Madison Street";"Daly City";"94014";"https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80";1;1;0;0;2;1;1;2700.0
+23;"9598 Water Avenue";"Daly City";"94014";"https://images.unsplash.com/photo-1507089947368-19c1da9775ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80";0;0;0;0;3;1;1;3150.0
+24;"340 Washington Street";"Daly City";"94014";"https://images.unsplash.com/photo-1512914890251-2f96a9b0bbe2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80";1;0;1;0;2;2;1;2500.0
+25;"61 Saxton Street";"Daly City";"94014";"https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";0;0;0;0;3;2;1;3450.0
+26;"227 Griffin Street";"Daly City";"94014";"https://images.unsplash.com/photo-1536376072261-38c75010e6c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80";0;0;0;0;2;1;1;2850.0
