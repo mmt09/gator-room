@@ -58,7 +58,9 @@ class Profile extends React.Component {
           <div className={classes.toolbar} />
           <Typography paragraph>
             <h1 className="FeonaHeader">
+            <style> color blue </style>
               <center> Carlos Velasco</center>
+              
             </h1>
 
             <p className="FeonaParagraph">
