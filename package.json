@@ -25,5 +25,10 @@
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.10"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.1"
   }
 }
