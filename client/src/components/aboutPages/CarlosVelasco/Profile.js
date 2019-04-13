@@ -59,7 +59,7 @@ class Profile extends React.Component {
           <Typography paragraph>
             <h1 className="FeonaHeader">
             <style> color blue </style>
-              <center> Carlos Velasco</center>
+              <center> Carlos Ernesto Velasco</center>
               
             </h1>
 
