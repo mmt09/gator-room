@@ -1,77 +1,62 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import NavigationBar from '../../common/NavigationBar';
-const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
   },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appBar: {
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
-  },
-  menuButton: {
-    marginRight: 20,
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
+  // cardContainer: {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   [theme.breakpoints.down('sm')]: {
+  //     flexDirection: 'column',
+  //   },
+  // },
+  // card: {
+  //   flex: 1,
+  // },
+  // header: {
+  //   display: 'flex',
+  //   backgroundColor: 'red',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   flexDirection: 'column',
+  // },
 });
 
 class Profile extends React.Component {
-  state = {
-    mobileOpen: false,
-  };
-
-  handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-  };
-
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <NavigationBar />
         <main className={classes.content}>
-          <div className={classes.toolbar} />
           <Typography paragraph>
             <div class="header">
               <img
                 src="https://avatars0.githubusercontent.com/u/25942541?s=460&v=4"
                 width="300"
                 height="300"
-                alt="Photo of Jakhongir Khusanov"
-                class="profile-image"
+                alt="Jakhongir Khusanov"
+                className="profile-image"
               />
 
-              <h1 class="tag name">Jakhongir Khusanov</h1>
-              <p class="tag location">Full Stack Fellow</p>
+              <h1 className="tag name">Jakhongir Khusanov</h1>
+              <p className="tag location">Full Stack Fellow</p>
             </div>
-            <div class="flex">
-              <div class="card">
-                <h2 class="card-title">Background</h2>
+            <div className={classes.cardContainer}>
+              <div className={classes.card}>
+                <h2 className="card-title">Background</h2>
                 <p>
                   Software Developer with an entrepreneurial spirit. As a tech enthusiast who
                   travels around the world, I am interested in all types of technology starting from
@@ -85,7 +70,7 @@ class Profile extends React.Component {
                 <p>
                   I love traveling, and during my journeys, I have met many wonderful people from
                   all over the world. I am excited about bringing my life experience to the process
-                  of improving people's lives.
+                  of improving people{"'"}s lives.
                 </p>
                 <ul>
                   <li>
@@ -94,13 +79,13 @@ class Profile extends React.Component {
                 </ul>
               </div>
 
-              <div class="card">
-                <h2 class="card-title">Goals</h2>
+              <div className={classes.card}>
+                <h2 className="card-title">Goals</h2>
                 <p>
                   I want to master the process of creating useful digital products and increase my
                   knowledge and skills in:
                 </p>
-                <ul class="skills">
+                <ul className="skills">
                   <li>React Native</li>
                   <li>Swift</li>
                   <li>JavaScript</li>
@@ -116,5 +101,7 @@ class Profile extends React.Component {
     );
   }
 }
-
+Profile.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 export default withStyles(styles, { withTheme: true })(Profile);
