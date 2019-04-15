@@ -14,6 +14,16 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
+    card: {
+      flex: 1,
+    },
+  },
   // cardContainer: {
   //   display: 'flex',
   //   flexDirection: 'row',
@@ -24,13 +34,13 @@ const styles = theme => ({
   // card: {
   //   flex: 1,
   // },
-  // header: {
-  //   display: 'flex',
-  //   backgroundColor: 'red',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   flexDirection: 'column',
-  // },
+  header: {
+    display: 'flex',
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
 });
 
 class Profile extends React.Component {
@@ -42,7 +52,7 @@ class Profile extends React.Component {
         <NavigationBar />
         <main className={classes.content}>
           <Typography paragraph>
-            <div class="header">
+            <div className={classes.header}>
               <img
                 src="https://avatars0.githubusercontent.com/u/25942541?s=460&v=4"
                 width="300"
@@ -92,7 +102,9 @@ class Profile extends React.Component {
                   <li>React</li>
                   <li>Full Stack</li>
                 </ul>
-                <p>I'd like to establish my own company once I get enough industry experience.</p>
+                <p>
+                  I{"'"}d like to establish my own company once I get enough industry experience.
+                </p>
               </div>
             </div>
           </Typography>
