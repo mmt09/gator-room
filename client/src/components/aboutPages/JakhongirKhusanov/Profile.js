@@ -24,16 +24,6 @@ const styles = theme => ({
       flex: 1,
     },
   },
-  // cardContainer: {
-  //   display: 'flex',
-  //   flexDirection: 'row',
-  //   [theme.breakpoints.down('sm')]: {
-  //     flexDirection: 'column',
-  //   },
-  // },
-  // card: {
-  //   flex: 1,
-  // },
   header: {
     display: 'flex',
     backgroundColor: 'red',
