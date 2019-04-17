@@ -47,15 +47,10 @@ class Profile extends React.Component {
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
-  var App = React.createClass ( {
+  
   render() {
     const { classes, theme } = this.props;
-    var background = {backgroundSize : 'cover'};
-    var textStyle = {
-      position: 'absolute', 
-      top: '50%', 
-      left: '50%'
-    };
+    
     return (
       <div className={classes.root}>
         <NavigationBar />
@@ -63,22 +58,21 @@ class Profile extends React.Component {
           <div className={classes.toolbar} />
           
           <Typography paragraph>
-            <h1 className="FeonaHeader">
+          <div class="header">
+              <img
+                src="https://cdn.vox-cdn.com/thumbor/tso3z03pqxXMNvkJI__4hRk2n0Y=/0x0:1920x1080/1200x800/filters:focal(876x639:1182x945)/cdn.vox-cdn.com/uploads/chorus_image/image/60196273/NintendoSwitch_Fortnite_E3Screenshot_1.0.jpg"></img>
+                width="300"
+                height="300"
+                alt="Photo of Jakhongir Khusanov"
+                class="profile-image"
+              />
             
-              <center style={{ fontSize: 22, color: white }}> Carlos Ernesto Velasco</center>
-              
-            </h1>
-
-            <div style={{width: 'auto'}}>
-            <Image 
-                  style={background} responsive 
-                  src="https://cdn.vox-cdn.com/thumbor/tso3z03pqxXMNvkJI__4hRk2n0Y=/0x0:1920x1080/1200x800/filters:focal(876x639:1182x945)/cdn.vox-cdn.com/uploads/chorus_image/image/60196273/NintendoSwitch_Fortnite_E3Screenshot_1.0.jpg">
-                </Image>
-                <h1 style={textStyle}>Text over image</h1>
-            </div>
+            <h1 class="tag name">Carlos Velasco</h1>
+              <p class="tag location">About Page</p>
+            
 
             <p className="FeonaParagraph">
-              <center style={{ fontSize: 22, color: white }}>
+              <center>
                 My name is Carlos Velasco, and I am a seinor at San Fransisco State University. This
                 is mythird year here at San Fransisco State University, and my major is Computer
                 Science. TheSome languages I have worked with are C++. C, Java, and Java Script. I
@@ -90,13 +84,23 @@ class Profile extends React.Component {
                 customize the project.
               </center>
             </p>
+            <div class="flex">
+              <div class="card">
+                <h2 class="card-title">Computer Science Skills</h2>
+                <p>
+                 I have knowledge in diffrent languages of Computer Science. For instance, 
+                 I have knowledge in Notepad++, Discrete Structures, C++, Java, Machine Structures,
+                 PHP, and Bootstrap. 
+                </p>
+              </div>
+              </div>
+            </div>
           </Typography>
         </main>
       </div>
     );
     }
-  
-  });
-}
+  }
+
 
 export default withStyles(styles, { withTheme: true })(Profile);
