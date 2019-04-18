@@ -1,15 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import SearchBox from './common/SearchBox';
 import NavigationBar from './common/NavigationBar';
-import TitlebarGridList from './TitlebarGridList';
+
 const styles = theme => ({
   root: {
     display: 'flex',
-    //flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
     flexDirection: 'column',
@@ -35,8 +35,12 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 function mapStateToProps({ search }) {
-  return { search: search };
+  return { search };
 }
 
 export default connect(
