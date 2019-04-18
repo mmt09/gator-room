@@ -4,13 +4,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import Info from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
@@ -112,11 +110,12 @@ class NavigationBar extends React.Component {
   };
 
   renderSearchBox = () => {
-    const { classes } = this.props;
+    const { classes, location } = this.props;
 
-    if (this.props.location.pathname === '/' || this.props.location.pathname === '/searchResults') {
-      return;
+    if (location.pathname === '/' || location.pathname === '/searchResults') {
+      return null;
     }
+
     return (
       <div className={classes.search}>
         <SearchBox
@@ -151,8 +150,8 @@ class NavigationBar extends React.Component {
           ['Jakhongir Khusanov', '/jakhongir'],
           ['Michael Nelson', 'michaelNelson'],
           ['David Hernandez', 'david'],
-        ].map((text, index) => (
-          <Link underline={'none'} component={RouterLink} to={text[1]} key={text[0]}>
+        ].map(text => (
+          <Link underline="none" component={RouterLink} to={text[1]} key={text[0]}>
             <MenuItem key={text[0]}>
               <ListItemText primary={text[0]} />
             </MenuItem>
@@ -221,6 +220,7 @@ class NavigationBar extends React.Component {
 
 NavigationBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default withRouter(withStyles(styles)(NavigationBar));
