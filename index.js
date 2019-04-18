@@ -39,7 +39,7 @@ app.post('/api/search_apartment', (req, res) => {
     var ObjStr = JSON.stringify(rows);
     var result = JSON.parse(ObjStr);
     globalJSON = result;
-    res.send({ globalJSON });
+    res.send(globalJSON);
   });
 });
 

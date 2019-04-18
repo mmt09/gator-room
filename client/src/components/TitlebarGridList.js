@@ -41,7 +41,7 @@ class TitlebarGridList extends React.Component {
             <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
               <ListSubheader component="div" />
             </GridListTile>
-            {this.props.search.globalJSON.map(tile => (
+            {this.props.search.map(tile => (
               <GridListTile key={tile.picture}>
                 <img src={tile.picture} alt={tile.address} />
                 <GridListTileBar

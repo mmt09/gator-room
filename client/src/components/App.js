@@ -20,6 +20,7 @@ const styles = theme => ({
   },
 });
 
+// This an entry point to our components
 class App extends React.Component {
   render() {
     // console.log(this.props.search);
