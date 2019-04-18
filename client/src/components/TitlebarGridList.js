@@ -7,22 +7,19 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import NavigationBar from './common/NavigationBar';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 const styles = theme => ({
   root: {
-    //display: 'flex',
     flexWrap: 'wrap',
-    //flexDirection: 'column',
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: '100%', //500,
-    height: '100%', //450,
+    width: '100%', // 500,
+    height: '100%', // 450,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -31,8 +28,8 @@ const styles = theme => ({
 
 class TitlebarGridList extends React.Component {
   render() {
-    console.log(this.props.search);
-    const { classes } = this.props;
+    const { classes, search } = this.props;
+    // console.log(search);
 
     return (
       <div className={classes.root}>
@@ -41,7 +38,7 @@ class TitlebarGridList extends React.Component {
             <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
               <ListSubheader component="div" />
             </GridListTile>
-            {this.props.search.map(tile => (
+            {search.map(tile => (
               <GridListTile key={tile.picture}>
                 <img src={tile.picture} alt={tile.address} />
                 <GridListTileBar
@@ -70,10 +67,11 @@ class TitlebarGridList extends React.Component {
 
 TitlebarGridList.propTypes = {
   classes: PropTypes.object.isRequired,
+  search: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 function mapStateToProps({ search }) {
-  return { search: search };
+  return { search };
 }
 
 export default connect(

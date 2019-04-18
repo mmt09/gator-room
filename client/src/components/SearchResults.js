@@ -7,6 +7,7 @@ import * as actions from '../actions';
 import SearchBox from './common/SearchBox';
 import NavigationBar from './common/NavigationBar';
 import TitlebarGridList from './TitlebarGridList';
+import SearchError from './common/SearchError';
 
 const styles = theme => ({
   root: {
@@ -24,19 +25,23 @@ const styles = theme => ({
 class SearchResults extends React.Component {
   render() {
     const { classes, search } = this.props;
+    if (search === null) {
+      return (
+        <div className={classes.root}>
+          <NavigationBar />
+          <main className={classes.content}>
+            <SearchBox />
+            <SearchError />
+          </main>
+        </div>
+      );
+    }
     return (
       <div className={classes.root}>
         <NavigationBar />
         <main className={classes.content}>
           <SearchBox />
-          {search ? (
-            <TitlebarGridList />
-          ) : (
-            <div>
-              We could not find this area. Please check your spelling or enter a valid ZIP code.
-              Try: 94132
-            </div>
-          )}
+          {search.length === 0 ? <SearchError /> : <TitlebarGridList />}
         </main>
       </div>
     );
