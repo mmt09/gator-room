@@ -35,9 +35,8 @@ app.post('/api/search_apartment', (req, res) => {
   const zip = req.body.searchParams;
   connection.query('SELECT * FROM listing WHERE postal_code = ?', [zip], (err, rows) => {
     if (err) throw err;
-    const ObjStr = JSON.stringify(rows);
-    const result = JSON.parse(ObjStr);
-    res.send(result);
+    const listingJSON = JSON.parse(JSON.stringify(rows));
+    res.send(listingJSON);
   });
 });
 
