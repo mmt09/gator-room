@@ -1,9 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import NavigationBar from '../../common/NavigationBar';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -49,7 +50,7 @@ class Profile extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -57,21 +58,21 @@ class Profile extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography paragraph>
-            <div class="header">
+            <div className="header">
               <img
                 src="https://avatars2.githubusercontent.com/u/24262297?s=460&v=4"
-                alt="Photo of Michael McDonald Tran"
+                alt="Michael McDonald Tran"
                 width="300"
                 height="300"
-                class="profile-image"
+                className="profile-image"
               />
 
-              <h1 class="tag name">Michael McDonald Tran</h1>
-              <p class="tag location">Git Master/Full Stack Fellow</p>
+              <h1 className="tag name">Michael McDonald Tran</h1>
+              <p className="tag location">Git Master/Full Stack Fellow</p>
             </div>
-            <div class="flex">
-              <div class="card">
-                <h2 class="card-title">Background</h2>
+            <div className="flex">
+              <div className="card">
+                <h2 className="card-title">Background</h2>
                 <p>
                   Current Computer Science student with passion for programming. Experienced in all
                   aspects of residential construction and software development. Extremely focused
@@ -86,9 +87,9 @@ class Profile extends React.Component {
                 </p>
               </div>
 
-              <div class="card">
-                <h2 class="card-title">Skills</h2>
-                <ul class="skills">
+              <div className="card">
+                <h2 className="card-title">Skills</h2>
+                <ul className="skills">
                   <li>C/C++</li>
                   <li>Swift</li>
                   <li>Java/JavaScript</li>
@@ -104,5 +105,7 @@ class Profile extends React.Component {
     );
   }
 }
-
+Profile.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 export default withStyles(styles, { withTheme: true })(Profile);
