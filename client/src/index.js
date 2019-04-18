@@ -8,7 +8,7 @@ import Routes from './routes';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-//This an entry point to our React app
+// This an entry point to our React app
 ReactDOM.render(
   <Provider store={store}>
     <Routes />

@@ -1,7 +1,8 @@
-//importing modules
+// importing modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const path = require('path');
 const keys = require('./config/keys');
 
 // Connection to database
@@ -17,7 +18,6 @@ const app = express();
 
 app.use(express.static('client/build'));
 
-const path = require('path');
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
@@ -30,19 +30,17 @@ app.use(
 
 app.use(bodyParser.json());
 
-//route handler
-var globalJSON;
+// route handler
 app.post('/api/search_apartment', (req, res) => {
-  var zip = req.body.searchParams;
-  connection.query('SELECT * FROM listing WHERE postal_code = ?', [zip], function(err, rows) {
+  const zip = req.body.searchParams;
+  connection.query('SELECT * FROM listing WHERE postal_code = ?', [zip], (err, rows) => {
     if (err) throw err;
-    var ObjStr = JSON.stringify(rows);
-    var result = JSON.parse(ObjStr);
-    globalJSON = result;
-    res.send({ globalJSON });
+    const ObjStr = JSON.stringify(rows);
+    const result = JSON.parse(ObjStr);
+    res.send(result);
   });
 });
 
-//listen to this port, either server provided port or local port
+// listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
 app.listen(PORT);
