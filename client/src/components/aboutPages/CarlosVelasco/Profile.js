@@ -1,9 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import NavigationBar from '../../common/NavigationBar';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -49,7 +50,7 @@ class Profile extends React.Component {
   };
   
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     
     return (
       <div className={classes.root}>
@@ -58,17 +59,17 @@ class Profile extends React.Component {
           <div className={classes.toolbar} />
           
           <Typography paragraph>
-          <div class="header">
+          <div>
               <img
-                src="https://cdn.vox-cdn.com/thumbor/tso3z03pqxXMNvkJI__4hRk2n0Y=/0x0:1920x1080/1200x800/filters:focal(876x639:1182x945)/cdn.vox-cdn.com/uploads/chorus_image/image/60196273/NintendoSwitch_Fortnite_E3Screenshot_1.0.jpg"></img>
-                width="300"
-                height="300"
-                alt="Photo of Jakhongir Khusanov"
-                class="profile-image"
+                src="https://cdn.vox-cdn.com/thumbor/tso3z03pqxXMNvkJI__4hRk2n0Y=/0x0:1920x1080/1200x800/filters:focal(876x639:1182x945)/cdn.vox-cdn.com/uploads/chorus_image/image/60196273/NintendoSwitch_Fortnite_E3Screenshot_1.0.jpg"
+                width= "300"
+                height= "300"
+                alt="Jakhongir Khusanov"
+                className={classes.profileImage}
               />
             
-            <h1 class="tag name">Carlos Velasco</h1>
-              <p class="tag location">About Page</p>
+            <h1>Carlos Velasco</h1>
+              <p>About Page</p>
             
 
             <p className="FeonaParagraph">
@@ -84,9 +85,9 @@ class Profile extends React.Component {
                 customize the project.
               </center>
             </p>
-            <div class="flex">
-              <div class="card">
-                <h2 class="card-title">Computer Science Skills</h2>
+            <div>
+              <div>
+                <h2>Computer Science Skills</h2>
                 <p>
                  I have knowledge in diffrent languages of Computer Science. For instance, 
                  I have knowledge in Notepad++, Discrete Structures, C++, Java, Machine Structures,
@@ -102,5 +103,7 @@ class Profile extends React.Component {
     }
   }
 
-
+  Profile.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
 export default withStyles(styles, { withTheme: true })(Profile);
