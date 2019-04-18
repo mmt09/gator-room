@@ -5,21 +5,20 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Link } from 'react-router-dom';
 import { Redirect, withRouter } from 'react-router';
 
 import { connect } from 'react-redux'; // gives certain components ability to call action creators
 import * as actions from '../../actions';
+
 const styles = {
   root: {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: '100%', //400,
+    width: '100%',
   },
   input: {
     marginLeft: 8,
@@ -48,29 +47,33 @@ class SearchBox extends React.Component {
   }
 
   updateSearchField(event) {
-    const target = event.target;
+    const { target } = event;
     const text = target.value;
     this.setState({ searchQuery: text });
   }
+
   makeSearch() {
     const { searchQuery } = this.state;
-    this.props.fetchSearch(searchQuery, () => {});
+    const { fetchSearch } = this.props;
+    fetchSearch(searchQuery, () => {});
     this.setState({ toResults: true });
   }
+
   keyPress(e) {
     if (e.keyCode === 13) {
       this.makeSearch();
     }
   }
+
   render() {
-    const { classes } = this.props;
+    const { classes, location } = this.props;
     const { searchQuery, toResults } = this.state;
-    if (toResults === true && this.props.location.pathname !== '/searchResults') {
+    if (toResults === true && location.pathname !== '/searchResults') {
       return <Redirect push to="/searchResults" />;
     }
     return (
       <Paper className={classes.root} elevation={1}>
-        <IconButton className={classes.iconButton} aria-label="Search" disabled={true}>
+        <IconButton className={classes.iconButton} aria-label="Search" disabled>
           <SearchIcon />
         </IconButton>
         <InputBase
@@ -95,6 +98,8 @@ class SearchBox extends React.Component {
 
 SearchBox.propTypes = {
   classes: PropTypes.object.isRequired,
+  fetchSearch: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default connect(
