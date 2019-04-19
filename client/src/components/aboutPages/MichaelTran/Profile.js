@@ -64,7 +64,7 @@ class Profile extends React.Component {
                 alt="Michael McDonald Tran"
                 width="300"
                 height="300"
-                className="profile-image"
+                className={classes.profileImage}
               />
 
               <h1 className="tag name">Michael McDonald Tran</h1>
@@ -80,7 +80,7 @@ class Profile extends React.Component {
                   efficiently.
                 </p>
                 <p>
-                  I'm currently driven to create tech products that will make the home improvement
+                  I am currently driven to create tech products that will make the home improvement
                   process easier for people. Working on an app to streamline the construction
                   process and to centralize all blueprints, invoices, and contractor/client
                   communication.
