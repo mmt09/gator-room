@@ -60,7 +60,7 @@ class Profile extends React.Component {
           <Typography paragraph>
             <div className="header">
               <img
-                src="https://avatars2.githubusercontent.com/u/24262297?s=460&v=4"
+                src="https://avatars2.githubusercontent.com/u/24262297?s=460&amp;v=4"
                 alt="Michael McDonald Tran"
                 width="300"
                 height="300"
