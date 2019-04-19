@@ -1,9 +1,12 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import NavigationBar from '../../common/NavigationBar';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -49,7 +52,14 @@ class Profile extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+
+    
+    
+    const { classes } = this.props;
+
+    Profile.propTypes = {
+      classes: PropTypes.checkPropTypes.isRequired,
+    };
 
     return (
       <div className={classes.root}>
