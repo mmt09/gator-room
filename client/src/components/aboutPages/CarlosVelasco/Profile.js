@@ -1,9 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import NavigationBar from '../../common/NavigationBar';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -47,19 +48,29 @@ class Profile extends React.Component {
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
-
+  
   render() {
-    const { classes, theme } = this.props;
-
+    const { classes } = this.props;
+    
     return (
       <div className={classes.root}>
         <NavigationBar />
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          
           <Typography paragraph>
-            <h1 className="FeonaHeader">
-              <center> Carlos Velasco</center>
-            </h1>
+          <div>
+              <img
+                src="https://cdn.vox-cdn.com/thumbor/tso3z03pqxXMNvkJI__4hRk2n0Y=/0x0:1920x1080/1200x800/filters:focal(876x639:1182x945)/cdn.vox-cdn.com/uploads/chorus_image/image/60196273/NintendoSwitch_Fortnite_E3Screenshot_1.0.jpg"
+                width= "300"
+                height= "300"
+                alt="Jakhongir Khusanov"
+                className={classes.profileImage}
+              />
+            
+            <h1>Carlos Velasco</h1>
+              <p>About Page</p>
+            
 
             <p className="FeonaParagraph">
               <center>
@@ -74,11 +85,25 @@ class Profile extends React.Component {
                 customize the project.
               </center>
             </p>
+            <div>
+              <div>
+                <h2>Computer Science Skills</h2>
+                <p>
+                 I have knowledge in diffrent languages of Computer Science. For instance, 
+                 I have knowledge in Notepad++, Discrete Structures, C++, Java, Machine Structures,
+                 PHP, and Bootstrap. 
+                </p>
+              </div>
+              </div>
+            </div>
           </Typography>
         </main>
       </div>
     );
+    }
   }
-}
 
+  Profile.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
 export default withStyles(styles, { withTheme: true })(Profile);
