@@ -6,6 +6,7 @@ import * as actions from '../actions';
 
 import SearchBox from './common/SearchBox';
 import NavigationBar from './common/NavigationBar';
+import Login from './common/Login';
 
 const styles = theme => ({
   root: {
