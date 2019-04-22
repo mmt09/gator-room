@@ -16,6 +16,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import SearchBox from './SearchBox';
 import Login from './Login';
+import SignUp from './SignUp';
 
 const styles = theme => ({
   root: {
@@ -203,7 +204,7 @@ class NavigationBar extends React.Component {
                 <Info />
               </IconButton>
               <Button color="inherit"><Login /></Button>
-              <Button color="inherit">Sign Up</Button>
+              <Button color="inherit"><SignUp /></Button>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">

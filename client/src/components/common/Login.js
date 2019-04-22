@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TextField, RaisedButton, Dialog, Checkbox } from 'material-ui';
-import { blue600, blueGrey900 } from 'material-ui/styles/colors';
+import { blueGrey900 } from 'material-ui/styles/colors';
 
 const styles = {
   underlineStyle: {
-    borderColor: blue600,
+    borderColor: blueGrey900,
   },
   floatingLabelStyle: {
-    color: blue600,
+    color: blueGrey900,
   },
   floatingLabelFocusStyle: {
     color: blueGrey900,
@@ -82,7 +82,7 @@ class Login extends Component {
           style={styles.buttonStyle} 
         />      
         <Dialog
-          title="Sign In To GatorRoom "
+          title="Sign In To Gator Room "
           actions={actions}
           modal={true}
           open={this.state.open}
