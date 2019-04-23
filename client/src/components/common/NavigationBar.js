@@ -171,11 +171,11 @@ class NavigationBar extends React.Component {
         open={isMobileMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <p>Login</p>
+        <MenuItem onClick={this.handleMobileMenuOpen}>
+          <p><Login /></p>
         </MenuItem>
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <p>Sign Up</p>
+        <MenuItem onClick={this.handleMobileMenuOpen}>
+          <p><SignUp /></p>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <p>About Us</p>
