@@ -58,17 +58,17 @@ class Login extends Component {
 
   render(){
     const actions = [
-      <a href="http://www.gatorroom.xyz">Forget My Password</a>,
-      <RaisedButton
+      <a key href="http://www.gatorroom.xyz">Forget My Password</a>,
+      <RaisedButton key
         label="Cancel"
         onClick={this.handleClose}
-        secondary={true}
+        primary
         style={styles.buttonStyle}
       />,
-      <RaisedButton
+      <RaisedButton key
         label="Submit"
         onClick={this.handleClose}
-        secondary={true}
+        primary
         style={styles.buttonStyle}
       />,
     ];
@@ -78,13 +78,13 @@ class Login extends Component {
         <RaisedButton 
           label="Login" 
           onClick={this.handleOpen} 
-          secondary={true}
+          primary
           style={styles.buttonStyle} 
         />      
         <Dialog
           title="Sign In To Gator Room "
           actions={actions}
-          modal={true}
+          modal
           open={this.state.open}
           contentStyle={styles.customContentStyle}
         >
@@ -93,7 +93,7 @@ class Login extends Component {
           floatingLabelStyle={styles.floatingLabelStyle}
           floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           underlineFocusStyle={styles.underlineStyle}
-          fullWidth={true}
+          fullWidth
         /><br />
         <TextField
           type="password"
@@ -101,7 +101,7 @@ class Login extends Component {
           floatingLabelStyle={styles.floatingLabelStyle}
           floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           underlineFocusStyle={styles.underlineStyle}
-          fullWidth={true}
+          fullWidth
         /><br />
         <Checkbox
           label="Remember Me"
@@ -110,7 +110,7 @@ class Login extends Component {
           style={styles.checkbox}
         />
         <signUp style={styles.signUpStyle}>
-        I don't have an account 
+        I do not have an account 
           <a href="http://www.gatorroom.xyz"  style={styles.loginLink}> 
           Sign Up Now
           </a>
