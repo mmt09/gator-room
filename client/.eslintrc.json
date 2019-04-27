@@ -42,6 +42,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-extraneous-dependencies": 0,
     "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }],
-    "import/extensions": 0
+    "import/extensions": 0,
+    "react/prop-types": [2, { "ignore": ["classes"] }]
   }
 }
