@@ -26,6 +26,12 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["client/src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   },
   "plugins": ["react", "react-redux", "import"],
@@ -35,6 +41,7 @@
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-extraneous-dependencies": 0,
-    "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }]
+    "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }],
+    "import/extensions": 0
   }
 }

@@ -13,14 +13,14 @@ import GridContainer from 'components/Grid/GridContainer.jsx';
 import GridItem from 'components/Grid/GridItem.jsx';
 import Button from 'components/CustomButtons/Button.jsx';
 import HeaderLinks from 'components/Header/HeaderLinks.jsx';
-import Parallax from 'components/Parallax/Parallax.jsx';
+import Parallax from 'components/Parallax/Parallax';
 
 import landingPageStyle from '../../assets/jss/material-kit-react/views/landingPage.jsx';
 
 // Sections for this page
-import ProductSection from './Sections/ProductSection.jsx';
-import TeamSection from './Sections/TeamSection.jsx';
-import WorkSection from './Sections/WorkSection.jsx';
+import ProductSection from './Sections/ProductSection';
+import TeamSection from './Sections/TeamSection';
+import WorkSection from './Sections/WorkSection';
 import landingImage from '../../assets/img/landing-bg.jpg';
 
 const dashboardRoutes = [];
