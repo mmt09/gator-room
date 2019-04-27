@@ -6,12 +6,11 @@ import * as actions from '../actions';
 
 import SearchBox from './common/SearchBox';
 import NavigationBar from './common/NavigationBar';
+import LandingPage from './LandingPage/LandingPage';
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
     flexDirection: 'column',
   },
   content: {
@@ -27,7 +26,7 @@ class App extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <NavigationBar />
+        <LandingPage />
         <main className={classes.content}>
           <SearchBox />
         </main>
