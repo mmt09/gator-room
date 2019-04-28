@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import NavigationBar from 'views/common/NavigationBar.js';
+import NavigationBar from './common/NavigationBar';
 import TeamSection from './LandingPage/Sections/TeamSection';
 
 const styles = theme => ({
