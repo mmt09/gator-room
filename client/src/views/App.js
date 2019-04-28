@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import SearchBox from './common/SearchBox';
-import NavigationBar from './common/NavigationBar';
 import LandingPage from './LandingPage/LandingPage';
 
 const styles = theme => ({
@@ -27,9 +25,6 @@ class App extends React.Component {
     return (
       <div className={classes.root}>
         <LandingPage />
-        <main className={classes.content}>
-          <SearchBox />
-        </main>
       </div>
     );
   }

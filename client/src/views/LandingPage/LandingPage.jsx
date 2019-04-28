@@ -11,9 +11,9 @@ import Header from 'components/Header/Header.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 import GridContainer from 'components/Grid/GridContainer.jsx';
 import GridItem from 'components/Grid/GridItem.jsx';
-import Button from 'components/CustomButtons/Button.jsx';
 import HeaderLinks from 'components/Header/HeaderLinks.jsx';
 import Parallax from 'components/Parallax/Parallax';
+import SearchBox from 'views/common/SearchBox.js';
 
 import landingPageStyle from '../../assets/jss/material-kit-react/views/landingPage.jsx';
 
@@ -33,8 +33,9 @@ class LandingPage extends React.Component {
         <Header
           color="transparent"
           routes={dashboardRoutes}
-          brand="Material Kit React"
+          brand="GatorRoom"
           rightLinks={<HeaderLinks />}
+          leftLinks={<SearchBox />}
           fixed
           changeColorOnScroll={{
             height: 400,
@@ -44,25 +45,12 @@ class LandingPage extends React.Component {
         />
         <Parallax filter image={landingImage}>
           <div className={classes.container}>
-            <GridContainer>
+            <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
-                <h1 className={classes.title}>Your Story Starts With Us.</h1>
-                <h4>
-                  Every landing page needs a small description after the big bold title, that's why
-                  we added this text here. Add here all the information that can make you or your
-                  product create the first impression.
-                </h4>
+                <h1 className={classes.title}>Welcome Gator!</h1>
+                <h4>Find apartments for rent here</h4>
                 <br />
-                <Button
-                  color="danger"
-                  size="lg"
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fas fa-play" />
-                  Watch video
-                </Button>
+                <SearchBox />
               </GridItem>
             </GridContainer>
           </div>
