@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import NavigationBar from '../../common/NavigationBar';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -49,7 +50,7 @@ class Profile extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -63,7 +64,7 @@ class Profile extends React.Component {
 
             <p className="FeonaParagraph">
               <center>
-                If there's something strange in your neighborhood. Who you gonna call?
+                If there is something strange in your neighborhood. Who you gonna call?
               </center>
               <center>911 Probably</center>
             </p>
