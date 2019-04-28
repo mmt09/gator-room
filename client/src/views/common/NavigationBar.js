@@ -9,7 +9,6 @@ import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import Info from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -25,6 +24,20 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
+  },
+  appBar: {
+    display: 'flex',
+    border: '0',
+    borderRadius: '3px',
+    padding: '0.625rem 0',
+    marginBottom: '20px',
+    color: '#555',
+    width: '100%',
+    backgroundColor: '#fff',
+    boxShadow: '0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)',
+    transition: 'all 150ms ease 0s',
+    position: 'relative',
+    zIndex: 'unset',
   },
   grow: {
     flexGrow: 1,
@@ -53,15 +66,6 @@ const styles = theme => ({
       marginLeft: theme.spacing.unit * 3,
       width: 'auto',
     },
-  },
-  searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   inputRoot: {
     color: 'inherit',
@@ -172,10 +176,21 @@ class NavigationBar extends React.Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMobileMenuOpen}>
-          <p><Login /></p>
+          <Link component={RouterLink} color="inherit" underline="none" to="/">
+            <Typography variant="headline" color="inherit" noWrap>
+              GatorRoom
+            </Typography>
+          </Link>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
-          <p><SignUp /></p>
+          <p>
+            <Login />
+          </p>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuOpen}>
+          <p>
+            <SignUp />
+          </p>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <p>About Us</p>
@@ -185,26 +200,22 @@ class NavigationBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar className={classes.appBar}>
           <Toolbar>
             <Link component={RouterLink} color="inherit" underline="none" to="/">
-              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                Gator Room
+              <Typography className={classes.title} variant="headline" color="inherit" noWrap>
+                GatorRoom
               </Typography>
             </Link>
             {this.renderSearchBox()}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton
-                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <Info />
-              </IconButton>
-              <Button color="inherit"><Login /></Button>
-              <Button color="inherit"><SignUp /></Button>
+              <Button color="inherit">
+                <Login />
+              </Button>
+              <Button color="inherit">
+                <SignUp />
+              </Button>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
