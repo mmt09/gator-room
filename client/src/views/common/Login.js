@@ -15,7 +15,7 @@ const styles = {
     color: blueGrey900,
   },
   buttonStyle: {
-    margin: 14
+    margin: 14,
   },
   checkbox: {
     marginTop: 10,
@@ -34,38 +34,42 @@ const styles = {
 };
 
 class Login extends Component {
-
   state = {
     open: false,
     checked: false,
   };
 
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   updateCheck() {
-    this.setState((oldState) => {
+    this.setState(oldState => {
       return {
         checked: !oldState.checked,
       };
     });
   }
 
-  render(){
+  render() {
+    const { open, checked } = this.state;
     const actions = [
-      <a key href="http://www.gatorroom.xyz">Forget My Password</a>,
-      <RaisedButton key
+      <a key href="http://www.gatorroom.xyz">
+        Forget My Password
+      </a>,
+      <RaisedButton
+        key
         label="Cancel"
         onClick={this.handleClose}
         primary
         style={styles.buttonStyle}
       />,
-      <RaisedButton key
+      <RaisedButton
+        key
         label="Submit"
         onClick={this.handleClose}
         primary
@@ -75,52 +79,49 @@ class Login extends Component {
 
     return (
       <MuiThemeProvider>
-        <RaisedButton 
-          label="Login" 
-          onClick={this.handleOpen} 
-          primary
-          style={styles.buttonStyle} 
-        />      
+        <RaisedButton label="Login" onClick={this.handleOpen} primary style={styles.buttonStyle} />
         <Dialog
           title="Sign In To Gator Room "
           actions={actions}
           modal
-          open={this.state.open}
+          open={open}
           contentStyle={styles.customContentStyle}
         >
-        <TextField
-          floatingLabelText="Username or Email"
-          floatingLabelStyle={styles.floatingLabelStyle}
-          floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-          underlineFocusStyle={styles.underlineStyle}
-          fullWidth
-        /><br />
-        <TextField
-          type="password"
-          floatingLabelText="Password"
-          floatingLabelStyle={styles.floatingLabelStyle}
-          floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-          underlineFocusStyle={styles.underlineStyle}
-          fullWidth
-        /><br />
-        <Checkbox
-          label="Remember Me"
-          checked={this.state.checked}
-          onCheck={this.updateCheck.bind(this)}
-          style={styles.checkbox}
-        />
-        <signUp style={styles.signUpStyle}>
-        I do not have an account 
-          <a href="http://www.gatorroom.xyz"  style={styles.loginLink}> 
-          Sign Up Now
-          </a>
-        </signUp>
+          <TextField
+            floatingLabelText="Username or Email"
+            floatingLabelStyle={styles.floatingLabelStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            fullWidth
+          />
+          <br />
+          <TextField
+            type="password"
+            floatingLabelText="Password"
+            floatingLabelStyle={styles.floatingLabelStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            fullWidth
+          />
+          <br />
+          <Checkbox
+            label="Remember Me"
+            checked={checked}
+            onCheck={this.updateCheck.bind(this)}
+            style={styles.checkbox}
+          />
+          <signUp style={styles.signUpStyle}>
+            I do not have an account
+            <a href="http://www.gatorroom.xyz" style={styles.loginLink}>
+              Sign Up Now
+            </a>
+          </signUp>
         </Dialog>
       </MuiThemeProvider>
-    )
+    );
   }
 }
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     count: state.counterReducer,
   };

@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Components
 import App from './views/App';
 import SearchResults from './views/SearchResults';
-import LandingPage from './views/LandingPage/LandingPage';
-
+import About from './views/About';
 // Community Members
 import JakhongirProfile from './views/aboutPages/JakhongirKhusanov/Profile';
 import MichaelTranProfile from './views/aboutPages/MichaelTran/Profile';
@@ -20,7 +19,7 @@ const Routes = props => {
     <Router {...props}>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/landing-page" component={LandingPage} />
+        <Route path="/About" component={About} />
         <Route exact path="/Feona" component={FeonaProfile} />
         <Route exact path="/MichaelTran" component={MichaelTranProfile} />
         <Route exact path="/Carlos" component={CarlosProfile} />

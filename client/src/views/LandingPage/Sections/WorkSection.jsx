@@ -21,7 +21,7 @@ class WorkSection extends React.Component {
           <GridItem cs={12} sm={12} md={8}>
             <h2 className={classes.title}>Contact us</h2>
             <h4 className={classes.description}>
-              Do you any have questions? Write a few lines about each one and contact us about any
+              Do you have any questions? Write a few lines about each one and contact us about any
               further questions. We will get back to you in a couple of hours.
             </h4>
             <form>

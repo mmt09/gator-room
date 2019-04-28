@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TextField, RaisedButton, Dialog, Checkbox } from 'material-ui';
-import {Step, Stepper, StepLabel,} from 'material-ui/Stepper';
+import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 
 import { blueGrey900 } from 'material-ui/styles/colors';
 
@@ -17,7 +17,7 @@ const styles = {
     color: blueGrey900,
   },
   buttonStyle: {
-    margin: 14
+    margin: 14,
   },
   checkbox: {
     marginTop: 10,
@@ -44,7 +44,7 @@ class SignUp extends Component {
   };
 
   getStepContent(stepIndex) {
-    switch (this.stepIndex = stepIndex) {
+    switch ((this.stepIndex = stepIndex)) {
       case 0:
         return (
           <div>
@@ -156,23 +156,26 @@ class SignUp extends Component {
   }
 
   render() {
-    const { finished, stepIndex } = this.state;
+    const { finished, stepIndex, checked, open } = this.state;
     const contentStyle = { margin: '0 16px' };
     const actions = [
-      <RaisedButton key
+      <RaisedButton
+        key
         label="Back"
         disabled={stepIndex === 0}
         onClick={this.handlePrev}
         primary
         style={{ marginRight: 12 }}
       />,
-      <RaisedButton key
+      <RaisedButton
+        key
         label={stepIndex === 2 ? 'Submit' : 'Next'}
         value={stepIndex === 2 ? 'Submit' : 'Next'}
         primary
         onClick={this.handleNext}
       />,
-      <RaisedButton key
+      <RaisedButton
+        key
         label="Cancel"
         onClick={this.handleClose}
         primary
@@ -192,7 +195,7 @@ class SignUp extends Component {
           title="Sign Up To Gator Room "
           actions={actions}
           modal
-          open={this.state.open}
+          open={open}
           contentStyle={styles.customContentStyle}
         >
           <Stepper activeStep={stepIndex}>
@@ -229,7 +232,7 @@ class SignUp extends Component {
           </div>
           <Checkbox
             label="I agree with Term & Conditions"
-            checked={this.state.checked}
+            checked={checked}
             onCheck={this.updateCheck.bind(this)}
             style={styles.checkbox}
           />
@@ -244,7 +247,7 @@ class SignUp extends Component {
     );
   }
 }
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     count: state.counterReducer,
   };

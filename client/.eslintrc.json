@@ -44,6 +44,13 @@
     "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }],
     "import/extensions": 0,
     "react/prop-types": [2, { "ignore": ["classes"] }],
-    "react/no-unescaped-entities": [2, { "forbid": [">", "}"] }]
+    "react/no-unescaped-entities": [2, { "forbid": [">", "}"] }],
+    "react/jsx-no-bind": [
+      1,
+      {
+        "allowArrowFunctions": true,
+        "allowBind": true
+      }
+    ]
   }
 }

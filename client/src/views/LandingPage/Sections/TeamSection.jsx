@@ -3,6 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
+import Link from '@material-ui/core/Link';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
 
 // @material-ui/icons
 
@@ -41,7 +43,10 @@ class TeamSection extends React.Component {
                 </h4>
                 <CardBody>
                   <p className={classes.description}>
-                    <a href="http://gravesmakes.art">Creates art</a>
+                    Creates art,{' '}
+                    <Link underline="none" component={RouterLink} to="/nico">
+                      learn more here
+                    </Link>
                   </p>
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
@@ -74,7 +79,11 @@ class TeamSection extends React.Component {
                 </h4>
                 <CardBody>
                   <p className={classes.description}>
-                    The person who makes sure that everything works and runs smoothly
+                    The person who makes sure that everything works and runs smoothly.
+                    <Link underline="none" component={RouterLink} to="/jakhongir">
+                      {' '}
+                      Learn more here
+                    </Link>
                   </p>
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
@@ -103,7 +112,13 @@ class TeamSection extends React.Component {
                   <small className={classes.smallTitle}>Git Master/Full Stack Fellow</small>
                 </h4>
                 <CardBody>
-                  <p className={classes.description}>Takes care of whatever you give him.</p>
+                  <p className={classes.description}>
+                    Takes care of whatever you give him.
+                    <Link underline="none" component={RouterLink} to="/michaelTran">
+                      {' '}
+                      Learn more here
+                    </Link>
+                  </p>
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
                   <Button justIcon color="transparent" className={classes.margin5}>
@@ -134,7 +149,13 @@ class TeamSection extends React.Component {
                   <small className={classes.smallTitle}>Scrum Master/Front End Fellow</small>
                 </h4>
                 <CardBody>
-                  <p className={classes.description}>Makes sure that each member is growing.</p>
+                  <p className={classes.description}>
+                    Makes sure that each member is growing.
+                    <Link underline="none" component={RouterLink} to="/feona">
+                      {' '}
+                      Learn more here
+                    </Link>
+                  </p>
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
                   <Button justIcon color="transparent" className={classes.margin5}>
@@ -165,7 +186,11 @@ class TeamSection extends React.Component {
                 </h4>
                 <CardBody>
                   <p className={classes.description}>
-                    Loves todo designs and customize the project
+                    Loves todo designs and customize the project.
+                    <Link underline="none" component={RouterLink} to="/carlos">
+                      {' '}
+                      Learn more here
+                    </Link>
                   </p>
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
@@ -199,6 +224,10 @@ class TeamSection extends React.Component {
                 <CardBody>
                   <p className={classes.description}>
                     Likes working on backend, assembly and mobile development.
+                    <Link underline="none" component={RouterLink} to="/michaelNelson">
+                      {' '}
+                      Learn more here
+                    </Link>
                   </p>
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
@@ -230,7 +259,13 @@ class TeamSection extends React.Component {
                   <small className={classes.smallTitle}>Front End Fellow</small>
                 </h4>
                 <CardBody>
-                  <p className={classes.description}>Design and documentation.</p>
+                  <p className={classes.description}>
+                    Design and documentation.
+                    <Link underline="none" component={RouterLink} to="/david">
+                      {' '}
+                      Learn more here
+                    </Link>
+                  </p>
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
                   <Button justIcon color="transparent" className={classes.margin5}>
@@ -252,4 +287,4 @@ class TeamSection extends React.Component {
   }
 }
 
-export default withStyles(teamStyle)(TeamSection);
+export default withRouter(withStyles(teamStyle)(TeamSection));
