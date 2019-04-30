@@ -10,7 +10,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
