@@ -4,8 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Footer from 'components/Footer/Footer.jsx';
 import NavigationBar from './common/NavigationBar';
-import UserProfileCard from './portals/UserProfileCard'
-
+import UserProfileCard from './portals/UserProfileCard';
+import ListingCard from './portals/ListingCard';
+import FiltersList from './portals/FiltersList'
 
 
 const styles = theme => ({
@@ -44,10 +45,10 @@ class StudentPortal extends React.Component {
             <UserProfileCard/>
         </Grid>
         <Grid item xs  className = {classes.gridItem}>
-            <UserProfileCard/>
+            <FiltersList/>
         </Grid>
         <Grid item xs  className = {classes.gridItem}>
-            <UserProfileCard/>
+            <ListingCard/>
         </Grid>
       </Grid>
      
