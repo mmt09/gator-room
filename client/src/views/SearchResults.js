@@ -8,17 +8,22 @@ import SearchBox from './common/SearchBox';
 import NavigationBar from './common/NavigationBar';
 import TitlebarGridList from './TitlebarGridList';
 import SearchError from './common/SearchError';
+import SimpleMap from './common/SimpleMap';
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     overflow: 'hidden',
     flexDirection: 'column',
   },
   content: {
+    display: 'flex',
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 1,
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
   },
 });
 
@@ -39,9 +44,10 @@ class SearchResults extends React.Component {
     return (
       <div className={classes.root}>
         <NavigationBar />
+        <SearchBox />
         <main className={classes.content}>
-          <SearchBox />
           {search.length === 0 ? <SearchError /> : <TitlebarGridList />}
+          <SimpleMap />
         </main>
       </div>
     );

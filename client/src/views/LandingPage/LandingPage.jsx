@@ -15,6 +15,7 @@ import HeaderLinks from 'components/Header/HeaderLinks.jsx';
 import Parallax from 'components/Parallax/Parallax';
 import SearchBox from 'views/common/SearchBox.js';
 
+
 import landingPageStyle from '../../assets/jss/material-kit-react/views/landingPage.jsx';
 
 // Sections for this page
@@ -22,6 +23,7 @@ import ProductSection from './Sections/ProductSection';
 import TeamSection from './Sections/TeamSection';
 import WorkSection from './Sections/WorkSection';
 import landingImage from '../../assets/img/landing-bg.jpg';
+
 
 const dashboardRoutes = [];
 
@@ -63,7 +65,11 @@ class LandingPage extends React.Component {
           </div>
         </div>
         <Footer />
+
+
       </div>
+
+ 
     );
   }
 }

@@ -10,16 +10,22 @@ import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
+    display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: '100%', // 500,
-    height: '100%', // 450,
+    // flexWrap: 'wrap',
+    // justifyContent: 'flex-start',
+    // padding: 1, 
+    // flexDirection: 'column',
+    // overflow: 'hidden',
+    width: 750,
+    height: 725,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -29,10 +35,8 @@ const styles = theme => ({
 class TitlebarGridList extends React.Component {
   render() {
     const { classes, search } = this.props;
-    // console.log(search);
 
     return (
-      <div className={classes.root}>
         <main className={classes.content}>
           <GridList cellHeight={180} className={classes.gridList}>
             <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
@@ -60,7 +64,6 @@ class TitlebarGridList extends React.Component {
             ))}
           </GridList>
         </main>
-      </div>
     );
   }
 }
