@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import purple from '@material-ui/core/colors/purple';
@@ -13,36 +12,23 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   card: {
-    maxWidth: 900,
+    maxWidth: 950,
+    height : 700,
   },
   media: {
+    display: 'flex',
     height: 0,
     paddingTop: '56.25%', // 16:9
+
   },
   actions: {
     display: 'flex',
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
   avatar: {
     backgroundColor: purple[500],
   },
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    padding: theme.spacing.unit / 2,
-    width: '100%',
-    maxWidth: '360px',
-    backgroundColor: theme.palette.background.paper,
+  content : {
+    marginLeft : 10,
   },
   chip: {
     margin: theme.spacing.unit / 2,
@@ -53,6 +39,17 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
+  img :{
+    display: 'flex',
+    height : 400,
+    alignText : 'center'
+
+  },
+
+  header : {
+    display: 'flex',
+    maxHeight : 100
+  }
 });
 
 class ListingCard extends React.Component {
@@ -61,9 +58,9 @@ class ListingCard extends React.Component {
     const { classes } = this.props;
 
     return (
-
+      <div className = {classes.content}>
       <Card className = {classes.card}>
-        <CardHeader
+        <CardHeader className = {classes.header}
           avatar={
             <Avatar aria-label="Tenant" className={classes.avatar}>
               Ten
@@ -75,13 +72,9 @@ class ListingCard extends React.Component {
 
         />
         <Divider />
-        <CardMedia
-          className={classes.media}
-          image="house.jpg"
-          title="Tenant House"
-        />
+  
         <CardContent>
-          <img className={classes.img} alt="house" src="/static/images/grid/house.jpg" />
+          <img className={classes.img} alt="house"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTxwPRayof7yn5SROp6vuE24ByaLJ1qkRe8Fnz18nAWpV_bTLf" />
         </CardContent>
         <Divider />
         <CardContent>
@@ -99,6 +92,8 @@ class ListingCard extends React.Component {
           </Button>
         </CardContent>
       </Card>
+      </div>
+ 
     );
   }
 }

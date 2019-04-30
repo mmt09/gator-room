@@ -12,9 +12,9 @@ import Avatar from '@material-ui/core/Avatar';
 const styles = theme => ({
 
   card: {
-    minWidth: 100,
+    maxWidth: 300,
     height : 700,
-    width : 300
+  
   },
   bullet: {
     display: 'inline-block',
@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   root: {
     display: 'flex',
-    justifyContent: 'left',
+    justifyContent: 'center',
     overflow: 'hidden',
     flexDirection: 'column',
   },
@@ -55,7 +55,7 @@ class UserProfileCard extends React.Component {
     return (
       <div className={classes.root}>
      
-        <main className={classes.content}>
+     
         
 
           <Card className={classes.card}>
@@ -79,7 +79,7 @@ class UserProfileCard extends React.Component {
         <Button size="small">Edit</Button>
       </CardActions>
     </Card>
-        </main>
+      
       </div>
     );
   }

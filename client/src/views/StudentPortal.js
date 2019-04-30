@@ -19,10 +19,10 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   gridItem : {
-   
+    
   },
   grid : {
-    
+    alignContent : "center"
   }
 });
 
@@ -40,17 +40,17 @@ class StudentPortal extends React.Component {
       <div className={classes.root}>
         <NavigationBar />
         <main className={classes.content}>
-        <Grid container spacing={18} className = {classes.grid}>
-        <Grid item xs className = {classes.gridItem}>
-            <UserProfileCard/>
+        <Grid container spacing className = {classes.grid}>
+            <Grid item xs className = {classes.gridItem}>
+                <UserProfileCard/>
+            </Grid>
+            <Grid item xs = {4}   className = {classes.gridItem}>
+                <FiltersList/>
+            </Grid>
+            <Grid item xs = {6} className = {classes.gridItem}>
+                <ListingCard/>
+            </Grid>
         </Grid>
-        <Grid item xs  className = {classes.gridItem}>
-            <FiltersList/>
-        </Grid>
-        <Grid item xs  className = {classes.gridItem}>
-            <ListingCard/>
-        </Grid>
-      </Grid>
      
           
       <Footer/>   

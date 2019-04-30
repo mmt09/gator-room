@@ -26,7 +26,9 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     display: 'flex',
+    justifyContent: 'left',
     flexDirection: 'column',
+    height : 700,
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -46,7 +48,6 @@ const styles = theme => ({
       display: 'none',
     },
   },
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
   },
@@ -69,12 +70,11 @@ const styles = theme => ({
   },
 
   card: {
-    margin: 30,
-    padding: '20px 40px 40px',
-    maxWidth: 500,
+    height : 700,
+    maxWidth: 700,
     background: '#fff',
     borderBottom: '4px solid #ccc',
-    textAlign: 'left',
+    textAlign: 'center',
     '&:hover': {
       borderColor: '#FF69B4',
     },
@@ -102,11 +102,9 @@ class Profile extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { checked } = this.state;
 
     return (
-      <div className={classes.root}>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
           <Typography paragraph>
             <Card className={classes.card}>
               <CardContent>
@@ -119,7 +117,7 @@ class Profile extends React.Component {
                     <ListItemSecondaryAction>
                       <Switch
                         onChange={this.handleToggle('wifi')}
-                        checked={this.state.checked.indexOf('wifi') !== -1}
+                        checked={checked.indexOf('wifi') !== -1}
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
@@ -131,7 +129,7 @@ class Profile extends React.Component {
                     <ListItemSecondaryAction>
                       <Switch
                         onChange={this.handleToggle('pets')}
-                        checked={this.state.checked.indexOf('pets') !== -1}
+                        checked={checked.indexOf('pets') !== -1}
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
@@ -143,7 +141,7 @@ class Profile extends React.Component {
                     <ListItemSecondaryAction>
                       <Switch
                         onChange={this.handleToggle('smoking')}
-                        checked={this.state.checked.indexOf('smoking') !== -1}
+                        checked={checked.indexOf('smoking') !== -1}
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
@@ -155,7 +153,7 @@ class Profile extends React.Component {
                     <ListItemSecondaryAction>
                       <Switch
                         onChange={this.handleToggle('parking')}
-                        checked={this.state.checked.indexOf('parking') !== -1}
+                        checked={checked.indexOf('parking') !== -1}
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
@@ -167,7 +165,7 @@ class Profile extends React.Component {
                     <ListItemSecondaryAction>
                       <Switch
                         onChange={this.handleToggle('money')}
-                        checked={this.state.checked.indexOf('money') !== -1}
+                        checked={checked.indexOf('money') !== -1}
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
@@ -175,8 +173,7 @@ class Profile extends React.Component {
               </CardContent>
             </Card>
           </Typography>
-        </main>
-      </div>
+    
     );
   }
 }
