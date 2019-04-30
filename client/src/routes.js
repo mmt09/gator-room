@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Components
+import StudentPortal from 'views/StudentPortal';
 import App from './views/App';
 import SearchResults from './views/SearchResults';
 import About from './views/About';
@@ -28,6 +29,7 @@ const Routes = props => {
         <Route exact path="/Jakhongir" component={JakhongirProfile} />
         <Route exact path="/David" component={DavidProfile} />
         <Route exact path="/searchResults" component={SearchResults} />
+        <Route exact path="/StudentPortal" component = {StudentPortal} />
       </Switch>
     </Router>
   );
