@@ -16,6 +16,9 @@ import Card from 'components/Card/Card.jsx';
 import CardBody from 'components/Card/CardBody.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
 
+import michael from 'assets/img/faces/michael.jpg';
+import david from 'assets/img/faces/david.jpg';
+
 import teamStyle from '../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.jsx';
 
 class TeamSection extends React.Component {
@@ -210,11 +213,7 @@ class TeamSection extends React.Component {
             <GridItem xs={12} sm={12} md={4}>
               <Card plain>
                 <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                  <img
-                    src="https://images.pexels.com/photos/372098/pexels-photo-372098.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=460&w=500"
-                    alt="Michael Nelson"
-                    className={imageClasses}
-                  />
+                  <img src={michael} alt="Michael Nelson" className={imageClasses} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
                   Michael Nelson
@@ -247,11 +246,7 @@ class TeamSection extends React.Component {
             <GridItem xs={12} sm={12} md={4}>
               <Card plain>
                 <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                  <img
-                    src="https://images.pexels.com/photos/1576937/pexels-photo-1576937.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=500"
-                    alt="David Carl Hernandez"
-                    className={imageClasses}
-                  />
+                  <img src={david} alt="David Carl Hernandez" className={imageClasses} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
                   David Carl Hernandez
