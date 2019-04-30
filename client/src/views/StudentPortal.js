@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Footer from 'components/Footer/Footer.jsx';
+import Footer from '../components/Footer/Footer';
 import NavigationBar from './common/NavigationBar';
 import UserProfileCard from './portals/UserProfileCard';
 import ListingCard from './portals/ListingCard';
