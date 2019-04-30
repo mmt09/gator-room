@@ -37,15 +37,15 @@ class SimpleMap extends Component {
       { id:19, lat:37.782979, lng:-122.464099}
     ]
   };
- 
+
   render() {
     const { center, zoom, locationArray } = this.props
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ height: 725, width: '75%' }}>
 
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyA07Fbb0ohW6CxA2jGm5mkwVaYbZCoKtDE" }}
+          bootstrapURLKeys={{ key: "AIzaSyCKSxjOsN5bYFi9QtYqbrLoPtknm8yr5E0" }}
           defaultCenter={center}
           defaultZoom={zoom}
         >
@@ -65,5 +65,4 @@ SimpleMap.propTypes = {
   zoom:   PropTypes.number,
   locationArray: PropTypes.arrayOf(number)
 };
- 
 export default SimpleMap;

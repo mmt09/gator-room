@@ -32,8 +32,8 @@ app.use(bodyParser.json());
 
 // route handler
 app.post('/api/search_apartment', (req, res) => {
-  const zip = req.body.searchParams;
-  connection.query('SELECT * FROM listing WHERE postal_code = ?', [zip], (err, rows) => {
+  const search = req.body.searchParams;
+  connection.query('SELECT * FROM listing WHERE postal_code = ? OR city = ?', [search, search], (err, rows) => {
     if (err) throw err;
     const listingJSON = JSON.parse(JSON.stringify(rows));
     res.send(listingJSON);
