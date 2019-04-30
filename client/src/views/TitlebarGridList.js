@@ -25,7 +25,7 @@ const styles = theme => ({
     // flexDirection: 'column',
     // overflow: 'hidden',
     width: 750,
-    height: 600,
+    height: 725,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
