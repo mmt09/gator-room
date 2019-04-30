@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TextField, RaisedButton, Dialog, Checkbox } from 'material-ui';
 import { blueGrey900 } from 'material-ui/styles/colors';
+import { Redirect } from 'react-router';
 
 const styles = {
   underlineStyle: {
@@ -37,6 +38,8 @@ class Login extends Component {
   state = {
     open: false,
     checked: false,
+    routing: false,
+    
   };
 
   handleOpen = () => {
@@ -45,6 +48,10 @@ class Login extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+  };
+
+  route = () => {
+    this.setState({ routing: true });
   };
 
   updateCheck() {
@@ -56,26 +63,35 @@ class Login extends Component {
   }
 
   render() {
-    const { open, checked } = this.state;
+    const { open, checked,routing } = this.state;
     const actions = [
       <a key href="http://www.gatorroom.xyz">
         Forget My Password
       </a>,
-      <RaisedButton
-        key
-        label="Cancel"
-        onClick={this.handleClose}
-        primary
-        style={styles.buttonStyle}
-      />,
+
+    
+        <RaisedButton
+          key
+          label="Cancel"
+          onClick={this.handleClose}
+          primary
+          style={styles.buttonStyle}
+        />     
+      ,
+      
       <RaisedButton
         key
         label="Submit"
-        onClick={this.handleClose}
+        onClick={this.route}
         primary
         style={styles.buttonStyle}
       />,
     ];
+
+
+    if (routing) {
+      return <Redirect push to="/StudentPortal" />;
+    }
 
     return (
       <MuiThemeProvider>
@@ -117,6 +133,8 @@ class Login extends Component {
             </a>
           </signUp>
         </Dialog>
+
+        
       </MuiThemeProvider>
     );
   }
