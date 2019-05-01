@@ -20,7 +20,7 @@ import landingPageStyle from '../../assets/jss/material-kit-react/views/landingP
 // Sections for this page
 import ProductSection from './Sections/ProductSection';
 import TeamSection from './Sections/TeamSection';
-import WorkSection from './Sections/WorkSection';
+import ListingsSection from './Sections/ListingsSection';
 import landingImage from '../../assets/img/landing-bg.jpg';
 
 const dashboardRoutes = [];
@@ -58,8 +58,8 @@ class LandingPage extends React.Component {
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>
             <ProductSection />
+            <ListingsSection />
             <TeamSection />
-            <WorkSection />
           </div>
         </div>
         <Footer />
