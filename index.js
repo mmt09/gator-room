@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 
 // route handler
 require('./routes/listingRoutes')(app);
+require('./routes/signupRoutes')(app);
 
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
