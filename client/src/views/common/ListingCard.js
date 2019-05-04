@@ -51,9 +51,9 @@ ListingCard.propTypes = {
   picture: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  numberOfBedroom: PropTypes.string.isRequired,
-  numberOfBathroom: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  numberOfBedroom: PropTypes.number.isRequired,
+  numberOfBathroom: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(ListingCard);

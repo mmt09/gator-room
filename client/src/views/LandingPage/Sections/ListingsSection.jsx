@@ -85,8 +85,12 @@ class ListingsSection extends React.Component {
 
 ListingsSection.propTypes = {
   fetchAllListings: PropTypes.func.isRequired,
-  allListings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  allListings: PropTypes.arrayOf(PropTypes.object),
   fetchSearch: PropTypes.func.isRequired,
+};
+
+ListingsSection.defaultProps = {
+  allListings: [],
 };
 
 function mapStateToProps({ allListings }) {
