@@ -1,14 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ListingPage extends React.Component {
   render() {
-    const { params } = this.props.match;
+    const { match } = this.props;
+    console.log(this.props);
     return (
       <div>
         <h1>Listing</h1>
-        <p>{params.id}</p>
+        <p>{match.params.id}</p>
       </div>
     );
   }
 }
+
+ListingPage.propTypes = {
+  match: PropTypes.object.isRequired,
+};
+
 export default ListingPage;
