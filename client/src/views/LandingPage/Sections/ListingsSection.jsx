@@ -7,7 +7,7 @@ import { Redirect, withRouter } from 'react-router';
 import GridContainer from 'components/Grid/GridContainer.jsx';
 import GridItem from 'components/Grid/GridItem.jsx';
 import * as actions from '../../../actions';
-import ListingCard from '../../common/ListingCard';
+import ListingInfoCard from '../../common/ListingInfoCard';
 
 import productStyle from '../../../assets/jss/material-kit-react/views/landingPageSections/productStyle.jsx';
 
@@ -37,7 +37,7 @@ class ListingsSection extends React.Component {
       return allListings.slice(0, 6).map(listing => (
         <GridItem xs={12} sm={12} md={4} key={listing.listing_id}>
           <div className={classes.paper}>
-            <ListingCard
+            <ListingInfoCard
               key={listing.listing_id}
               picture={listing.picture}
               city={listing.city}

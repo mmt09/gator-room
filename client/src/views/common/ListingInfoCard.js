@@ -17,7 +17,7 @@ const styles = theme => ({
   },
 });
 
-const ListingCard = props => {
+const ListingInfoCard = props => {
   const {
     classes,
     picture,
@@ -55,7 +55,7 @@ const ListingCard = props => {
   );
 };
 
-ListingCard.propTypes = {
+ListingInfoCard.propTypes = {
   classes: PropTypes.object.isRequired,
   picture: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
@@ -66,4 +66,4 @@ ListingCard.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ListingCard);
+export default withStyles(styles)(ListingInfoCard);
