@@ -60,6 +60,7 @@ class ListingCard extends React.Component {
     return (
       <div className = {classes.content}>
       <Card className = {classes.card}>
+       
         <CardHeader className = {classes.header}
           avatar={
             <Avatar aria-label="Tenant" className={classes.avatar}>
@@ -71,6 +72,7 @@ class ListingCard extends React.Component {
                     2 bedrooms, 1 bath"
 
         />
+      
         <Divider />
   
         <CardContent>

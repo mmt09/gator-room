@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
 
@@ -15,6 +16,11 @@ const styles = theme => ({
     maxWidth: 300,
     height : 700,
   
+  },
+  butt: {
+    flex: 1,
+    justifyContent: 'flex-center',
+    margin: "120px"
   },
   bullet: {
     display: 'inline-block',
@@ -73,10 +79,21 @@ class UserProfileCard extends React.Component {
         <Typography className={classes.pos} color="textSecondary">
           Student
         </Typography>
+
+        <Typography className={classes.pos} color="textSecondary">
+          theredhead242@gmail.com
+        </Typography>
+
+        <Paper  elevation={0.5}>
+       
+          <Typography component="p">
+            Hello! My name is Nico and I am a senior student at San Francisco State. We have a lovely spot open in our house that is just waiting to be filled by you. The house is very relaxed and we're looking for a chill roomate to come live with us. Feel free to email me, thanks!
+          </Typography>
+      </Paper>
    
       </CardContent>
       <CardActions>
-        <Button size="small">Edit</Button>
+        <Button className = {classes.butt} size="small">Edit</Button>
       </CardActions>
     </Card>
       

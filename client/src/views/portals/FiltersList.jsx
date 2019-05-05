@@ -4,6 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -28,7 +36,6 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'left',
     flexDirection: 'column',
-    height : 700,
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -36,6 +43,13 @@ const styles = theme => ({
       flexShrink: 0,
     },
   },
+  textField: {
+    
+    width : '20%',
+    marginLeft: '450px'
+
+  },
+
   appBar: {
     marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
@@ -78,6 +92,9 @@ const styles = theme => ({
     '&:hover': {
       borderColor: '#FF69B4',
     },
+   textField :{
+    width : 200,
+   },
   },
 });
 
@@ -109,7 +126,7 @@ class Profile extends React.Component {
             <Card className={classes.card}>
               <CardContent>
                 <List subheader={<ListSubheader>Amenities</ListSubheader>} className={classes.root}>
-                  <ListItem>
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <WifiIcon />
                     </ListItemIcon>
@@ -121,7 +138,7 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <PetsIcon />
                     </ListItemIcon>
@@ -133,7 +150,7 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <SmokingIcon />
                     </ListItemIcon>
@@ -145,7 +162,7 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <ParkingIcon />
                     </ListItemIcon>
@@ -157,18 +174,62 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <MoneyIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Handicap Accessiblity" />
+                    <ListItemSecondaryAction>
+                      <Switch
+                        onChange={this.handleToggle('handicap')}
+                        checked={checked.indexOf('handicap') !== -1}
+                      />
+                    </ListItemSecondaryAction>
+                  </ListItem>
+
+
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <MoneyIcon />
                     </ListItemIcon>
                     <ListItemText primary="Budget" />
                     <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('money')}
-                        checked={checked.indexOf('money') !== -1}
+            
+            
+                          
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Monthly"
+                        InputProps={{
+                          startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        }}
                       />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <MoneyIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Roomate Genders" />
+              
+                
+                    <ListItemSecondaryAction>
+                   
+                        
+         
+                    <FormControlLabel value="female" control={<Radio />} label="Female" />
+                    <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  
+           
                     </ListItemSecondaryAction>
                   </ListItem>
+                 
+                  
                 </List>
               </CardContent>
             </Card>
