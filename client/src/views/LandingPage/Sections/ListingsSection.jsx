@@ -17,7 +17,7 @@ class ListingsSection extends React.Component {
     this.state = {
       toAllListings: false,
       toListing: false,
-      listingId: null,
+      listingID: null,
     };
     this.makeSearch = this.makeSearch.bind(this);
   }
@@ -27,8 +27,8 @@ class ListingsSection extends React.Component {
     fetchAllListings();
   }
 
-  setListing = listingId => {
-    this.setState({ toListing: true, listingId });
+  setListing = listingID => {
+    this.setState({ toListing: true, listingID });
   };
 
   renderListing = () => {
@@ -62,13 +62,13 @@ class ListingsSection extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { toAllListings, toListing, listingId } = this.state;
+    const { toAllListings, toListing, listingID } = this.state;
 
     if (toAllListings === true) {
       return <Redirect push to="/searchResults" />;
     }
     if (toListing === true) {
-      return <Redirect push to={`/listings/${listingId}`} />;
+      return <Redirect push to={`/listings/${listingID}`} />;
     }
     return (
       <div className={classes.section}>
