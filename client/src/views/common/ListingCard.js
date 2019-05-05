@@ -18,10 +18,19 @@ const styles = theme => ({
 });
 
 const ListingCard = props => {
-  const { classes, picture, city, address, price, numberOfBedroom, numberOfBathroom } = props;
+  const {
+    classes,
+    picture,
+    city,
+    address,
+    price,
+    numberOfBedroom,
+    numberOfBathroom,
+    onClick,
+  } = props;
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <CardActionArea onClick={onClick}>
         <CardMedia
           component="img"
           alt={`${address}, ${city}`}
@@ -54,6 +63,7 @@ ListingCard.propTypes = {
   price: PropTypes.number.isRequired,
   numberOfBedroom: PropTypes.number.isRequired,
   numberOfBathroom: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ListingCard);

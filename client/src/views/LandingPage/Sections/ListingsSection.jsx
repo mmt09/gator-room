@@ -15,7 +15,9 @@ class ListingsSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toResults: false,
+      toAllListings: false,
+      toListing: false,
+      listingId: null,
     };
     this.makeSearch = this.makeSearch.bind(this);
   }
@@ -25,9 +27,12 @@ class ListingsSection extends React.Component {
     fetchAllListings();
   }
 
+  setListing = listingId => {
+    this.setState({ toListing: true, listingId });
+  };
+
   renderListing = () => {
     const { allListings, classes } = this.props;
-
     if (allListings) {
       return allListings.slice(0, 6).map(listing => (
         <GridItem xs={12} sm={12} md={4} key={listing.listing_id}>
@@ -40,6 +45,7 @@ class ListingsSection extends React.Component {
               price={listing.amount}
               numberOfBedroom={listing.num_bedroom}
               numberOfBathroom={listing.num_bathroom}
+              onClick={() => this.setListing(listing.listing_id)}
             />
           </div>
         </GridItem>
@@ -51,15 +57,18 @@ class ListingsSection extends React.Component {
   makeSearch() {
     const { fetchSearch } = this.props;
     fetchSearch('94132', () => {});
-    this.setState({ toResults: true });
+    this.setState({ toAllListings: true });
   }
 
   render() {
     const { classes } = this.props;
-    const { toResults } = this.state;
+    const { toAllListings, toListing, listingId } = this.state;
 
-    if (toResults === true) {
+    if (toAllListings === true) {
       return <Redirect push to="/searchResults" />;
+    }
+    if (toListing === true) {
+      return <Redirect push to={`/listings/${listingId}`} />;
     }
     return (
       <div className={classes.section}>
