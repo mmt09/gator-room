@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TextField, RaisedButton, Dialog, Checkbox } from 'material-ui';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-
 import { blueGrey900 } from 'material-ui/styles/colors';
+import { withStyles } from '@material-ui/core/styles';
+import { Redirect, withRouter } from 'react-router';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as action from '../../actions'; 
 
 const styles = {
   underlineStyle: {
@@ -247,9 +250,24 @@ class SignUp extends Component {
     );
   }
 }
-function mapStateToProps(state) {
+
+SignUp.propTypes = {
+  classes: PropTypes.object.isRequired,
+  formInput: PropTypes.arrayOf(PropTypes.object),
+};
+
+SignUp.defaultProps = {
+  formInput: [],
+};
+
+function mapStateToProps(state, { formInput }) {
   return {
     count: state.counterReducer,
+    formInput,
   };
 }
-export default connect(mapStateToProps)(SignUp);
+export default connect(
+  mapStateToProps,
+  null,
+  action
+  )(withRouter(withStyles(styles)(SignUp)));
