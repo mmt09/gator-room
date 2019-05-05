@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const expressValidator = require('express-validator');
 
 const app = express();
 
@@ -15,9 +16,10 @@ app.use(
   bodyParser.urlencoded({
     extended: true,
   })
-);
+)
 
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 // route handler
 require('./routes/listingRoutes')(app);
