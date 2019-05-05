@@ -14,6 +14,7 @@ import CarlosProfile from './views/aboutPages/CarlosVelasco/Profile';
 import NicoProfile from './views/aboutPages/NicoGraves/Profile';
 import MichaelNelsonProfile from './views/aboutPages/MichaelNelson/Profile';
 import DavidProfile from './views/aboutPages/DavidHernandez/Profile';
+import NotFound from './views/NotFound';
 
 const Routes = props => {
   return (
@@ -29,7 +30,8 @@ const Routes = props => {
         <Route exact path="/Jakhongir" component={JakhongirProfile} />
         <Route exact path="/David" component={DavidProfile} />
         <Route exact path="/searchResults" component={SearchResults} />
-        <Route exact path="/StudentPortal" component = {StudentPortal} />
+        <Route exact path="/StudentPortal" component={StudentPortal} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );
