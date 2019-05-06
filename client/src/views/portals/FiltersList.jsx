@@ -5,11 +5,7 @@ import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import List from '@material-ui/core/List';
@@ -84,8 +80,6 @@ const styles = theme => ({
   },
 
   card: {
-    height : 700,
-    maxWidth: 700,
     background: '#fff',
     borderBottom: '4px solid #ccc',
     textAlign: 'center',
@@ -194,10 +188,7 @@ class Profile extends React.Component {
                       <MoneyIcon />
                     </ListItemIcon>
                     <ListItemText primary="Budget" />
-                    <ListItemSecondaryAction>
-            
-            
-                          
+                    <ListItemSecondaryAction>       
                     <TextField className = {classes.textField}
                         id="filled-adornment-amount"
                         variant="filled"

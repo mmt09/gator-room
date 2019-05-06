@@ -13,9 +13,7 @@ import Paper from '@material-ui/core/Paper';
 const styles = theme => ({
 
   card: {
-    maxWidth: 300,
-    height : 700,
-  
+
   },
   butt: {
     flex: 1,
@@ -64,7 +62,7 @@ class UserProfileCard extends React.Component {
      
         
 
-          <Card className={classes.card}>
+      <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
         <Avatar alt="Nico Graves" src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTIwNjA4NjM0MDQxNjMyMjY4/danny-devito-9542289-1-402.jpg" className={classes.avatar} />
@@ -93,7 +91,9 @@ class UserProfileCard extends React.Component {
    
       </CardContent>
       <CardActions>
-        <Button className = {classes.butt} size="small">Edit</Button>
+      <Button variant="contained" className={classes.butt}>
+            Edit
+          </Button>
       </CardActions>
     </Card>
       
