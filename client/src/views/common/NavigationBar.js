@@ -185,7 +185,9 @@ class NavigationBar extends React.Component {
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
           <p>
-            <Login><Login /></Login>
+            <Login>
+              <Login />
+            </Login>
           </p>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
@@ -212,12 +214,14 @@ class NavigationBar extends React.Component {
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <Button color="inherit">
-                  <Link underline="none" component={RouterLink} to="/LoginPage">
-                    Login
-                  </Link>
+                <Link underline="none" component={RouterLink} to="/LoginPage">
+                  Login
+                </Link>
               </Button>
               <Button color="inherit">
-                <SignUp />
+                <Link underline="none" component={RouterLink} to="/SignUpPage">
+                  Sign Up
+                </Link>
               </Button>
             </div>
             <div className={classes.sectionMobile}>

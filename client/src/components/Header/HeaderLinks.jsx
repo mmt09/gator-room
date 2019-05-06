@@ -9,9 +9,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from 'components/CustomButtons/Button.jsx';
-// core components
-import Login from 'views/common/Login';
-import SignUp from 'views/common/SignUp';
 
 // styling
 import headerLinksStyle from 'assets/jss/material-kit-react/components/headerLinksStyle.jsx';
@@ -22,18 +19,25 @@ function HeaderLinks({ ...props }) {
     <List className={classes.list}>
       <ListItem className={classes.listItem} />
       <ListItem className={classes.listItem}>
-        <Button
-          href="https://www.creative-tim.com/product/material-kit-react"
-          color="transparent"
-          className={classes.navLink}
-        >
+        <Button color="transparent" className={classes.navLink}>
+          <Link underline="none" component={RouterLink} to="/">
+            Home
+          </Link>
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button color="transparent" className={classes.navLink}>
           <Link underline="none" component={RouterLink} to="/LoginPage">
             Login
           </Link>
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <SignUp />
+        <Button color="transparent" className={classes.navLink}>
+          <Link underline="none" component={RouterLink} to="/SignUpPage">
+            Sign Up
+          </Link>
+        </Button>
       </ListItem>
     </List>
   );
