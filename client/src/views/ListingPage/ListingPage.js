@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Footer from 'components/Footer/Footer';
 import NavigationBar from 'views/common/NavigationBar';
+import ImageSection from 'views/ListingPage/Sections/ImageSection';
 
 import * as actions from '../../actions';
 
@@ -14,13 +15,16 @@ const styles = () => ({
     flexDirection: 'column',
   },
   main: {
-    flex: '1 auto 0',
-    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    background: '#FFFFFF',
   },
   footerContainer: {
     flex: 2,
     background: 'blue',
   },
+  imageContainer: {},
 });
 
 class ListingPage extends React.Component {
@@ -30,7 +34,8 @@ class ListingPage extends React.Component {
   }
 
   renderListing = () => {
-    const { listingDetails } = this.props;
+    const { listingDetails, classes } = this.props;
+    // console.log(listingDetails);
     if (listingDetails.length !== 0) {
       const {
         address,
@@ -48,14 +53,14 @@ class ListingPage extends React.Component {
         // smoking_filter,
       } = listingDetails[0];
       return (
-        <div>
+        <div className={classes.main}>
+          <div className={classes.imageContainer}>
+            <ImageSection mainImage={picture} />
+          </div>
           <div>
             {address}, {city}
           </div>
           <div>{amount}</div>
-          <div>
-            <img src={picture} alt={`${address}, ${city}`} width="500" height="300" />
-          </div>
         </div>
       );
     }
@@ -67,7 +72,7 @@ class ListingPage extends React.Component {
     return (
       <div className={classes.root}>
         <NavigationBar />
-        <div className={classes.main}>{this.renderListing()} </div>
+        {this.renderListing()}
         <Footer />
       </div>
     );
