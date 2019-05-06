@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Footer from '../components/Footer/Footer';
 import NavigationBar from './common/NavigationBar';
 import UserProfileCard from './portals/UserProfileCard';
-import ListingCard from './portals/ListingCard';
+import ListingList from './portals/ListingList';
 import FiltersList from './portals/FiltersList'
 
 
@@ -19,7 +19,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   gridItem : {
-    
+    height : 700
   },
   grid : {
     alignContent : "center"
@@ -40,7 +40,7 @@ class StudentPortal extends React.Component {
       <div className={classes.root}>
         <NavigationBar />
         <main className={classes.content}>
-        <Grid container spacing className = {classes.grid}>
+        <Grid container spacing = {24} className = {classes.grid}>
             <Grid item xs className = {classes.gridItem}>
                 <UserProfileCard/>
             </Grid>
@@ -48,7 +48,7 @@ class StudentPortal extends React.Component {
                 <FiltersList/>
             </Grid>
             <Grid item xs = {6} className = {classes.gridItem}>
-                <ListingCard/>
+                <ListingList/>
             </Grid>
         </Grid>
      

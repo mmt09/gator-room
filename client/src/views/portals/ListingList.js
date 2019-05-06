@@ -5,7 +5,6 @@ import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import ListingCard from './ListingCard';
 
 
@@ -39,9 +38,7 @@ class ListingList extends React.Component {
           <ListItem >
             <ListingCard/>
           </ListItem>
-          <ListItem>
-            <ListingCard/>
-          </ListItem>
+
        
 
         <ListItem className = {classes.booty}>

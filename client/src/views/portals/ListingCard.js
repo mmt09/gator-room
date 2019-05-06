@@ -16,7 +16,6 @@ import GridListTile from '@material-ui/core/GridListTile';
 const styles = theme => ({
   card: {
   
-
   },
   gridList: {
     flexWrap: 'nowrap',
@@ -44,6 +43,11 @@ const styles = theme => ({
   },
   content : {
     marginLeft : 10,
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
+    display : "flex"
   },
   chip: {
     margin: theme.spacing.unit / 2,
@@ -63,30 +67,38 @@ const styles = theme => ({
   listingPhoto : {
     
   },
-
+  price : {
+    marginLeft : 10,
+    
+  },
   header : {
     display: 'flex',
     maxHeight : 100
   }
 });
 
+const listingInfo = {
+  address : "450 San Pablo Court",
+  city : "San Francisco",
+  zip : '94132',
+  numBed : '2',
+  numBath : '1',
+  description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat nam at lectus urna duis. Augue lacus viverra vitae congue eu consequat ac felis donec. Orci porta non pulvinar neque laoreet. Faucibus interdum posuere lorem ipsum dolor sit. Leo urna molestie at elementum eu facilisis sed odio. Mollis nunc sed id semper risus in hendrerit. Commodo ullamcorper a lacus vestibulum sed arcu non. Mi bibendum neque egestas congue quisque. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Tristique risus nec feugiat in fermentum. Donec massa sapien faucibus et molestie. Mi quis hendrerit dolor magna eget est lorem ipsum. Turpis tincidunt id aliquet risus. Vitae suscipit tellus mauris a diam maecenas sed enim. Blandit libero volutpat sed cras ornare arcu dui vivamus. Augue mauris augue neque gravida in fermentum et sollicitudin ac. ',
+  filters : []
+
+};
 
 
 const tileData = [
      {
        img: 'https://lonelyplanetimages.imgix.net/assets/image/221313592d7ae33ae818ea43b85c8cbf6c6c2d7751ab5bb49f12461e3bb48c88/7696207b827f52ec09362e191f29b5037b2f4b012191b266da0b20072c01583c.jpg',
-       title: 'Image',
-       author: 'author',
+  
      },
      {
       img: 'https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fblogs-images.forbes.com%2Fthumbnails%2Fblog_2007%2Fpt_2007_4136_o.jpg%3Ft%3D1347040076',
-      title: 'Image',
-      author: 'author',
     },
     {
       img: 'https://static.move.com/blogs/2012/5/0515garcia6.jpg',
-      title: 'Image',
-      author: 'author',
     },
 ];
 
@@ -98,16 +110,20 @@ class ListingCard extends React.Component {
     return (
       <div className = {classes.content}>
       <Card className = {classes.card}>
-       
+        
         <CardHeader className = {classes.header}
          
           
-          title="450 San Pablo Court"
-          subheader="San Francisco, 94312 |
-                    2 bedrooms, 1 bath"
+          title={listingInfo.address}
+          subheader= {`${listingInfo.city  }, ${listingInfo.zip}`}
 
         />
-               <Button variant="contained" className={classes.button}>
+        
+        <Typography className = {classes.price}  variant="h5" gutterBottom>
+          $50000/Month
+        </Typography>
+      
+          <Button variant="contained" className={classes.button}>
             Contact The Lister
           </Button>
       
@@ -140,7 +156,7 @@ class ListingCard extends React.Component {
 
         <CardContent>
         <Typography component="p">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat nam at lectus urna duis. Augue lacus viverra vitae congue eu consequat ac felis donec. Orci porta non pulvinar neque laoreet. Faucibus interdum posuere lorem ipsum dolor sit. Leo urna molestie at elementum eu facilisis sed odio. Mollis nunc sed id semper risus in hendrerit. Commodo ullamcorper a lacus vestibulum sed arcu non. Mi bibendum neque egestas congue quisque. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Tristique risus nec feugiat in fermentum. Donec massa sapien faucibus et molestie. Mi quis hendrerit dolor magna eget est lorem ipsum. Turpis tincidunt id aliquet risus. Vitae suscipit tellus mauris a diam maecenas sed enim. Blandit libero volutpat sed cras ornare arcu dui vivamus. Augue mauris augue neque gravida in fermentum et sollicitudin ac.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat nam at lectus urna duis. Augue lacus viverra vitae congue eu consequat ac felis donec. Orci porta non pulvinar neque laoreet. Faucibus interdum posuere lorem ipsum dolor sit. Leo urna molestie at elementum eu facilisis sed odio. Mollis nunc sed id semper risus in hendrerit. Commodo ullamcorper a lacus vestibulum sed arcu non. Mi bibendum neque egestas congue quisque. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Tristique risus nec feugiat in fermentum. Donec massa sapien faucibus et molestie. Mi quis hendrerit dolor magna eget est lorem ipsum. Turpis tincidunt id aliquet risus. Vitae suscipit tellus mauris a diam maecenas sed enim.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
           </Typography>
 
 
