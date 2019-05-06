@@ -34,6 +34,7 @@ const Routes = props => {
         <Route exact path="/searchResults" component={SearchResults} />
         <Route exact path="/StudentPortal" component={StudentPortal} />
         <Route path="/listings/:id" component={ListingPage} />
+        <Route path="/Login" component={Login} />
         <Route component={NotFound} />
       </Switch>
     </Router>
