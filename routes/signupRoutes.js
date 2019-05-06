@@ -42,7 +42,7 @@ module.exports = app => {
       bcrypt.hash(password, saltRounds, (err, hash) => {
         connection.query(
           'INSERT INTO student (sfsu_email, first_name, last_name, phone, username, password) VALUES (?, ?, ?, ?, ?, ?)',
-          [sfsu_email, first_name, last_name, phone, username, password],
+          [sfsu_email, first_name, last_name, phone, username, hash],
           (error, results, fields) => {
             if (err) throw err;
           }
