@@ -2,12 +2,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const expressValidator = require('express-validator');\
+
+// Authentication Packages
+const expressValidator = require('express-validator');
 const session = require('express-session');
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('express-mysql-session')(session);
+const bcrypt = require('bcrypt');
 
-const keys = require('../config/keys');
+const db = require('./routes/db');
+const keys = require('./config/keys');
 
 const app = express();
 
@@ -20,6 +25,15 @@ app.get('*', (req, res) => {
 app.get('/StudentPortal', authenticationMiddleware(), (req, res) => {
   res.render('StudentPortal', { title: 'Profile' })
 });
+
+app.get('/Login', (req, res) => {
+  res.render('/Login', { title: 'Login' })
+});
+
+app.get('/Login', passport.authenticate('local', {
+  successRedirect: '/StudentPortal',
+  failureRedirect: '/Login'  
+}));const db = require('./routes/db');
 
 app.use(
   bodyParser.urlencoded({
@@ -34,6 +48,29 @@ app.use(expressValidator());
 require('./routes/listingRoutes')(app);
 require('./routes/signupRoutes')(app);
 
+passport.use(new LocalStrategy(
+  (username, password, done => {
+    db.query('SELECT student_id, password FROM student WHERE username = ?', [username], 
+    (err, results, fields => {
+      if (err) {done(err)};
+
+      if (results.length === 0) {
+        done(null, false);
+      }
+
+      const hash = results[0].password.toString();
+
+      bcrypt.compare(password, hash, (err, response => {
+        if (response === true) {
+          return done(null, {user_id: results[0].id});
+        } else {
+          return done(null, false);
+        }
+      }));
+    }))
+  })
+));
+
 const options = ({
   host: keys.host,
   user: keys.user,
@@ -45,7 +82,7 @@ const options = ({
  * This retains the session in case node restarts or terminates.
  * Explicitly logging out will wipe the session data.
  */
-var sessionStore = new MySQLStore(options);
+const sessionStore = new MySQLStore(options);
 
 app.use(session({
   secret: 'owienfowpesdfe',

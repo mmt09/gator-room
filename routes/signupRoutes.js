@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const passport = require('passport');
 const mysql = require('mysql');
 
 const keys = require('../config/keys');
