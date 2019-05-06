@@ -33,17 +33,17 @@ module.exports = app => {
     
     } else {
 
-      const sfsu_email = req.body.sfsu_email;
-      const first_name = req.body.first_name;
-      const last_name = req.body.last_name;
-      const phone = req.body.phone;
-      const username = req.body.username;
-      const password = req.body.password;
+      const {sfsuEmail} = req.body;
+      const {firstName} = req.body;
+      const {lastName} = req.body;
+      const {phone} = req.body;
+      const {username} = req.body;
+      const {password} = req.body;
 
       bcrypt.hash(password, saltRounds, (err, hash) => {
         connection.query(
           'INSERT INTO student (sfsu_email, first_name, last_name, phone, username, password) VALUES (?, ?, ?, ?, ?, ?)',
-          [sfsu_email, first_name, last_name, phone, username, hash],
+          [sfsuEmail, firstName, lastName, phone, username, hash],
           (error, results, fields) => {
           if (error) throw error;
 

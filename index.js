@@ -16,6 +16,14 @@ const keys = require('./config/keys');
 
 const app = express();
 
+function authenticationMiddleware() {
+  return (req, res, next) => {
+    console.log('req.session.passport.user: ${JSON.stringify(req.session.passport)}');
+    if (req.isAuthenticated()) return next();
+    res.redirect('/login');
+  }
+}
+
 app.use(express.static('client/build'));
 
 app.get('*', (req, res) => {
@@ -33,7 +41,16 @@ app.get('/Login', (req, res) => {
 app.get('/Login', passport.authenticate('local', {
   successRedirect: '/StudentPortal',
   failureRedirect: '/Login'  
-}));const db = require('./routes/db');
+}));
+
+// Destroys session in database store and redirect to home page.
+app.get('/Logout', (req, res) => {
+  req.logout();
+  req.session.destroy(() => {
+    res.clearCookie('connect.sid');
+    res.redirect('/');
+  });
+});
 
 app.use(
   bodyParser.urlencoded({
@@ -56,18 +73,19 @@ passport.use(new LocalStrategy(
 
       if (results.length === 0) {
         done(null, false);
+      } else {
+
+        const hash = results[0].password.toString();
+
+        bcrypt.compare(password, hash, (err, response => {
+          if (response === true) {
+            return done(null, {user_id: results[0].id});
+          } else {
+            return done(null, false);
+          }
+        }));
       }
-
-      const hash = results[0].password.toString();
-
-      bcrypt.compare(password, hash, (err, response => {
-        if (response === true) {
-          return done(null, {user_id: results[0].id});
-        } else {
-          return done(null, false);
-        }
-      }));
-    }))
+    }));
   })
 ));
 
@@ -103,13 +121,6 @@ passport.deserializeUser(user_id, done => {
   done(err, user_id);
 });
 
-function authenticationMiddleware() {
-  return (req, res, next) => {
-    console.log('req.session.passport.user: ${JSON.stringify(req.session.passport)}');
-    if (req.isAuthenticated()) return next();
-    res.redirect('/login')
-  }
-}
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
 app.listen(PORT);
