@@ -11,6 +11,7 @@ import Chip from '@material-ui/core/Chip';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import GridListTile from '@material-ui/core/GridListTile';
+import SimpleMap from "../common/SimpleMap"
 
 
 const styles = theme => ({
@@ -74,7 +75,13 @@ const styles = theme => ({
   header : {
     display: 'flex',
     maxHeight : 100
+  },
+  map : {
+    height : 10,
+    display : 'flex',
+    flexDirection : "row"
   }
+
 });
 
 const listingInfo = {
@@ -122,6 +129,8 @@ class ListingCard extends React.Component {
         <Typography className = {classes.price}  variant="h5" gutterBottom>
           $50000/Month
         </Typography>
+
+     
       
           <Button variant="contained" className={classes.button}>
             Contact The Lister
@@ -131,13 +140,19 @@ class ListingCard extends React.Component {
   
         <CardContent className = {classes.listingPhoto}>
         <GridList className={classes.gridList} cols={2.5}>
+            <GridListTile>
+       
+            <SimpleMap />
+    
+         </GridListTile>
         {tileData.map(tile => (
           <GridListTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
  
           </GridListTile>
         ))}
-
+    
+      
         
       </GridList>
       
@@ -153,16 +168,22 @@ class ListingCard extends React.Component {
         </CardContent>
         <Divider />
 
-
+       
         <CardContent>
+
+
         <Typography component="p">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat nam at lectus urna duis. Augue lacus viverra vitae congue eu consequat ac felis donec. Orci porta non pulvinar neque laoreet. Faucibus interdum posuere lorem ipsum dolor sit. Leo urna molestie at elementum eu facilisis sed odio. Mollis nunc sed id semper risus in hendrerit. Commodo ullamcorper a lacus vestibulum sed arcu non. Mi bibendum neque egestas congue quisque. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Tristique risus nec feugiat in fermentum. Donec massa sapien faucibus et molestie. Mi quis hendrerit dolor magna eget est lorem ipsum. Turpis tincidunt id aliquet risus. Vitae suscipit tellus mauris a diam maecenas sed enim.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
           </Typography>
 
-
+    
 
         </CardContent>
+
+    
+
         <CardContent>
+          
           <Button variant="contained" className={classes.button}>
             Edit
           </Button>
