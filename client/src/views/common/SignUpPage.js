@@ -8,7 +8,7 @@ import Email from '@material-ui/icons/Email';
 import People from '@material-ui/icons/People';
 import Phone from '@material-ui/icons/Phone';
 import Face from '@material-ui/icons/Face';
-// core components
+
 import Header from 'components/Header/Header.jsx';
 import HeaderLinks from 'components/Header/HeaderLinks.jsx';
 import Footer from 'components/Footer/Footer.jsx';
@@ -71,35 +71,6 @@ class SignUpPage extends React.Component {
                   <form className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Sign Up</h4>
-                      <div className={classes.socialLine}>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <i className={'fab fa-twitter'} />
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <i className={'fab fa-facebook'} />
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <i className={'fab fa-google-plus-g'} />
-                        </Button>
-                      </div>
                     </CardHeader>
                     <p className={classes.divider} />
                     <CardBody>
