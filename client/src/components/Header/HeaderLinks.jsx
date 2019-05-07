@@ -9,6 +9,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from 'components/CustomButtons/Button.jsx';
+import Typography from '@material-ui/core/Typography';
 
 // styling
 import headerLinksStyle from 'assets/jss/material-kit-react/components/headerLinksStyle.jsx';
@@ -20,23 +21,29 @@ function HeaderLinks({ ...props }) {
       <ListItem className={classes.listItem} />
       <ListItem className={classes.listItem}>
         <Button color="transparent" className={classes.navLink}>
-          <Link underline="none" component={RouterLink} to="/">
-            Home
-          </Link>
+          <Typography>
+            <Link underline="none" component={RouterLink} to="/">
+              Home
+            </Link>
+          </Typography>
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button color="transparent" className={classes.navLink}>
-          <Link underline="none" component={RouterLink} to="/LoginPage">
-            Login
-          </Link>
+          <Typography>
+            <Link underline="none" component={RouterLink} to="/LoginPage">
+              Login
+            </Link>
+          </Typography>
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button color="transparent" className={classes.navLink}>
-          <Link underline="none" component={RouterLink} to="/SignUpPage">
-            Sign Up
-          </Link>
+          <Typography>
+            <Link underline="none" component={RouterLink} to="/SignUpPage">
+              Sign Up
+            </Link>
+          </Typography>
         </Button>
       </ListItem>
     </List>
