@@ -21,7 +21,6 @@ const styles = theme => ({
     display: 'flex',
     flexGrow: 1,
     padding: theme.spacing.unit * 1,
-    flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     overflow: 'hidden',
   },
