@@ -3,15 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import CarouselSections from './CarouselSections';
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
+  root: {},
   gridList: {
     width: '100%',
     height: '50vh',
@@ -24,8 +19,6 @@ const styles = theme => ({
   },
   mobileImageContainer: {
     display: 'none',
-    height: 100,
-    width: 100,
     [theme.breakpoints.down('sm')]: {
       display: 'block',
     },
@@ -76,7 +69,7 @@ const ImageSection = props => {
   return (
     <div className={classes.root}>
       <div className={classes.mobileImageContainer}>
-        <img src={mainImage} alt={mainImage} height="200" width="200" />
+        <CarouselSections imageData={tileData} />
       </div>
 
       <GridList cellHeight={250} spacing={2} className={classes.gridList} cols={4}>

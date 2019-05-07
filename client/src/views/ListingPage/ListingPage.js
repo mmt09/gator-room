@@ -2,35 +2,23 @@ import React from 'react';
 import PropTypes, { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 
 import Footer from 'components/Footer/Footer';
+// import GridContainer from 'components/Grid/GridContainer.jsx';
+// import GridItem from 'components/Grid/GridItem.jsx';
 import NavigationBar from 'views/common/NavigationBar';
 import ImageSection from 'views/ListingPage/Sections/ImageSection';
+import listingStyle from 'assets/jss/material-kit-react/views/listingComponent.jsx';
+// import CarouselSections from './Sections/CarouselSections';
 
 import * as actions from '../../actions';
-
-const styles = () => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  main: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-    background: '#FFFFFF',
-  },
-  footerContainer: {
-    flex: 2,
-    background: 'blue',
-  },
-  imageContainer: {},
-});
 
 class ListingPage extends React.Component {
   componentDidMount() {
     const { match, fetchListingDetails } = this.props;
     fetchListingDetails(match.params.id);
+    window.scrollTo(0, 0);
   }
 
   renderListing = () => {
@@ -69,10 +57,11 @@ class ListingPage extends React.Component {
 
   render() {
     const { classes } = this.props;
+
     return (
-      <div className={classes.root}>
+      <div>
         <NavigationBar />
-        {this.renderListing()}
+        <div className={classNames(classes.main)}>{this.renderListing()}</div>
         <Footer />
       </div>
     );
@@ -92,4 +81,4 @@ function mapStateToProps({ listingDetails }) {
 export default connect(
   mapStateToProps,
   actions
-)(withStyles(styles)(ListingPage));
+)(withStyles(listingStyle)(ListingPage));
