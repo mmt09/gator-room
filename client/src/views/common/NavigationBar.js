@@ -16,6 +16,7 @@ import { Link as RouterLink, withRouter } from 'react-router-dom';
 import SearchBox from './SearchBox';
 import Login from './Login';
 import SignUp from './SignUp';
+import LoginPage from './LoginPage';
 
 const styles = theme => ({
   root: {
@@ -184,7 +185,9 @@ class NavigationBar extends React.Component {
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
           <p>
-            <Login />
+            <Login>
+              <Login />
+            </Login>
           </p>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
@@ -211,10 +214,14 @@ class NavigationBar extends React.Component {
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <Button color="inherit">
-                <Login />
+                <Link underline="none" component={RouterLink} to="/LoginPage">
+                  Login
+                </Link>
               </Button>
               <Button color="inherit">
-                <SignUp />
+                <Link underline="none" component={RouterLink} to="/SignUpPage">
+                  Sign Up
+                </Link>
               </Button>
             </div>
             <div className={classes.sectionMobile}>
