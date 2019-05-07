@@ -1,22 +1,30 @@
-import { container } from 'assets/jss/material-kit-react.jsx';
+import { container, title } from 'assets/jss/material-kit-react.jsx';
 
 const listingStyle = {
-  container,
+  container: {
+    zIndex: '12',
+    color: '#FFFFFF',
+    ...container,
+  },
   brand: {
     color: '#FFFFFF',
     textAlign: 'left',
   },
+
   title: {
-    fontSize: '4.2rem',
-    fontWeight: '600',
+    ...title,
     display: 'inline-block',
     position: 'relative',
+    marginTop: '30px',
+    minHeight: '32px',
+    textDecoration: 'none',
   },
   subtitle: {
     fontSize: '1.313rem',
     maxWidth: '500px',
-    margin: '10px 0 0',
+    margin: '10px auto 0',
   },
+
   main: {
     background: '#FFFFFF',
     position: 'relative',
@@ -34,6 +42,11 @@ const listingStyle = {
   },
   textCenter: {
     textAlign: 'center',
+  },
+  listingInfoContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 };
 
