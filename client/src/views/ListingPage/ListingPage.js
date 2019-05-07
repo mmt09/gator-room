@@ -54,11 +54,10 @@ class ListingPage extends React.Component {
         smoking_filter,
       } = listingDetails[0];
       return (
-        <div className={classes.main}>
+        <div className={classNames(classes.main)}>
           <div className={classes.imageContainer}>
             <ImageSection mainImage={picture} />
           </div>
-
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8}>
@@ -75,9 +74,9 @@ class ListingPage extends React.Component {
                 </Typography>
               </GridItem>
             </GridContainer>
-            <div className={classes.listingInfoContainer}>
-              <GridContainer className={classes.listingInfoContainer}>
-                <GridItem xs={12} sm={12} md={4}>
+            <div>
+              <GridContainer container>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Laundry"
                     description={laundry_filter === 0 ? 'Yes' : 'No'}
@@ -86,7 +85,7 @@ class ListingPage extends React.Component {
                     vertical
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Parking"
                     description={parking_filter === 0 ? 'Yes' : 'No'}
@@ -95,7 +94,7 @@ class ListingPage extends React.Component {
                     vertical
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Pets"
                     description={pet_filter === 0 ? 'Yes' : 'No'}
@@ -104,7 +103,7 @@ class ListingPage extends React.Component {
                     vertical
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Smoking allowed"
                     description={smoking_filter === 0 ? 'Yes' : 'No'}
@@ -130,7 +129,7 @@ class ListingPage extends React.Component {
     return (
       <div>
         <NavigationBar />
-        <div className={classNames(classes.main)}>{this.renderListing()}</div>
+        <div>{this.renderListing()}</div>
         <Footer />
       </div>
     );
