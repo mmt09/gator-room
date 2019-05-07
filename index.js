@@ -34,15 +34,15 @@ app.post('/StudentPortal', authenticationMiddleware(), (req, res) => {
   res.render('StudentPortal', { title: 'Profile' });
 });
 
-app.post('/Login', (req, res) => {
-  res.render('/Login', { title: 'Login' });
+app.post('/LoginPage', (req, res) => {
+  res.render('/LoginPage', { title: 'Login' });
 });
 
 app.post(
-  '/Login',
+  '/LoginPage',
   passport.authenticate('local', {
     successRedirect: '/StudentPortal',
-    failureRedirect: '/Login',
+    failureRedirect: '/LoginPage',
   })
 );
 
@@ -68,44 +68,44 @@ app.use(expressValidator());
 require('./routes/listingRoutes')(app);
 require('./routes/signupRoutes')(app);
 
-passport.use(
-  new LocalStrategy(
-    (username,
-    password,
-    done => {
-      db.query(
-        'SELECT student_id, password FROM student WHERE username = ?',
-        [username],
-        (err,
-        results,
-        fields => {
-          if (err) {
-            done(err);
-          }
+// passport.use(
+//   new LocalStrategy(
+//     (username,
+//     password,
+//     done => {
+//       db.query(
+//         'SELECT student_id, password FROM student WHERE username = ?',
+//         [username],
+//         (err,
+//         results,
+//         fields => {
+//           if (err) {
+//             done(err);
+//           }
 
-          if (results.length === 0) {
-            done(null, false);
-          } else {
-            const hash = results[0].password.toString();
+//           if (results.length === 0) {
+//             done(null, false);
+//           } else {
+//             const hash = results[0].password.toString();
 
-            bcrypt.compare(
-              password,
-              hash,
-              (err,
-              response => {
-                if (response === true) {
-                  return done(null, { user_id: results[0].id });
-                } else {
-                  return done(null, false);
-                }
-              })
-            );
-          }
-        })
-      );
-    })
-  )
-);
+//             bcrypt.compare(
+//               password,
+//               hash,
+//               (err,
+//               response => {
+//                 if (response === true) {
+//                   return done(null, { user_id: results[0].id });
+//                 } else {
+//                   return done(null, false);
+//                 }
+//               })
+//             );
+//           }
+//         })
+//       );
+//     })
+//   )
+// );
 
 const options = {
   host: keys.host,
@@ -133,13 +133,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(user_id, done => {
-  done(null, user_id);
-});
+// passport.serializeUser(user_id, done => {
+//   done(null, user_id);
+// });
 
-passport.deserializeUser(user_id, done => {
-  done(err, user_id);
-});
+// passport.deserializeUser(user_id, done => {
+//   done(err, user_id);
+// });
 
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;

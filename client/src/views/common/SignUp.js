@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Redirect, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as action from '../../actions'; 
+import * as action from '../../actions';
 
 const styles = {
   underlineStyle: {
@@ -259,13 +259,11 @@ SignUp.defaultProps = {
   formInput: [],
 };
 
-function mapStateToProps( {signup} ) {
+function mapStateToProps({ signup }) {
   return { signup };
-};
-
+}
 
 export default connect(
   mapStateToProps,
-  null,
   action
-  )(withRouter(withStyles(styles)(SignUp)));
+)(withRouter(withStyles(styles)(SignUp)));

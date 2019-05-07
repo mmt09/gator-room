@@ -21,10 +21,13 @@ import CardHeader from 'components/Card/CardHeader.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 
 import image from 'assets/img/landing-bg.jpg';
+import * as actions from '../../actions';
 
 class SignUpPage extends React.Component {
   constructor(props) {
@@ -32,10 +35,25 @@ class SignUpPage extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: 'cardHidden',
+      sfsuEmail: '',
+      firstName: '',
+      lastName: '',
+      phone: '',
+      username: '',
+      password: '',
     };
+    this.updateFirstNameInput = this.updateFirstNameInput.bind(this);
+    this.updateLastNameInput = this.updateLastNameInput.bind(this);
+    this.updateSfsuemail = this.updateSfsuemail.bind(this);
+    this.updatePhone = this.updatePhone.bind(this);
+    this.updateUsername = this.updateUsername.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
+    this.registerUser = this.registerUser.bind(this);
   }
 
   componentDidMount() {
+    const { fetchSignup } = this.props;
+    // fetchSignup();
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
       function() {
@@ -45,8 +63,53 @@ class SignUpPage extends React.Component {
     );
   }
 
+  updateSfsuemail(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ sfsuEmail: text });
+  }
+
+  updateFirstNameInput(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ firstName: text });
+  }
+
+  updateLastNameInput(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ lastName: text });
+  }
+
+  updatePhone(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ phone: text });
+  }
+
+  updateUsername(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ username: text });
+  }
+
+  updatePassword(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ password: text });
+  }
+
+  registerUser() {
+    const { sfsuEmail, firstName, lastName, phone, username, password } = this.state;
+    const { fetchSignup } = this.props;
+    fetchSignup(sfsuEmail, firstName, lastName, phone, username, password, () => {});
+  }
+
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes, signup, ...rest } = this.props;
+    const { sfsuEmail, firstName, lastName, phone, username, password } = this.state;
+    console.log(`First name: ${firstName}`);
+    console.log(signup);
     return (
       <div>
         <Header
@@ -59,7 +122,7 @@ class SignUpPage extends React.Component {
         <div
           className={classes.pageHeader}
           style={{
-            backgroundImage: 'url(' + image + ')',
+            backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'top center',
           }}
@@ -82,6 +145,8 @@ class SignUpPage extends React.Component {
                         }}
                         inputProps={{
                           type: 'text',
+                          value: firstName,
+                          onChange: this.updateFirstNameInput,
                           endAdornment: (
                             <InputAdornment position="end">
                               <People className={classes.inputIconsColor} />
@@ -97,6 +162,8 @@ class SignUpPage extends React.Component {
                         }}
                         inputProps={{
                           type: 'text',
+                          value: lastName,
+                          onChange: this.updateLastNameInput,
                           endAdornment: (
                             <InputAdornment position="end">
                               <People className={classes.inputIconsColor} />
@@ -112,6 +179,8 @@ class SignUpPage extends React.Component {
                         }}
                         inputProps={{
                           type: 'text',
+                          value: username,
+                          onChange: this.updateUsername,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Face className={classes.inputIconsColor} />
@@ -127,6 +196,8 @@ class SignUpPage extends React.Component {
                         }}
                         inputProps={{
                           type: 'email',
+                          value: sfsuEmail,
+                          onChange: this.updateSfsuemail,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Email className={classes.inputIconsColor} />
@@ -142,6 +213,8 @@ class SignUpPage extends React.Component {
                         }}
                         inputProps={{
                           type: 'phone',
+                          value: phone,
+                          onChange: this.updatePhone,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Phone className={classes.inputIconsColor} />
@@ -157,6 +230,8 @@ class SignUpPage extends React.Component {
                         }}
                         inputProps={{
                           type: 'password',
+                          value: password,
+                          onChange: this.updatePassword,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Icon className={classes.inputIconsColor}>lock_outline</Icon>
@@ -166,7 +241,7 @@ class SignUpPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg">
+                      <Button simple color="primary" size="lg" onClick={this.registerUser}>
                         Register
                       </Button>
                     </CardFooter>
@@ -182,4 +257,15 @@ class SignUpPage extends React.Component {
   }
 }
 
-export default withRouter(withStyles(loginPageStyle)(SignUpPage));
+SignUpPage.propTypes = {
+  fetchSignup: PropTypes.func.isRequired,
+};
+
+function mapStateToProps({ signup }) {
+  return { signup };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withRouter(withStyles(loginPageStyle)(SignUpPage)));
