@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 // icons
 import Laundry from '@material-ui/icons/LocalLaundryService';
@@ -27,6 +28,7 @@ import InfoArea from 'components/InfoArea/InfoArea.jsx';
 // import CarouselSections from './Sections/CarouselSections';
 
 import * as actions from '../../actions';
+import ListingDetailsSections from './Sections/ListingDetailsSections';
 
 class ListingPage extends React.Component {
   componentDidMount() {
@@ -81,7 +83,7 @@ class ListingPage extends React.Component {
                     title="Laundry"
                     description={laundry_filter === 0 ? 'Yes' : 'No'}
                     icon={Laundry}
-                    iconColor="info"
+                    iconColor={laundry_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
@@ -90,7 +92,7 @@ class ListingPage extends React.Component {
                     title="Parking"
                     description={parking_filter === 0 ? 'Yes' : 'No'}
                     icon={LocalParking}
-                    iconColor="success"
+                    iconColor={parking_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
@@ -99,7 +101,7 @@ class ListingPage extends React.Component {
                     title="Pets"
                     description={pet_filter === 0 ? 'Yes' : 'No'}
                     icon={Pet}
-                    iconColor="danger"
+                    iconColor={pet_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
@@ -108,12 +110,14 @@ class ListingPage extends React.Component {
                     title="Smoking allowed"
                     description={smoking_filter === 0 ? 'Yes' : 'No'}
                     icon={SmokingRooms}
-                    iconColor="danger"
+                    iconColor={smoking_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
               </GridContainer>
             </div>
+            <Divider variant="middle" />
+            <ListingDetailsSections />
           </div>
 
           <div />
@@ -124,8 +128,6 @@ class ListingPage extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-
     return (
       <div>
         <NavigationBar />
