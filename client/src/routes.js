@@ -1,12 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
 import StudentPortal from './views/StudentPortal';
 import LandlordPortal from './views/LandlordPortal';
 
 import App from './views/App';
-import StudentPortal from './views/StudentPortal';
 import SearchResults from './views/SearchResults';
 import About from './views/About';
 import NotFound from './views/NotFound';
@@ -37,8 +35,8 @@ const Routes = props => {
         <Route exact path="/Jakhongir" component={JakhongirProfile} />
         <Route exact path="/David" component={DavidProfile} />
         <Route exact path="/searchResults" component={SearchResults} />
-        <Route exact path="/StudentPortal" component = {StudentPortal} />
-        <Route exact path="/LandlordPortal" component = {LandlordPortal} />
+        <Route exact path="/StudentPortal" component={StudentPortal} />
+        <Route exact path="/LandlordPortal" component={LandlordPortal} />
         <Route path="/listings/:id" component={ListingPage} />
         <Route path="/LoginPage" component={LoginPage} />
         <Route path="/SignUpPage" component={SignUpPage} />
