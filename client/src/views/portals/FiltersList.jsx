@@ -4,6 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -16,6 +20,12 @@ import PetsIcon from '@material-ui/icons/Pets';
 import MoneyIcon from '@material-ui/icons/AttachMoney';
 import ParkingIcon from '@material-ui/icons/LocalParking';
 import SmokingIcon from '@material-ui/icons/SmokingRoomsOutlined';
+import Accessible from "@material-ui/icons/Accessible";
+import Person from "@material-ui/icons/Person"
+import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
+import Kitchen from "@material-ui/icons/Kitchen";
+import AirlineSeatFlat from "@material-ui/icons/AirlineSeatFlat";
+import HotTub from "@material-ui/icons/HotTub";
 
 
 const drawerWidth = 240;
@@ -23,12 +33,17 @@ const drawerWidth = 240;
 
 /* END FILTERS COMPONENT */
 
+const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
+
+
+
+
 const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'left',
     flexDirection: 'column',
-    height : 700,
+    minHeight: '69vh',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -36,6 +51,13 @@ const styles = theme => ({
       flexShrink: 0,
     },
   },
+  textField: {
+    
+    width : '20%',
+    marginLeft: '450px'
+
+  },
+
   appBar: {
     marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
@@ -70,18 +92,21 @@ const styles = theme => ({
   },
 
   card: {
-    height : 700,
-    maxWidth: 700,
     background: '#fff',
     borderBottom: '4px solid #ccc',
     textAlign: 'center',
     '&:hover': {
       borderColor: '#FF69B4',
     },
+   textField :{
+    width : 200,
+   },
   },
 });
 
+
 class Profile extends React.Component {
+ 
   state = { checked: 'wifi' };
 
   handleToggle = value => () => {
@@ -108,8 +133,8 @@ class Profile extends React.Component {
           <Typography paragraph>
             <Card className={classes.card}>
               <CardContent>
-                <List subheader={<ListSubheader>Amenities</ListSubheader>} className={classes.root}>
-                  <ListItem>
+                <List subheader={<ListSubheader>My Search Filters</ListSubheader>} className={classes.root}>
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <WifiIcon />
                     </ListItemIcon>
@@ -121,7 +146,7 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <PetsIcon />
                     </ListItemIcon>
@@ -133,7 +158,7 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <SmokingIcon />
                     </ListItemIcon>
@@ -145,7 +170,23 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <LocalLaundryService />
+                    </ListItemIcon>
+                    <ListItemText primary="Laundry" />
+                    <ListItemSecondaryAction>
+                      <Switch
+                        onChange={this.handleToggle('laundry')}
+                        checked={checked.indexOf('laundry') !== -1}
+                      />
+                    </ListItemSecondaryAction>
+                  </ListItem>
+
+                  
+
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <ParkingIcon />
                     </ListItemIcon>
@@ -157,18 +198,112 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
-                  <ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <Accessible />
+                    </ListItemIcon>
+                    <ListItemText primary="Handicap Accessiblity" />
+                    <ListItemSecondaryAction>
+                      <Switch
+                        onChange={this.handleToggle('handicap')}
+                        checked={checked.indexOf('handicap') !== -1}
+                      />
+                    </ListItemSecondaryAction>
+                  </ListItem>
+
+
+                  <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <MoneyIcon />
                     </ListItemIcon>
                     <ListItemText primary="Budget" />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('money')}
-                        checked={checked.indexOf('money') !== -1}
+                    <ListItemSecondaryAction>       
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Monthly"
+                        InputProps={{
+                          startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        }}
                       />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <Kitchen />
+                    </ListItemIcon>
+                    <ListItemText primary="Kitchens" />
+                    <ListItemSecondaryAction>       
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Kitchens"
+                      />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <AirlineSeatFlat />
+                    </ListItemIcon>
+                    <ListItemText primary="Beds" />
+                    <ListItemSecondaryAction>       
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Beds"
+                     
+                      />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <HotTub />
+                    </ListItemIcon>
+                    <ListItemText primary="Bathrooms" />
+                    <ListItemSecondaryAction>       
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Bathrooms"
+                      />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <Person />
+                    </ListItemIcon>
+                    <ListItemText primary="Roomate Genders" />
+              
+                
+                    <ListItemSecondaryAction>
+                   
+                        
+         
+                    <FormControlLabel value="female" control={<Radio />} label="Female" />
+                    <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  
+           
                     </ListItemSecondaryAction>
                   </ListItem>
+                 
+                  
                 </List>
               </CardContent>
             </Card>
