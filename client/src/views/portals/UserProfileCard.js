@@ -14,9 +14,10 @@ const styles = theme => ({
 
   butt: {
     flex: 1,
-    justifyContent: 'flex-center',
+    justifyContent: 'space-between',
     margin: 'auto',
-    width : '100%'
+    width : '100%',
+  
   },
   bullet: {
     display: 'inline-block',
@@ -31,9 +32,8 @@ const styles = theme => ({
   },
   root: {
     display: 'flex',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    flexDirection: 'column',
+    minHeight: '73vh',
+  
   },
   content: {
     flexGrow: 1,
@@ -62,7 +62,6 @@ class UserProfileCard extends React.Component {
   render() {
     // console.log(this.props.search);
     const { classes } = this.props;
-    
 
     return (
       <div className={classes.root}>
@@ -96,12 +95,13 @@ class UserProfileCard extends React.Component {
    
       </CardContent>
       <CardActions>
-      <Button variant="contained" className={classes.butt}>
-            Edit
-          </Button>
+        <Button variant="contained" className={classes.butt}>
+              Edit
+        </Button>
       </CardActions>
+   
     </Card>
-      
+       
       </div>
     );
   }

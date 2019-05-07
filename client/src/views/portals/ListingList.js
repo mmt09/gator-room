@@ -16,7 +16,8 @@ const styles = theme => ({
         position: 'relative',
         overflow: 'auto',
         maxHeight : 700,
-        display : "flex"
+        display : "flex",
+        minHeight: '73vh',
     },
     booty : {
         margin : 'auto',
@@ -24,6 +25,9 @@ const styles = theme => ({
     },
 
   });
+
+
+
 
 
 class ListingList extends React.Component {

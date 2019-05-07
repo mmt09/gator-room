@@ -27,11 +27,17 @@ const drawerWidth = 240;
 
 /* END FILTERS COMPONENT */
 
+
+
+
+
+
 const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'left',
     flexDirection: 'column',
+    minHeight: '69vh',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {

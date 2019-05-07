@@ -19,7 +19,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   gridItem : {
-    height : 700
+
   },
   grid : {
     alignContent : "center"
