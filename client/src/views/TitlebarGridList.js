@@ -7,7 +7,7 @@ import { Redirect, withRouter } from 'react-router';
 import GridContainer from 'components/Grid/GridContainer.jsx';
 import GridItem from 'components/Grid/GridItem.jsx';
 import ListingInfoCard from 'views/common/ListingInfoCard.js';
-import productStyle from 'assets/jss/material-kit-react/views/landingPageSections/productStyle.jsx';
+import searchCardStyle from 'assets/jss/material-kit-react/views/searchResultCardSections/searchCardStyle.jsx';
 
 import * as actions from '../actions';
 
@@ -27,7 +27,7 @@ class TitlebarGridList extends React.Component {
   renderListing = () => {
     const { search, classes } = this.props;
     if (search) {
-      return search.slice(0, 6).map(listing => (
+      return search.map(listing => (
         <GridItem xs={12} sm={12} md={7} key={listing.listing_id}>
           <div className={classes.paper}>
             <ListingInfoCard
@@ -75,4 +75,4 @@ function mapStateToProps({ search }) {
 export default connect(
   mapStateToProps,
   actions
-)(withRouter(withStyles(productStyle)(TitlebarGridList)));
+)(withRouter(withStyles(searchCardStyle)(TitlebarGridList)));
