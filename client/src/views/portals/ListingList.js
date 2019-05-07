@@ -27,9 +27,6 @@ const styles = theme => ({
   });
 
 
-
-
-
 class ListingList extends React.Component {
 
   render() {

@@ -20,6 +20,8 @@ import PetsIcon from '@material-ui/icons/Pets';
 import MoneyIcon from '@material-ui/icons/AttachMoney';
 import ParkingIcon from '@material-ui/icons/LocalParking';
 import SmokingIcon from '@material-ui/icons/SmokingRoomsOutlined';
+import Accessible from "@material-ui/icons/Accessible";
+import Person from "@material-ui/icons/Person"
 
 
 const drawerWidth = 240;
@@ -177,7 +179,7 @@ class Profile extends React.Component {
 
                   <ListItem  alignItems="flex-start">
                     <ListItemIcon>
-                      <MoneyIcon />
+                      <Accessible />
                     </ListItemIcon>
                     <ListItemText primary="Handicap Accessiblity" />
                     <ListItemSecondaryAction>
@@ -210,7 +212,7 @@ class Profile extends React.Component {
                   </ListItem>
                   <ListItem  alignItems="flex-start">
                     <ListItemIcon>
-                      <MoneyIcon />
+                      <Person />
                     </ListItemIcon>
                     <ListItemText primary="Roomate Genders" />
               
