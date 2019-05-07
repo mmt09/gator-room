@@ -3,7 +3,10 @@ import React from 'react';
 import classNames from 'classnames';
 // nodejs library to set properties for components
 import PropTypes from 'prop-types';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
+
 // @material-ui/core components
+import Link from '@material-ui/core/Link';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -69,11 +72,15 @@ class Header extends React.Component {
       [classes.absolute]: absolute,
       [classes.fixed]: fixed,
     });
-    const brandComponent = <Button className={classes.title}>{brand}</Button>;
+    const brandComponent = (
+      <Link component={RouterLink} color="inherit" underline="none" to="/">
+        <Button className={classes.title}>{brand}</Button>
+      </Link>
+    );
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>
-          {leftLinks !== undefined ? brandComponent : null}
+          {brandComponent !== undefined ? brandComponent : null}
           <div className={classes.flex}>
             {this.state.scrolled === true ? (
               <Hidden smDown implementation="css">
