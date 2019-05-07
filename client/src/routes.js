@@ -8,6 +8,8 @@ import SearchResults from './views/SearchResults';
 import About from './views/About';
 import NotFound from './views/NotFound';
 import ListingPage from './views/ListingPage/ListingPage';
+import LoginPage from './views/common/LoginPage';
+import SignUpPage from './views/common/SignUpPage';
 
 // Community Members
 import JakhongirProfile from './views/aboutPages/JakhongirKhusanov/Profile';
@@ -34,6 +36,8 @@ const Routes = props => {
         <Route exact path="/searchResults" component={SearchResults} />
         <Route exact path="/StudentPortal" component={StudentPortal} />
         <Route path="/listings/:id" component={ListingPage} />
+        <Route path="/LoginPage" component={LoginPage} />
+        <Route path="/SignUpPage" component={SignUpPage} />
         <Route component={NotFound} />
       </Switch>
     </Router>
