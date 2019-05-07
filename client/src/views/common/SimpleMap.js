@@ -42,7 +42,7 @@ class SimpleMap extends Component {
     const { center, zoom, locationArray } = this.props
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: 725, width: '75%' }}>
+   
 
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCKSxjOsN5bYFi9QtYqbrLoPtknm8yr5E0" }}
@@ -56,7 +56,7 @@ class SimpleMap extends Component {
         { locationArray.map(item => <Marker key={item.id} lat={item.lat} lng={item.lng} />) }
 
         </GoogleMapReact>
-      </div>
+  
     );
   }
 }

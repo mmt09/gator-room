@@ -14,9 +14,10 @@ const styles = theme => ({
 
   butt: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     margin: 'auto',
     width : '100%',
+    marginTop : 250
   
   },
   bullet: {

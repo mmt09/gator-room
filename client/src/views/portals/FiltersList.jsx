@@ -22,6 +22,10 @@ import ParkingIcon from '@material-ui/icons/LocalParking';
 import SmokingIcon from '@material-ui/icons/SmokingRoomsOutlined';
 import Accessible from "@material-ui/icons/Accessible";
 import Person from "@material-ui/icons/Person"
+import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
+import Kitchen from "@material-ui/icons/Kitchen";
+import AirlineSeatFlat from "@material-ui/icons/AirlineSeatFlat";
+import HotTub from "@material-ui/icons/HotTub";
 
 
 const drawerWidth = 240;
@@ -29,7 +33,7 @@ const drawerWidth = 240;
 
 /* END FILTERS COMPONENT */
 
-
+const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
 
 
 
@@ -100,7 +104,9 @@ const styles = theme => ({
   },
 });
 
+
 class Profile extends React.Component {
+ 
   state = { checked: 'wifi' };
 
   handleToggle = value => () => {
@@ -127,7 +133,7 @@ class Profile extends React.Component {
           <Typography paragraph>
             <Card className={classes.card}>
               <CardContent>
-                <List subheader={<ListSubheader>Amenities</ListSubheader>} className={classes.root}>
+                <List subheader={<ListSubheader>My Search Filters</ListSubheader>} className={classes.root}>
                   <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <WifiIcon />
@@ -164,6 +170,22 @@ class Profile extends React.Component {
                       />
                     </ListItemSecondaryAction>
                   </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <LocalLaundryService />
+                    </ListItemIcon>
+                    <ListItemText primary="Laundry" />
+                    <ListItemSecondaryAction>
+                      <Switch
+                        onChange={this.handleToggle('laundry')}
+                        checked={checked.indexOf('laundry') !== -1}
+                      />
+                    </ListItemSecondaryAction>
+                  </ListItem>
+
+                  
+
                   <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <ParkingIcon />
@@ -210,6 +232,59 @@ class Profile extends React.Component {
                     </ListItemSecondaryAction>
               
                   </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <Kitchen />
+                    </ListItemIcon>
+                    <ListItemText primary="Kitchens" />
+                    <ListItemSecondaryAction>       
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Kitchens"
+                      />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <AirlineSeatFlat />
+                    </ListItemIcon>
+                    <ListItemText primary="Beds" />
+                    <ListItemSecondaryAction>       
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Beds"
+                     
+                      />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+
+                  <ListItem  alignItems="flex-start">
+                    <ListItemIcon>
+                      <HotTub />
+                    </ListItemIcon>
+                    <ListItemText primary="Bathrooms" />
+                    <ListItemSecondaryAction>       
+                    <TextField className = {classes.textField}
+                        id="filled-adornment-amount"
+                        variant="filled"
+                        label="Bathrooms"
+                      />
+
+
+                    </ListItemSecondaryAction>
+              
+                  </ListItem>
+
                   <ListItem  alignItems="flex-start">
                     <ListItemIcon>
                       <Person />
