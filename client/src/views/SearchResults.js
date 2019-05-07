@@ -31,6 +31,9 @@ const styles = theme => ({
   },
   mapContainer: {
     flex: 1,
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   cardsContainer: {
     flex: 1,
