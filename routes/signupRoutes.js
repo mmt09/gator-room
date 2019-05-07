@@ -15,49 +15,50 @@ const connection = mysql.createConnection({
 });
 
 module.exports = app => {
-
   app.post('/api/registration', (req, res) => {
     req.checkBody('username', 'Username field cannot be empty.').notEmpty();
     req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 15);
-    req.checkBody('sfsu_email', 'The email you entered is invalid, please try again.').isEmail();
-    req.checkBody('sfsu_email', 'Email address must be between 4-100 characters long, please try again.').len(4, 100);
+    req.checkBody('sfsuEmail', 'The email you entered is invalid, please try again.').isEmail();
+    req
+      .checkBody(
+        'sfsuEmail',
+        'Email address must be between 4-100 characters long, please try again.'
+      )
+      .len(4, 100);
     req.checkBody('password', 'Password must be between 8-100 characters long.').len(8, 100);
-    req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.")
-                  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?!.*)(?=.[^a-zA-Z0-9]).{8,}$/, "i");
-    
+    req
+      .checkBody(
+        'password',
+        'Password must include one lowercase character, one uppercase character, a number, and a special character.'
+      )
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?!.*)(?=.[^a-zA-Z0-9]).{8,}$/, 'i');
+
     const errors = req.validationError();
 
     if (errors) {
       const error = JSON.stringify(errors);
       console.log(`errors: ${error}`);
-    
     } else {
-
-      const {sfsuEmail} = req.body;
-      const {firstName} = req.body;
-      const {lastName} = req.body;
-      const {phone} = req.body;
-      const {username} = req.body;
-      const {password} = req.body;
+      const { sfsuEmail, firstName, lastName, phone, username, password } = req.body;
 
       bcrypt.hash(password, saltRounds, (err, hash) => {
         connection.query(
           'INSERT INTO student (sfsu_email, first_name, last_name, phone, username, password) VALUES (?, ?, ?, ?, ?, ?)',
           [sfsuEmail, firstName, lastName, phone, username, hash],
           (error, results, fields) => {
-          if (error) throw error;
-
-          connection.query('SELECT LAST_INSERT_ID() as user_id',
-            (error, results, fields) => {
             if (error) throw error;
-          
-            const user_id = results[0];
-            
-            req.login(user_id, (err) => {
-              res.redirect('/');
+
+            connection.query('SELECT LAST_INSERT_ID() as user_id', (error, results, fields) => {
+              if (error) throw error;
+
+              const user_id = results[0];
+
+              req.login(user_id, err => {
+                res.redirect('/');
+              });
             });
-          });
-        });
+          }
+        );
       });
     }
   });

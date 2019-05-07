@@ -252,7 +252,6 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  classes: PropTypes.object.isRequired,
   formInput: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -260,12 +259,11 @@ SignUp.defaultProps = {
   formInput: [],
 };
 
-function mapStateToProps(state, { formInput }) {
-  return {
-    count: state.counterReducer,
-    formInput,
-  };
-}
+function mapStateToProps( {signup} ) {
+  return { signup };
+};
+
+
 export default connect(
   mapStateToProps,
   null,

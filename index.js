@@ -21,7 +21,7 @@ function authenticationMiddleware() {
     console.log('req.session.passport.user: ${JSON.stringify(req.session.passport)}');
     if (req.isAuthenticated()) return next();
     res.redirect('/login');
-  }
+  };
 }
 
 app.use(express.static('client/build'));
@@ -30,21 +30,24 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
 
-app.get('/StudentPortal', authenticationMiddleware(), (req, res) => {
-  res.render('StudentPortal', { title: 'Profile' })
+app.post('/StudentPortal', authenticationMiddleware(), (req, res) => {
+  res.render('StudentPortal', { title: 'Profile' });
 });
 
-app.get('/Login', (req, res) => {
-  res.render('/Login', { title: 'Login' })
+app.post('/Login', (req, res) => {
+  res.render('/Login', { title: 'Login' });
 });
 
-app.get('/Login', passport.authenticate('local', {
-  successRedirect: '/StudentPortal',
-  failureRedirect: '/Login'  
-}));
+app.post(
+  '/Login',
+  passport.authenticate('local', {
+    successRedirect: '/StudentPortal',
+    failureRedirect: '/Login',
+  })
+);
 
 // Destroys session in database store and redirect to home page.
-app.get('/Logout', (req, res) => {
+app.post('/Logout', (req, res) => {
   req.logout();
   req.session.destroy(() => {
     res.clearCookie('connect.sid');
@@ -56,7 +59,7 @@ app.use(
   bodyParser.urlencoded({
     extended: true,
   })
-)
+);
 
 app.use(bodyParser.json());
 app.use(expressValidator());
@@ -65,36 +68,51 @@ app.use(expressValidator());
 require('./routes/listingRoutes')(app);
 require('./routes/signupRoutes')(app);
 
-passport.use(new LocalStrategy(
-  (username, password, done => {
-    db.query('SELECT student_id, password FROM student WHERE username = ?', [username], 
-    (err, results, fields => {
-      if (err) {done(err)};
-
-      if (results.length === 0) {
-        done(null, false);
-      } else {
-
-        const hash = results[0].password.toString();
-
-        bcrypt.compare(password, hash, (err, response => {
-          if (response === true) {
-            return done(null, {user_id: results[0].id});
-          } else {
-            return done(null, false);
+passport.use(
+  new LocalStrategy(
+    (username,
+    password,
+    done => {
+      db.query(
+        'SELECT student_id, password FROM student WHERE username = ?',
+        [username],
+        (err,
+        results,
+        fields => {
+          if (err) {
+            done(err);
           }
-        }));
-      }
-    }));
-  })
-));
 
-const options = ({
+          if (results.length === 0) {
+            done(null, false);
+          } else {
+            const hash = results[0].password.toString();
+
+            bcrypt.compare(
+              password,
+              hash,
+              (err,
+              response => {
+                if (response === true) {
+                  return done(null, { user_id: results[0].id });
+                } else {
+                  return done(null, false);
+                }
+              })
+            );
+          }
+        })
+      );
+    })
+  )
+);
+
+const options = {
   host: keys.host,
   user: keys.user,
   password: keys.password,
   database: keys.database,
-});
+};
 
 /* Stores session data in the database rather than the node process.
  * This retains the session in case node restarts or terminates.
@@ -102,13 +120,15 @@ const options = ({
  */
 const sessionStore = new MySQLStore(options);
 
-app.use(session({
-  secret: 'owienfowpesdfe',
-  resave: false,
-  store: sessionStore,
-  saveUninitialized: true,
-  // cookie: { secure: true }
-}));
+app.use(
+  session({
+    secret: 'owienfowpesdfe',
+    resave: false,
+    store: sessionStore,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
