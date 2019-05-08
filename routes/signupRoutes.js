@@ -1,7 +1,5 @@
 const bcrypt = require('bcrypt');
 const mysql = require('mysql');
-const passport = require('passport');
-const session = require('express-session');
 const keys = require('../config/keys');
 
 const saltRounds = 10;
@@ -46,38 +44,8 @@ module.exports = app => {
         connection.query(
           'INSERT INTO student (sfsu_email, first_name, last_name, phone, username, password) VALUES (?, ?, ?, ?, ?, ?)',
           [sfsuEmail, firstName, lastName, phone, username, hash],
-          (error, results, fields) => {
+          error => {
             if (error) throw error;
-
-            // connection.query('SELECT LAST_INSERT_ID() as user_id', (error, results, fields) => {
-            //   if (error) throw error;
-
-            //   const user_id = results[0];
-
-            //   app.use(passport.initialize());
-            //   app.use(passport.session());
-            //   req.login(user_id, err => {
-            //     res.redirect('/');
-            //   });
-
-            //   app.use(
-            //     session({
-            //       secret: 'owienfowpesdfe',
-            //       resave: false,
-            //       // store: sessionStore,
-            //       saveUninitialized: true,
-            //       // cookie: { secure: true }
-            //     })
-            //   );
-
-            //   passport.serializeUser(user_id, done => {
-            //     done(null, user_id);
-            //   });
-
-            //   passport.deserializeUser(user_id, done => {
-            //     done(err, user_id);
-            //   });
-            // });
           }
         );
       });
