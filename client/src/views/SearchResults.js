@@ -34,12 +34,13 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
+    maxHeight : '80vh'
   },
   cardsContainer: {
     flex: 1,
     flexWrap: 'wrap',
     overflow: 'auto',
-    maxHeight: '100vh',
+    maxHeight: '80vh',
   },
 });
 
