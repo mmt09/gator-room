@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes, login, ...rest } = this.props;
     const { sfsuEmail, password } = this.state;
     return (
       <div>
@@ -84,7 +84,7 @@ class LoginPage extends React.Component {
         <div
           className={classes.pageHeader}
           style={{
-            backgroundImage: 'url(' + image + ')',
+            backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'top center',
           }}
@@ -106,9 +106,9 @@ class LoginPage extends React.Component {
                           fullWidth: true,
                         }}
                         inputProps={{
-                          type: 'text',
+                          type: 'email',
                           value: sfsuEmail,
-                          onchange: this.updateSfsuemail,
+                          onChange: this.updateSfsuemail,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Email className={classes.inputIconsColor} />
@@ -118,14 +118,14 @@ class LoginPage extends React.Component {
                       />
                       <CustomInput
                         labelText="Password"
-                        id="password"
+                        id="pass"
                         formControlProps={{
                           fullWidth: true,
                         }}
                         inputProps={{
-                          type: 'text',
+                          type: 'password',
                           value: password,
-                          onchange: this.updatePassword,
+                          onChange: this.updatePassword,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Icon className={classes.inputIconsColor}>lock_outline</Icon>

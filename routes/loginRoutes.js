@@ -33,37 +33,37 @@ module.exports = app => {
 
               bcrypt.compare(password, hash, (err, response) => {
                 if (response === true) {
-                  return done(null, { student_id: results[0].id });
+                  return done(null, { user_id: results[0].id });
                 } else {
                   return done(null, false);
                 }
               });
             }
+            const user_id = results[0];
+            req.login(user_id, err => {
+              res.redirect('/');
+            });
+
+            app.use(
+              session({
+                secret: 'owienfowpesdfe',
+                resave: false,
+                // store: sessionStore,
+                saveUninitialized: true,
+                // cookie: { secure: true }
+              })
+            );
           }
         );
-        req.login(student_id, err => {
-          res.redirect('/');
-        });
-
-        app.use(
-          session({
-            secret: 'owienfowpesdfe',
-            resave: false,
-            // store: sessionStore,
-            saveUninitialized: true,
-            // cookie: { secure: true }
-          })
-        );
-
-        passport.serializeUser(student_id, done => {
-          done(null, student_id);
-        });
-
-        passport.deserializeUser(student_id, done => {
-          done(err, student_id);
-        });
       })
     );
+    passport.serializeUser((user_id, done) => {
+      done(null, user_id);
+    });
+
+    passport.deserializeUser((user_id, done) => {
+      done(err, user_id);
+    });
   });
 };
 
