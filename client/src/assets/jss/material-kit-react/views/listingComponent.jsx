@@ -4,6 +4,7 @@ const listingStyle = {
   container: {
     zIndex: '12',
     color: '#FFFFFF',
+    textAlign: 'center',
     ...container,
   },
   brand: {
@@ -40,13 +41,10 @@ const listingStyle = {
   link: {
     textDecoration: 'none',
   },
-  textCenter: {
-    textAlign: 'center',
-  },
   listingInfoContainer: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
 };
 
