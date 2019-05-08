@@ -18,6 +18,7 @@ const styles = theme => ({
         maxHeight : 700,
         display : "flex",
         minHeight: '73vh',
+        minWidth :  600,
     },
     booty : {
         margin : 'auto',

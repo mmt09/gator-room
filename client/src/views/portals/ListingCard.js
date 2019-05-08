@@ -74,10 +74,8 @@ const styles = theme => ({
   },
   header : {
     display: 'flex',
-    maxHeight : 100
   },
   map : {
-    height : 10,
     display : 'flex',
     flexDirection : "row"
   }

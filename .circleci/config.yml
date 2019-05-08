@@ -32,4 +32,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: cd client && npm install && npm run lint
+      - run:
+          working_directory: ~/repo/client
+          command: npm install && npm run lint

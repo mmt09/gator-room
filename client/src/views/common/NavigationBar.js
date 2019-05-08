@@ -177,22 +177,30 @@ class NavigationBar extends React.Component {
       >
         <MenuItem onClick={this.handleMobileMenuOpen}>
           <Link component={RouterLink} color="inherit" underline="none" to="/">
-            <Typography variant="headline" color="inherit" noWrap>
-              GatorRoom
+            <Typography variant="subheading" color="inherit" noWrap>
+              Home
             </Typography>
           </Link>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
-          <p>
-            <Login>
-              <Login />
-            </Login>
-          </p>
+          <Link underline="none" component={RouterLink} to="/LandLordPortal">
+            Landlord Portal
+          </Link>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
-          <p>
-            <SignUp />
-          </p>
+          <Link underline="none" component={RouterLink} to="/StudentPortal">
+            Student Portal
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuOpen}>
+          <Link underline="none" component={RouterLink} to="/LoginPage">
+            Login
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuOpen}>
+          <Link underline="none" component={RouterLink} to="/SignUpPage">
+            Sign Up
+          </Link>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <p>About Us</p>
@@ -212,6 +220,16 @@ class NavigationBar extends React.Component {
             {this.renderSearchBox()}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+              <Button color="inherit">
+                <Link underline="none" component={RouterLink} to="/LandLordPortal">
+                  Landlord Portal
+                </Link>
+              </Button>
+              <Button color="inherit">
+                <Link underline="none" component={RouterLink} to="/StudentPortal">
+                  Student Portal
+                </Link>
+              </Button>
               <Button color="inherit">
                 <Link underline="none" component={RouterLink} to="/LoginPage">
                   Login

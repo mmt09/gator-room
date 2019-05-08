@@ -55,8 +55,10 @@ class SearchBox extends React.Component {
   makeSearch() {
     const { searchQuery } = this.state;
     const { fetchSearch } = this.props;
-    fetchSearch(searchQuery, () => {});
-    this.setState({ toResults: true });
+    if (searchQuery.length <= 40) {
+      fetchSearch(searchQuery, () => {});
+      this.setState({ toResults: true });
+    }
   }
 
   keyPress(e) {

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 // icons
 import Laundry from '@material-ui/icons/LocalLaundryService';
@@ -20,6 +21,7 @@ import ImageSection from 'views/ListingPage/Sections/ImageSection';
 import listingStyle from 'assets/jss/material-kit-react/views/listingComponent.jsx';
 import GridContainer from 'components/Grid/GridContainer.jsx';
 import GridItem from 'components/Grid/GridItem.jsx';
+import EmailAdminButton from 'views/common/EmailAdminButton';
 
 import InfoArea from 'components/InfoArea/InfoArea.jsx';
 // @material-ui/icons
@@ -27,6 +29,7 @@ import InfoArea from 'components/InfoArea/InfoArea.jsx';
 // import CarouselSections from './Sections/CarouselSections';
 
 import * as actions from '../../actions';
+import ListingDetailsSections from './Sections/ListingDetailsSections';
 
 class ListingPage extends React.Component {
   componentDidMount() {
@@ -54,11 +57,10 @@ class ListingPage extends React.Component {
         smoking_filter,
       } = listingDetails[0];
       return (
-        <div className={classes.main}>
+        <div className={classNames(classes.main)}>
           <div className={classes.imageContainer}>
             <ImageSection mainImage={picture} />
           </div>
-
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8}>
@@ -75,48 +77,53 @@ class ListingPage extends React.Component {
                 </Typography>
               </GridItem>
             </GridContainer>
-            <div className={classes.listingInfoContainer}>
-              <GridContainer className={classes.listingInfoContainer}>
-                <GridItem xs={12} sm={12} md={4}>
+            <div>
+              <GridContainer container>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Laundry"
                     description={laundry_filter === 0 ? 'Yes' : 'No'}
                     icon={Laundry}
-                    iconColor="info"
+                    iconColor={laundry_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Parking"
                     description={parking_filter === 0 ? 'Yes' : 'No'}
                     icon={LocalParking}
-                    iconColor="success"
+                    iconColor={parking_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Pets"
                     description={pet_filter === 0 ? 'Yes' : 'No'}
                     icon={Pet}
-                    iconColor="danger"
+                    iconColor={pet_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Smoking allowed"
                     description={smoking_filter === 0 ? 'Yes' : 'No'}
                     icon={SmokingRooms}
-                    iconColor="danger"
+                    iconColor={smoking_filter === 0 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
               </GridContainer>
             </div>
+            <Divider variant="middle" />
+            <ListingDetailsSections />
+            <Divider variant="middle" />
+            <div className={classes.contactContainer}>
+              <EmailAdminButton />
+            </div>
           </div>
-
           <div />
         </div>
       );
@@ -125,12 +132,10 @@ class ListingPage extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-
     return (
       <div>
         <NavigationBar />
-        <div className={classNames(classes.main)}>{this.renderListing()}</div>
+        <div>{this.renderListing()}</div>
         <Footer />
       </div>
     );
