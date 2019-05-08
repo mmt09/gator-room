@@ -135,7 +135,7 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg" onClick={this.loginUser}>
+                      <Button simple color="primary" size="lg">
                         Submit
                       </Button>
                     </CardFooter>
