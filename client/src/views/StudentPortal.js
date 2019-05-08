@@ -18,11 +18,17 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
-  gridItem : {
-
+  filterItem : {
+    minWidth : 450
   },
   grid : {
-    alignContent : "center"
+    alignContent : "center",
+
+  },
+  gridItem : {
+   
+
+
   }
 });
 
@@ -44,7 +50,7 @@ class StudentPortal extends React.Component {
             <Grid item xs className = {classes.gridItem}>
                 <UserProfileCard/>
             </Grid>
-            <Grid item xs = {4}   className = {classes.gridItem}>
+            <Grid item xs = {4}   className = {classes.filterItem}>
                 <FiltersList/>
             </Grid>
             <Grid item xs = {6} className = {classes.gridItem}>
