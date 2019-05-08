@@ -21,6 +21,7 @@ import ImageSection from 'views/ListingPage/Sections/ImageSection';
 import listingStyle from 'assets/jss/material-kit-react/views/listingComponent.jsx';
 import GridContainer from 'components/Grid/GridContainer.jsx';
 import GridItem from 'components/Grid/GridItem.jsx';
+import EmailAdminButton from 'views/common/EmailAdminButton';
 
 import InfoArea from 'components/InfoArea/InfoArea.jsx';
 // @material-ui/icons
@@ -118,8 +119,11 @@ class ListingPage extends React.Component {
             </div>
             <Divider variant="middle" />
             <ListingDetailsSections />
+            <Divider variant="middle" />
+            <div className={classes.contactContainer}>
+              <EmailAdminButton />
+            </div>
           </div>
-
           <div />
         </div>
       );
