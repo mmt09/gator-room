@@ -41,10 +41,8 @@ const listingStyle = {
   link: {
     textDecoration: 'none',
   },
-  listingInfoContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  contactContainer: {
+    paddingTop: '20px',
   },
 };
 

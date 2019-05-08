@@ -20,30 +20,48 @@ function HeaderLinks({ ...props }) {
     <List className={classes.list}>
       <ListItem className={classes.listItem} />
       <ListItem className={classes.listItem}>
-        <Button color="transparent" className={classes.navLink}>
-          <Typography>
-            <Link underline="none" component={RouterLink} to="/">
-              Home
-            </Link>
-          </Typography>
+        <Button color="transparent" className={classes.navLink} component={RouterLink} to="/">
+          <Typography color="primary">Home</Typography>
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button color="transparent" className={classes.navLink}>
-          <Typography>
-            <Link underline="none" component={RouterLink} to="/LoginPage">
-              Login
-            </Link>
-          </Typography>
+        <Button
+          color="transparent"
+          className={classes.navLink}
+          component={RouterLink}
+          to="/LandLordPortal"
+        >
+          <Typography color="primary">LandLord Portal</Typography>
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button color="transparent" className={classes.navLink}>
-          <Typography>
-            <Link underline="none" component={RouterLink} to="/SignUpPage">
-              Sign Up
-            </Link>
-          </Typography>
+        <Button
+          color="transparent"
+          className={classes.navLink}
+          component={RouterLink}
+          to="/StudentPortal"
+        >
+          <Typography color="primary">Student Portal</Typography>
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          color="transparent"
+          className={classes.navLink}
+          component={RouterLink}
+          to="/LoginPage"
+        >
+          <Typography color="primary">Login</Typography>
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          color="transparent"
+          className={classes.navLink}
+          component={RouterLink}
+          to="/SignUpPage"
+        >
+          <Typography color="primary">Sign Up</Typography>
         </Button>
       </ListItem>
     </List>
