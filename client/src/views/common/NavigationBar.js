@@ -181,6 +181,16 @@ class NavigationBar extends React.Component {
           </Link>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
+          <Link underline="none" component={RouterLink} to="/LandLordPortal">
+            Landlord Portal
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuOpen}>
+          <Link underline="none" component={RouterLink} to="/StudentPortal">
+            Student Portal
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuOpen}>
           <Link underline="none" component={RouterLink} to="/LoginPage">
             Login
           </Link>
@@ -208,6 +218,16 @@ class NavigationBar extends React.Component {
             {this.renderSearchBox()}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+              <Button color="inherit">
+                <Link underline="none" component={RouterLink} to="/LandLordPortal">
+                  Landlord Portal
+                </Link>
+              </Button>
+              <Button color="inherit">
+                <Link underline="none" component={RouterLink} to="/StudentPortal">
+                  Student Portal
+                </Link>
+              </Button>
               <Button color="inherit">
                 <Link underline="none" component={RouterLink} to="/LoginPage">
                   Login
