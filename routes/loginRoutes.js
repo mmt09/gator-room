@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const MySQLStore = require('express-mysql-session')(session);
 const keys = require('../config/keys');
 
 // Connection to database
@@ -16,16 +17,17 @@ const connection = mysql.createConnection({
 
 module.exports = app => {
   app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
     passport.use(
-      new LocalStrategy((sfsuEmail = req.body.sfsuEmail, password = req.body.password, done) => {
+      new LocalStrategy((username, password, done) => {
         connection.query(
-          'SELECT student_id, password FROM student WHERE sfsu_email = ?',
-          [sfsuEmail],
+          'SELECT student_id, password FROM student WHERE username = ?',
+          [username],
           (err, results, fields) => {
-            if (err) {
-              done(err);
+            const user = results[0];
+            if (!user) {
+              return done(null, false, { message: 'Invalid credentials. \n' });
             }
-
             if (results.length === 0) {
               done(null, false);
             } else {
@@ -33,37 +35,47 @@ module.exports = app => {
 
               bcrypt.compare(password, hash, (err, response) => {
                 if (response === true) {
-                  return done(null, { user_id: results[0].id });
-                } else {
-                  return done(null, false);
+                  return done(null, { user: results[0].id });
                 }
+                return done(null, false);
               });
             }
-            const user_id = results[0];
-            req.login(user_id, err => {
+            req.login(user, err => {
               res.redirect('/');
             });
 
-            app.use(
-              session({
-                secret: 'owienfowpesdfe',
-                resave: false,
-                // store: sessionStore,
-                saveUninitialized: true,
-                // cookie: { secure: true }
-              })
-            );
+            // const options = {
+            //   host: 'localhost',
+            //   user: 'root',
+            //   password: 'password',
+            //   database: 'gatorroom',
+            // };
+
+            // /* Stores session data in the database rather than the node process.
+            //  * This retains the session in case node restarts or terminates.
+            //  * Explicitly logging out will wipe the session data.
+            //  */
+            // const sessionStore = new MySQLStore(options);
+            // app.use(
+            //   session({
+            //     secret: 'owienfowpesdfe',
+            //     resave: false,
+            //     store: sessionStore,
+            //     saveUninitialized: true,
+            //     // cookie: { secure: true }
+            //   })
+            // );
           }
         );
       })
     );
-    passport.serializeUser((user_id, done) => {
-      done(null, user_id);
+    passport.serializeUser((user, done) => {
+      done(null, user);
     });
 
-    passport.deserializeUser((user_id, done) => {
-      done(err, user_id);
-    });
+    // passport.deserializeUser((user, done) => {
+    //   done(err, user);
+    // });
   });
 };
 

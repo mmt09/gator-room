@@ -20,23 +20,19 @@ import PetsIcon from '@material-ui/icons/Pets';
 import MoneyIcon from '@material-ui/icons/AttachMoney';
 import ParkingIcon from '@material-ui/icons/LocalParking';
 import SmokingIcon from '@material-ui/icons/SmokingRoomsOutlined';
-import Accessible from "@material-ui/icons/Accessible";
-import Person from "@material-ui/icons/Person"
+import Accessible from '@material-ui/icons/Accessible';
+import Person from '@material-ui/icons/Person';
 import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
-import Kitchen from "@material-ui/icons/Kitchen";
-import AirlineSeatFlat from "@material-ui/icons/AirlineSeatFlat";
-import HotTub from "@material-ui/icons/HotTub";
-
+import Kitchen from '@material-ui/icons/Kitchen';
+import AirlineSeatFlat from '@material-ui/icons/AirlineSeatFlat';
+import HotTub from '@material-ui/icons/HotTub';
 
 const drawerWidth = 240;
 /* FILTERS COMPONENT */
 
 /* END FILTERS COMPONENT */
 
-const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
-
-
-
+// const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
 
 const styles = theme => ({
   root: {
@@ -52,10 +48,8 @@ const styles = theme => ({
     },
   },
   textField: {
-    
-    width : '20%',
-    marginLeft: '450px'
-
+    width: '20%',
+    marginLeft: '450px',
   },
 
   appBar: {
@@ -98,15 +92,13 @@ const styles = theme => ({
     '&:hover': {
       borderColor: '#FF69B4',
     },
-   textField :{
-    width : 200,
-   },
+    textField: {
+      width: 200,
+    },
   },
 });
 
-
 class Profile extends React.Component {
- 
   state = { checked: 'wifi' };
 
   handleToggle = value => () => {
@@ -130,185 +122,167 @@ class Profile extends React.Component {
     const { checked } = this.state;
 
     return (
-          <Typography paragraph>
-            <Card className={classes.card}>
-              <CardContent>
-                <List subheader={<ListSubheader>My Search Filters</ListSubheader>} className={classes.root}>
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <WifiIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Wi-Fi" />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('wifi')}
-                        checked={checked.indexOf('wifi') !== -1}
-                      />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <PetsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Pet Friendly" />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('pets')}
-                        checked={checked.indexOf('pets') !== -1}
-                      />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <SmokingIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Smoking Allowed" />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('smoking')}
-                        checked={checked.indexOf('smoking') !== -1}
-                      />
-                    </ListItemSecondaryAction>
-                  </ListItem>
+      <Typography paragraph>
+        <Card className={classes.card}>
+          <CardContent>
+            <List
+              subheader={<ListSubheader>My Search Filters</ListSubheader>}
+              className={classes.root}
+            >
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <WifiIcon />
+                </ListItemIcon>
+                <ListItemText primary="Wi-Fi" />
+                <ListItemSecondaryAction>
+                  <Switch
+                    onChange={this.handleToggle('wifi')}
+                    checked={checked.indexOf('wifi') !== -1}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <PetsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Pet Friendly" />
+                <ListItemSecondaryAction>
+                  <Switch
+                    onChange={this.handleToggle('pets')}
+                    checked={checked.indexOf('pets') !== -1}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <SmokingIcon />
+                </ListItemIcon>
+                <ListItemText primary="Smoking Allowed" />
+                <ListItemSecondaryAction>
+                  <Switch
+                    onChange={this.handleToggle('smoking')}
+                    checked={checked.indexOf('smoking') !== -1}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <LocalLaundryService />
-                    </ListItemIcon>
-                    <ListItemText primary="Laundry" />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('laundry')}
-                        checked={checked.indexOf('laundry') !== -1}
-                      />
-                    </ListItemSecondaryAction>
-                  </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <LocalLaundryService />
+                </ListItemIcon>
+                <ListItemText primary="Laundry" />
+                <ListItemSecondaryAction>
+                  <Switch
+                    onChange={this.handleToggle('laundry')}
+                    checked={checked.indexOf('laundry') !== -1}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
-                  
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <ParkingIcon />
+                </ListItemIcon>
+                <ListItemText primary="On-site Parking" />
+                <ListItemSecondaryAction>
+                  <Switch
+                    onChange={this.handleToggle('parking')}
+                    checked={checked.indexOf('parking') !== -1}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <ParkingIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="On-site Parking" />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('parking')}
-                        checked={checked.indexOf('parking') !== -1}
-                      />
-                    </ListItemSecondaryAction>
-                  </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <Accessible />
+                </ListItemIcon>
+                <ListItemText primary="Handicap Accessiblity" />
+                <ListItemSecondaryAction>
+                  <Switch
+                    onChange={this.handleToggle('handicap')}
+                    checked={checked.indexOf('handicap') !== -1}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <Accessible />
-                    </ListItemIcon>
-                    <ListItemText primary="Handicap Accessiblity" />
-                    <ListItemSecondaryAction>
-                      <Switch
-                        onChange={this.handleToggle('handicap')}
-                        checked={checked.indexOf('handicap') !== -1}
-                      />
-                    </ListItemSecondaryAction>
-                  </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <MoneyIcon />
+                </ListItemIcon>
+                <ListItemText primary="Budget" />
+                <ListItemSecondaryAction>
+                  <TextField
+                    className={classes.textField}
+                    id="filled-adornment-amount"
+                    variant="filled"
+                    label="Monthly"
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <Kitchen />
+                </ListItemIcon>
+                <ListItemText primary="Kitchens" />
+                <ListItemSecondaryAction>
+                  <TextField
+                    className={classes.textField}
+                    id="filled-adornment-amount"
+                    variant="filled"
+                    label="Kitchens"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <MoneyIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Budget" />
-                    <ListItemSecondaryAction>       
-                    <TextField className = {classes.textField}
-                        id="filled-adornment-amount"
-                        variant="filled"
-                        label="Monthly"
-                        InputProps={{
-                          startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                        }}
-                      />
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <AirlineSeatFlat />
+                </ListItemIcon>
+                <ListItemText primary="Beds" />
+                <ListItemSecondaryAction>
+                  <TextField
+                    className={classes.textField}
+                    id="filled-adornment-amount"
+                    variant="filled"
+                    label="Beds"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <HotTub />
+                </ListItemIcon>
+                <ListItemText primary="Bathrooms" />
+                <ListItemSecondaryAction>
+                  <TextField
+                    className={classes.textField}
+                    id="filled-adornment-amount"
+                    variant="filled"
+                    label="Bathrooms"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
 
-                    </ListItemSecondaryAction>
-              
-                  </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemIcon>
+                  <Person />
+                </ListItemIcon>
+                <ListItemText primary="Roomate Genders" />
 
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <Kitchen />
-                    </ListItemIcon>
-                    <ListItemText primary="Kitchens" />
-                    <ListItemSecondaryAction>       
-                    <TextField className = {classes.textField}
-                        id="filled-adornment-amount"
-                        variant="filled"
-                        label="Kitchens"
-                      />
-
-
-                    </ListItemSecondaryAction>
-              
-                  </ListItem>
-
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <AirlineSeatFlat />
-                    </ListItemIcon>
-                    <ListItemText primary="Beds" />
-                    <ListItemSecondaryAction>       
-                    <TextField className = {classes.textField}
-                        id="filled-adornment-amount"
-                        variant="filled"
-                        label="Beds"
-                     
-                      />
-
-
-                    </ListItemSecondaryAction>
-              
-                  </ListItem>
-
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <HotTub />
-                    </ListItemIcon>
-                    <ListItemText primary="Bathrooms" />
-                    <ListItemSecondaryAction>       
-                    <TextField className = {classes.textField}
-                        id="filled-adornment-amount"
-                        variant="filled"
-                        label="Bathrooms"
-                      />
-
-
-                    </ListItemSecondaryAction>
-              
-                  </ListItem>
-
-                  <ListItem  alignItems="flex-start">
-                    <ListItemIcon>
-                      <Person />
-                    </ListItemIcon>
-                    <ListItemText primary="Roomate Genders" />
-              
-                
-                    <ListItemSecondaryAction>
-                   
-                        
-         
-                    <FormControlLabel value="female" control={<Radio />} label="Female" />
-                    <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  
-           
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                 
-                  
-                </List>
-              </CardContent>
-            </Card>
-          </Typography>
-    
+                <ListItemSecondaryAction>
+                  <FormControlLabel value="female" control={<Radio />} label="Female" />
+                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                </ListItemSecondaryAction>
+              </ListItem>
+            </List>
+          </CardContent>
+        </Card>
+      </Typography>
     );
   }
 }

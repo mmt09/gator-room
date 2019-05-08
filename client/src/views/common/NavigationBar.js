@@ -16,7 +16,6 @@ import { Link as RouterLink, withRouter } from 'react-router-dom';
 import SearchBox from './SearchBox';
 import Login from './Login';
 import SignUp from './SignUp';
-import LoginPage from './LoginPage';
 
 const styles = theme => ({
   root: {

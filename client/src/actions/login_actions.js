@@ -2,9 +2,9 @@
 import axios from 'axios';
 import { FETCH_LOGIN } from './types';
 
-export const fetchLogin = (sfsuEmail, password, callback) => async dispatch => {
+export const fetchLogin = (username, password, callback) => async dispatch => {
   const { data } = await axios.post('/api/login', {
-    sfsuEmail,
+    username,
     password,
   });
   dispatch({ type: FETCH_LOGIN, payload: data });

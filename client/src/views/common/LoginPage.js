@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Icon from '@material-ui/core/Icon';
 // @material-ui/icons
-import Email from '@material-ui/icons/Email';
+// import Email from '@material-ui/icons/Email';
 import People from '@material-ui/icons/People';
 // core components
 import Header from 'components/Header/Header.jsx';
@@ -33,10 +33,10 @@ class LoginPage extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: 'cardHidden',
-      sfsuEmail: '',
+      username: '',
       password: '',
     };
-    this.updateSfsuemail = this.updateSfsuemail.bind(this);
+    this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
   }
 
@@ -51,10 +51,10 @@ class LoginPage extends React.Component {
     );
   }
 
-  updateSfsuemail(event) {
+  updateUsername(event) {
     const { target } = event;
     const text = target.value;
-    this.setState({ sfsuEmail: text });
+    this.setState({ username: text });
   }
 
   updatePassword(event) {
@@ -64,14 +64,14 @@ class LoginPage extends React.Component {
   }
 
   loginUser() {
-    const { sfsuEmail, password } = this.state;
+    const { username, password } = this.state;
     const { fetchLogin } = this.props;
-    fetchLogin(sfsuEmail, password, () => {});
+    fetchLogin(username, password, () => {});
   }
 
   render() {
-    const { classes, login, ...rest } = this.props;
-    const { sfsuEmail, password } = this.state;
+    const { classes, fetchLogin, ...rest } = this.props;
+    const { username, password } = this.state;
     return (
       <div>
         <Header
@@ -100,18 +100,18 @@ class LoginPage extends React.Component {
                     <p className={classes.divider} />
                     <CardBody>
                       <CustomInput
-                        labelText="Email..."
-                        id="email"
+                        labelText="Username..."
+                        id="username"
                         formControlProps={{
                           fullWidth: true,
                         }}
                         inputProps={{
-                          type: 'email',
-                          value: sfsuEmail,
-                          onChange: this.updateSfsuemail,
+                          type: 'username',
+                          value: username,
+                          onChange: this.updateUsername,
                           endAdornment: (
                             <InputAdornment position="end">
-                              <Email className={classes.inputIconsColor} />
+                              <People className={classes.inputIconsColor} />
                             </InputAdornment>
                           ),
                         }}

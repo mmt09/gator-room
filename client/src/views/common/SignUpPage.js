@@ -106,7 +106,7 @@ class SignUpPage extends React.Component {
   }
 
   render() {
-    const { classes, signup, ...rest } = this.props;
+    const { classes, fetchSignup, ...rest } = this.props;
     const { sfsuEmail, firstName, lastName, phone, username, password } = this.state;
     return (
       <div>
