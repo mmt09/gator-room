@@ -21,9 +21,25 @@ const styles = theme => ({
     display: 'flex',
     flexGrow: 1,
     padding: theme.spacing.unit * 1,
-    flexDirection: 'row-reverse',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+  resultContainer: {
+    display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    overflow: 'hidden',
+  },
+  mapContainer: {
+    flex: 1,
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  cardsContainer: {
+    flex: 1,
+    flexWrap: 'wrap',
+    overflow: 'auto',
+    maxHeight: '100vh',
   },
 });
 
@@ -46,8 +62,18 @@ class SearchResults extends React.Component {
         <NavigationBar />
         <SearchBox />
         <main className={classes.content}>
-          {search.length === 0 ? <SearchError /> : <TitlebarGridList />}
-          <SimpleMap />
+          {search.length === 0 ? (
+            <SearchError />
+          ) : (
+            <div className={classes.resultContainer}>
+              <div className={classes.mapContainer}>
+                <SimpleMap />
+              </div>
+              <div className={classes.cardsContainer}>
+                <TitlebarGridList />
+              </div>
+            </div>
+          )}
         </main>
       </div>
     );

@@ -1,69 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router';
+
+import GridContainer from 'components/Grid/GridContainer.jsx';
+import GridItem from 'components/Grid/GridItem.jsx';
+import ListingInfoCard from 'views/common/ListingInfoCard.js';
+import searchCardStyle from 'assets/jss/material-kit-react/views/searchResultCardSections/searchCardStyle.jsx';
+
 import * as actions from '../actions';
 
-const styles = () => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-  },
-  gridList: {
-    // flexWrap: 'wrap',
-    // justifyContent: 'flex-start',
-    // padding: 1, 
-    // flexDirection: 'column',
-    // overflow: 'hidden',
-    width: 750,
-    height: 725,
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-});
-
 class TitlebarGridList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toListing: false,
+      listingID: null,
+    };
+  }
+
+  setListing = listingID => {
+    this.setState({ toListing: true, listingID });
+  };
+
+  renderListing = () => {
+    const { search, classes } = this.props;
+    if (search) {
+      return search.map(listing => (
+        <GridItem xs={12} sm={12} md={7} key={listing.listing_id}>
+          <div className={classes.paper}>
+            <ListingInfoCard
+              key={listing.listing_id}
+              picture={listing.picture}
+              city={listing.city}
+              address={listing.address}
+              price={listing.amount}
+              numberOfBedroom={listing.num_bedroom}
+              numberOfBathroom={listing.num_bathroom}
+              onClick={() => this.setListing(listing.listing_id)}
+            />
+          </div>
+        </GridItem>
+      ));
+    }
+    return null;
+  };
+
   render() {
-    const { classes, search } = this.props;
+    const { classes } = this.props;
+    const { toListing, listingID } = this.state;
+
+    if (toListing === true) {
+      return <Redirect push to={`/listings/${listingID}`} />;
+    }
 
     return (
-        <main className={classes.content}>
-          <GridList cellHeight={180} className={classes.gridList}>
-            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-              <ListSubheader component="div" />
-            </GridListTile>
-            {search.map(tile => (
-              <GridListTile key={tile.picture}>
-                <img src={tile.picture} alt={tile.address} />
-                <GridListTileBar
-                  title={tile.address}
-                  subtitle={
-                    <span>
-                      {tile.city}, {tile.postal_code} | {tile.num_bedroom} bds | {tile.num_bathroom}{' '}
-                      ba
-                    </span>
-                  }
-                  actionIcon={
-                    <IconButton className={classes.icon}>
-                      ${tile.amount}
-                      <InfoIcon />
-                    </IconButton>
-                  }
-                />
-              </GridListTile>
-            ))}
-          </GridList>
-        </main>
+      <main className={classes.section}>
+        <GridContainer justify="center">{this.renderListing()}</GridContainer>
+      </main>
     );
   }
 }
@@ -80,4 +75,4 @@ function mapStateToProps({ search }) {
 export default connect(
   mapStateToProps,
   actions
-)(withStyles(styles)(TitlebarGridList));
+)(withRouter(withStyles(searchCardStyle)(TitlebarGridList)));

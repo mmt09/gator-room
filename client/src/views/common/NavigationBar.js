@@ -14,9 +14,6 @@ import Link from '@material-ui/core/Link';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import SearchBox from './SearchBox';
-import Login from './Login';
-import SignUp from './SignUp';
-import LoginPage from './LoginPage';
 
 const styles = theme => ({
   root: {
@@ -178,22 +175,20 @@ class NavigationBar extends React.Component {
       >
         <MenuItem onClick={this.handleMobileMenuOpen}>
           <Link component={RouterLink} color="inherit" underline="none" to="/">
-            <Typography variant="headline" color="inherit" noWrap>
-              GatorRoom
+            <Typography variant="subheading" color="inherit" noWrap>
+              Home
             </Typography>
           </Link>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
-          <p>
-            <Login>
-              <Login />
-            </Login>
-          </p>
+          <Link underline="none" component={RouterLink} to="/LoginPage">
+            Login
+          </Link>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuOpen}>
-          <p>
-            <SignUp />
-          </p>
+          <Link underline="none" component={RouterLink} to="/SignUpPage">
+            Sign Up
+          </Link>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <p>About Us</p>
