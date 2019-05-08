@@ -21,6 +21,7 @@ const styles = theme => ({
     display: 'flex',
     flexGrow: 1,
     padding: theme.spacing.unit * 1,
+
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
@@ -34,12 +35,13 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
+    maxHeight : '80vh'
   },
   cardsContainer: {
     flex: 1,
     flexWrap: 'wrap',
     overflow: 'auto',
-    maxHeight: '100vh',
+    maxHeight: '80vh',
   },
 });
 

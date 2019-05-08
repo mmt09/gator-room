@@ -20,12 +20,14 @@ import PetsIcon from '@material-ui/icons/Pets';
 import MoneyIcon from '@material-ui/icons/AttachMoney';
 import ParkingIcon from '@material-ui/icons/LocalParking';
 import SmokingIcon from '@material-ui/icons/SmokingRoomsOutlined';
-import Accessible from "@material-ui/icons/Accessible";
-import Person from "@material-ui/icons/Person"
+import Accessible from '@material-ui/icons/Accessible';
+import Person from '@material-ui/icons/Person';
 import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
 import Kitchen from "@material-ui/icons/Kitchen";
 import AirlineSeatFlat from "@material-ui/icons/AirlineSeatFlat";
 import HotTub from "@material-ui/icons/HotTub";
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 
 const drawerWidth = 240;
@@ -33,17 +35,13 @@ const drawerWidth = 240;
 
 /* END FILTERS COMPONENT */
 
-const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
-
-
-
+// const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
 
 const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'left',
     flexDirection: 'column',
-    minHeight: '69vh',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -52,10 +50,13 @@ const styles = theme => ({
     },
   },
   textField: {
-    
-    width : '20%',
-    marginLeft: '450px'
 
+    width : 200,
+    alignSelf: 'right'
+  },
+  genderSelection : {
+    minWidth : 100,
+    overflow: 'auto'
   },
 
   appBar: {
@@ -94,19 +95,15 @@ const styles = theme => ({
   card: {
     background: '#fff',
     borderBottom: '4px solid #ccc',
+    minWidth :  550,
     textAlign: 'center',
     '&:hover': {
       borderColor: '#FF69B4',
     },
-   textField :{
-    width : 200,
-   },
   },
 });
 
-
 class Profile extends React.Component {
- 
   state = { checked: 'wifi' };
 
   handleToggle = value => () => {
@@ -244,10 +241,7 @@ class Profile extends React.Component {
                         variant="filled"
                         label="Kitchens"
                       />
-
-
                     </ListItemSecondaryAction>
-              
                   </ListItem>
 
                   <ListItem  alignItems="flex-start">
@@ -293,12 +287,20 @@ class Profile extends React.Component {
               
                 
                     <ListItemSecondaryAction>
-                   
-                        
-         
-                    <FormControlLabel value="female" control={<Radio />} label="Female" />
-                    <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  
+                      <div className = {classes.genderSelection}>
+                        male
+                        <Checkbox
+                            value="checkedMale"
+                          />
+                        female
+                        <Checkbox
+                            value="checkedFemale"
+                          />
+                        other
+                        <Checkbox
+                          value="chckedOther"  
+                        />
+                        </div>
            
                     </ListItemSecondaryAction>
                   </ListItem>
@@ -308,7 +310,6 @@ class Profile extends React.Component {
               </CardContent>
             </Card>
           </Typography>
-    
     );
   }
 }

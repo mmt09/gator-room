@@ -17,8 +17,8 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 2,
   },
-  gridItem : {
-    
+  grid : {
+    alignContent : "center",
   },
   
 });
@@ -37,11 +37,11 @@ class LandlordPortal extends React.Component {
       <div className={classes.root}>
         <NavigationBar />
         <main className={classes.content}>
-        <Grid container spacing = {24} className = {classes.grid}>
-            <Grid item xs = {2}className = {classes.gridItem}>
+        <Grid container spacing = {6} className = {classes.grid}>
+            <Grid item xs = {3}className = {classes.gridItem}>
                 <UserProfileCard/>
             </Grid>
-            <Grid item xs = {10} className = {classes.gridItem}>
+            <Grid item xs = {9} className = {classes.gridItem}>
                 <ListingList/>
             </Grid>
         </Grid>

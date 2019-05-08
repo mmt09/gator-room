@@ -14,6 +14,8 @@ import Link from '@material-ui/core/Link';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import SearchBox from './SearchBox';
+import Login from './Login';
+import SignUp from './SignUp';
 
 const styles = theme => ({
   root: {
