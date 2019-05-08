@@ -21,6 +21,7 @@ const styles = theme => ({
     display: 'flex',
     flexGrow: 1,
     padding: theme.spacing.unit * 1,
+
     flexDirection: 'column',
     justifyContent: 'space-around',
   },

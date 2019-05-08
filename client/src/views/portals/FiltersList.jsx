@@ -20,8 +20,8 @@ import PetsIcon from '@material-ui/icons/Pets';
 import MoneyIcon from '@material-ui/icons/AttachMoney';
 import ParkingIcon from '@material-ui/icons/LocalParking';
 import SmokingIcon from '@material-ui/icons/SmokingRoomsOutlined';
-import Accessible from "@material-ui/icons/Accessible";
-import Person from "@material-ui/icons/Person"
+import Accessible from '@material-ui/icons/Accessible';
+import Person from '@material-ui/icons/Person';
 import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
 import Kitchen from "@material-ui/icons/Kitchen";
 import AirlineSeatFlat from "@material-ui/icons/AirlineSeatFlat";
@@ -29,15 +29,13 @@ import HotTub from "@material-ui/icons/HotTub";
 import Checkbox from '@material-ui/core/Checkbox';
 
 
+
 const drawerWidth = 240;
 /* FILTERS COMPONENT */
 
 /* END FILTERS COMPONENT */
 
-const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
-
-
-
+// const userFilters = [true,false,false,false,false,false,0,0,0,0,[0,1]];
 
 const styles = theme => ({
   root: {
@@ -52,10 +50,9 @@ const styles = theme => ({
     },
   },
   textField: {
-    
+
     width : 200,
     alignSelf: 'right'
-
   },
   genderSelection : {
     minWidth : 100,
@@ -103,14 +100,10 @@ const styles = theme => ({
     '&:hover': {
       borderColor: '#FF69B4',
     },
-
-
   },
 });
 
-
 class Profile extends React.Component {
- 
   state = { checked: 'wifi' };
 
   handleToggle = value => () => {
@@ -317,7 +310,6 @@ class Profile extends React.Component {
               </CardContent>
             </Card>
           </Typography>
-    
     );
   }
 }

@@ -4,7 +4,7 @@ import { TextField, RaisedButton, Dialog, Checkbox } from 'material-ui';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 import { blueGrey900 } from 'material-ui/styles/colors';
 import { withStyles } from '@material-ui/core/styles';
-import { Redirect, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as action from '../../actions';
