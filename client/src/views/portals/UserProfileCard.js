@@ -17,8 +17,7 @@ const styles = theme => ({
     justifyContent: 'center',
     margin: 'auto',
     width : '100%',
-    marginTop : 250
-  
+
   },
   bullet: {
     display: 'inline-block',
@@ -33,8 +32,8 @@ const styles = theme => ({
   },
   root: {
     display: 'flex',
-    minHeight: '73vh',
-  
+
+
   },
   content: {
     flexGrow: 1,
