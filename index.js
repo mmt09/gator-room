@@ -2,58 +2,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const Sequelize = require('sequelize');
+const keys = require('./config/keys');
 
 // Authentication Packages
-const expressValidator = require('express-validator');
-const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const MySQLStore = require('express-mysql-session')(session);
-const bcrypt = require('bcrypt');
-
-const db = require('./routes/db');
-const keys = require('./config/keys');
+require('./services/passport');
+require('./models/User');
 
 const app = express();
 
-// function authenticationMiddleware() {
-//   (req, res, next) => {
-//     // console.log('req.session.passport.user: ${JSON.stringify(req.session.passport)}');
-//     if (req.isAuthenticated()) return next();
-//     res.redirect('/LoginPage');
-//   };
-// }
+/**
+ * Runs code in production mode
+ */
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 
-app.use(express.static('client/build'));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
-
-// app.post('/StudentPortal', authenticationMiddleware(), (req, res) => {
-//   res.render('StudentPortal', { title: 'Profile' });
-// });
-
-app.post('/LoginPage', (req, res) => {
-  res.render('/LoginPage', { title: 'Login' });
-});
-
-app.post(
-  '/LoginPage',
-  passport.authenticate('local', {
-    successRedirect: '/StudentPortal',
-    failureRedirect: '/LoginPage',
-  })
-);
-
-// Destroys session in database store and redirect to home page.
-app.post('/Logout', (req, res) => {
-  req.logout();
-  req.session.destroy(() => {
-    res.clearCookie('connect.sid');
-    res.redirect('/');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
-});
+}
 
 app.use(
   bodyParser.urlencoded({
@@ -62,37 +29,16 @@ app.use(
 );
 
 app.use(bodyParser.json());
-app.use(expressValidator());
+
+const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
+  host: keys.host,
+  dialect: 'mysql',
+});
+require('./models/User')(sequelize);
 
 // route handler
 require('./routes/listingRoutes')(app);
-require('./routes/signupRoutes')(app);
-
-// const options = {
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'password',
-//   database: 'gatorroom',
-// };
-
-// /* Stores session data in the database rather than the node process.
-//  * This retains the session in case node restarts or terminates.
-//  * Explicitly logging out will wipe the session data.
-//  */
-// const sessionStore = new MySQLStore(options);
-
-// app.use(
-//   session({
-//     secret: 'owienfowpesdfe',
-//     resave: false,
-//     store: sessionStore,
-//     saveUninitialized: true,
-//     // cookie: { secure: true }
-//   })
-// );
-
-app.use(passport.initialize());
-app.use(passport.session());
+require('./routes/googleAuthRoutes')(app);
 
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
