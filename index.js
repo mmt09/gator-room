@@ -34,7 +34,10 @@ const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
   host: keys.host,
   dialect: 'mysql',
 });
+
+// models handlers
 require('./models/Student')(sequelize);
+require('./models/Landlord')(sequelize);
 
 // route handler
 require('./routes/listingRoutes')(app);

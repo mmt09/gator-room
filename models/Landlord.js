@@ -3,18 +3,18 @@ const Sequelize = require('sequelize');
 const { Model } = Sequelize;
 
 module.exports = sequelize => {
-  class Student extends Model {}
+  class Landlord extends Model {}
 
-  Student.init(
+  Landlord.init(
     {
       // attributes
-      student_id: {
+      landlord_id: {
         type: Sequelize.INTEGER({ length: 10, unsigned: true }),
-        allowNull: false,
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true,
       },
-      sfsu_email: {
+      email: {
         type: Sequelize.CHAR(50),
         allowNull: false,
       },
@@ -28,22 +28,24 @@ module.exports = sequelize => {
       },
       phone: {
         type: Sequelize.CHAR(20),
-        allowNull: false,
+        allowNull: true,
       },
-      username: {
-        type: Sequelize.CHAR(16),
+      google_id: {
+        type: Sequelize.CHAR(250),
         allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING(60, true),
       },
       picture: {
-        type: Sequelize.BLOB,
+        type: Sequelize.TEXT('long'),
+        allowNull: true,
+      },
+      listing_id: {
+        type: Sequelize.INTEGER({ length: 11, unsigned: true }),
+        allowNull: true,
       },
     },
     {
       sequelize,
-      modelName: 'student',
+      modelName: 'landlord',
       freezeTableName: true,
       createdAt: false,
       updatedAt: false,
@@ -59,8 +61,19 @@ module.exports = sequelize => {
       console.error('Unable to connect to the database:', err);
     });
 
+  // Create a new user
+  Landlord.create({
+    first_name: 'Test',
+    last_name: 'USer',
+    email: 'test@example.com',
+    google_id: 'test2019',
+    listing_id: '222333',
+  }).then(jane => {
+    console.log("Jane's auto-generated ID:", jane.landlord_id);
+  });
+
   // Find all users
-  // Student.findAll().then(students => {
-  //   console.log('All students:', JSON.stringify(students, null, 4));
-  // });
+  Landlord.findAll().then(landlords => {
+    console.log('All landlords:', JSON.stringify(landlords, null, 4));
+  });
 };
