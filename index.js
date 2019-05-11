@@ -7,7 +7,7 @@ const keys = require('./config/keys');
 
 // Authentication Packages
 require('./services/passport');
-require('./models/User');
+require('./models/Student');
 
 const app = express();
 
@@ -34,7 +34,7 @@ const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
   host: keys.host,
   dialect: 'mysql',
 });
-require('./models/User')(sequelize);
+require('./models/Student')(sequelize);
 
 // route handler
 require('./routes/listingRoutes')(app);
