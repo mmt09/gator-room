@@ -99,6 +99,7 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider} />
                     <CardBody>
+                      <a href="/auth/google"> Landlord Sign in with Google</a>
                       <CustomInput
                         labelText="Username..."
                         id="username"
