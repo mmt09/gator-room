@@ -11,6 +11,7 @@ import NotFound from './views/NotFound';
 import ListingPage from './views/ListingPage/ListingPage';
 import LoginPage from './views/common/LoginPage';
 import SignUpPage from './views/common/SignUpPage';
+import ListingUpload from './views/ListingUpload';
 
 // Community Members
 import JakhongirProfile from './views/aboutPages/JakhongirKhusanov/Profile';
@@ -40,6 +41,7 @@ const Routes = props => {
         <Route path="/listings/:id" component={ListingPage} />
         <Route path="/LoginPage" component={LoginPage} />
         <Route path="/SignUpPage" component={SignUpPage} />
+        <Route path='/ListingUpload' component = {ListingUpload} / >
         <Route component={NotFound} />
       </Switch>
     </Router>
