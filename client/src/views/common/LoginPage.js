@@ -18,7 +18,7 @@ import CardBody from 'components/Card/CardBody.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -32,7 +32,7 @@ class LoginPage extends React.Component {
     super(props);
     // we use this to make the card to appear after the page has been rendered
     this.state = {
-      cardAnimaton: 'cardHidden',
+      cardAnimation: 'cardHidden',
       username: '',
       password: '',
     };
@@ -45,7 +45,7 @@ class LoginPage extends React.Component {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
       function() {
-        this.setState({ cardAnimaton: '' });
+        this.setState({ cardAnimation: '' });
       }.bind(this),
       700
     );
@@ -71,7 +71,7 @@ class LoginPage extends React.Component {
 
   render() {
     const { classes, fetchLogin, ...rest } = this.props;
-    const { username, password } = this.state;
+    const { cardAnimation, username, password } = this.state;
     return (
       <div>
         <Header
@@ -92,14 +92,20 @@ class LoginPage extends React.Component {
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={4}>
-                <Card className={classes[this.state.cardAnimaton]}>
+                <Card className={classes[cardAnimation]}>
                   <form className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Login</h4>
+                      <div className={classes.socialLine}>
+                        <Button color="google" size="sm" href="/auth/google">
+                          <i className="fab fa-google" />
+                          Landlord Log in with Google
+                        </Button>
+                      </div>
                     </CardHeader>
-                    <p className={classes.divider} />
+                    <p className={classes.divider}>Student login with SFSU email</p>
+
                     <CardBody>
-                      <a href="/auth/google"> Landlord Sign in with Google</a>
                       <CustomInput
                         labelText="Username..."
                         id="username"
