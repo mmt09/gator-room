@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 // nodejs library to set properties for components
 import PropTypes from 'prop-types';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 // @material-ui/core components
 import Link from '@material-ui/core/Link';

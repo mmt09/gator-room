@@ -20,7 +20,7 @@ const renderContent = (auth, classes) => {
       return;
     case false:
       return (
-        <div>
+        <div className={classes.listItem}>
           <ListItem className={classes.listItem}>
             <Button
               color="transparent"
@@ -45,7 +45,7 @@ const renderContent = (auth, classes) => {
       );
     default:
       return (
-        <div>
+        <div className={classes.listItem}>
           <ListItem className={classes.listItem}>
             <Button
               color="transparent"
@@ -75,7 +75,7 @@ function HeaderLinks({ ...props }) {
           <Typography color="primary">Home</Typography>
         </Button>
       </ListItem>
-      <ListItem className={classes.listItem}>{renderContent(auth, classes)}</ListItem>
+      {renderContent(auth, classes)}
     </List>
   );
 }
