@@ -17,6 +17,7 @@ import Card from 'components/Card/Card.jsx';
 import CardBody from 'components/Card/CardBody.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
+
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -26,6 +27,7 @@ import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 
 import image from 'assets/img/landing-bg.jpg';
 import * as actions from '../actions';
+import ListingStepper from 'components/Stepper/ListingStepper';
 
 class ListingUpload extends React.Component {
   constructor(props) {
@@ -90,59 +92,11 @@ class ListingUpload extends React.Component {
           }}
         >
           <div className={classes.container}>
-            <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={4}>
-                <Card className={classes[this.state.cardAnimaton]}>
-                  <form className={classes.form}>
-                    <CardHeader color="primary" className={classes.cardHeader}>
-                      <h4>Login</h4>
-                    </CardHeader>
-                    <p className={classes.divider} />
-                    <CardBody>
-                      <CustomInput
-                        labelText="Username..."
-                        id="username"
-                        formControlProps={{
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          type: 'username',
-                          value: username,
-                          onChange: this.updateUsername,
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <People className={classes.inputIconsColor} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <CustomInput
-                        labelText="Password"
-                        id="pass"
-                        formControlProps={{
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          type: 'password',
-                          value: password,
-                          onChange: this.updatePassword,
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <Icon className={classes.inputIconsColor}>lock_outline</Icon>
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </CardBody>
-                    <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg" onClick={this.loginUser}>
-                        Submit
-                      </Button>
-                    </CardFooter>
-                  </form>
-                </Card>
-              </GridItem>
-            </GridContainer>
+           <Card>
+               <ListingStepper />
+
+            
+           </Card>
           </div>
           <Footer whiteFont />
         </div>
