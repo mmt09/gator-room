@@ -2,12 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const Sequelize = require('sequelize');
-const keys = require('./config/keys');
-
-// Authentication Packages
-require('./services/passport');
-require('./models/Student');
+// const Sequelize = require('sequelize');
+// const keys = require('./config/keys');
 
 const app = express();
 
@@ -30,14 +26,15 @@ app.use(
 
 app.use(bodyParser.json());
 
-const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
-  host: keys.host,
-  dialect: 'mysql',
-});
+// const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
+//   host: keys.host,
+//   dialect: 'mysql',
+// });
 
-// models handlers
-require('./models/Student')(sequelize);
-require('./models/Landlord')(sequelize);
+// // Authentication Packages and Models handlers
+// require('./models/Student')(sequelize);
+// require('./models/Landlord')(sequelize);
+require('./services/passport');
 
 // route handler
 require('./routes/listingRoutes')(app);

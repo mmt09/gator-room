@@ -52,28 +52,13 @@ module.exports = sequelize => {
       // options
     }
   );
-  sequelize
-    .authenticate()
-    .then(() => {
-      console.log('Connection has been established successfully.');
-    })
-    .catch(err => {
-      console.error('Unable to connect to the database:', err);
-    });
-
-  // Create a new user
-  Landlord.create({
-    first_name: 'Test',
-    last_name: 'USer',
-    email: 'test@example.com',
-    google_id: 'test2019',
-    listing_id: '222333',
-  }).then(jane => {
-    console.log("Jane's auto-generated ID:", jane.landlord_id);
-  });
-
-  // Find all users
-  Landlord.findAll().then(landlords => {
-    console.log('All landlords:', JSON.stringify(landlords, null, 4));
-  });
+  // sequelize
+  //   .authenticate()
+  //   .then(() => {
+  //     console.log('Connection has been established successfully.');
+  //   })
+  //   .catch(err => {
+  //     console.error('Unable to connect to the database:', err);
+  //   });
+  return Landlord;
 };
