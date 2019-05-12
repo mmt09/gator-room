@@ -77,11 +77,11 @@ class SearchResults extends React.Component {
             <SearchError />
           ) : (
             <div className={classes.resultContainer}>
-              <div className={classes.mapContainer}>
-                <SimpleMap />
-              </div>
               <div className={classes.cardsContainer}>
                 <TitlebarGridList />
+              </div>
+              <div className={classes.mapContainer}>
+                <SimpleMap />
               </div>
             </div>
           )}
