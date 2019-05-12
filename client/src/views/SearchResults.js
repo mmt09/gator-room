@@ -20,8 +20,6 @@ const styles = theme => ({
   content: {
     display: 'flex',
     flexGrow: 1,
-    padding: theme.spacing.unit * 1,
-
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
@@ -35,13 +33,24 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
-    maxHeight : '80vh'
+    maxHeight: '80vh',
   },
   cardsContainer: {
     flex: 1,
     flexWrap: 'wrap',
     overflow: 'auto',
-    maxHeight: '80vh',
+    // position: 'absolute',
+    [theme.breakpoints.up('md')]: {
+      overflow: 'auto',
+      maxHeight: '80vh',
+      right: 0,
+      overflowX: 'hidden',
+    },
+    [theme.breakpoints.down('sm')]: {
+      overflow: 'auto',
+      right: 0,
+      overflowX: 'hidden',
+    },
   },
 });
 

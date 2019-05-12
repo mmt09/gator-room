@@ -4,7 +4,6 @@ const searchCardStyle = {
   section: {
     padding: '70px 0',
     textAlign: 'center',
-    overflow: 'inherit',
   },
   title: {
     ...title,
@@ -16,9 +15,7 @@ const searchCardStyle = {
   description: {
     color: '#999',
   },
-  paper: {
-    overflow: 'inherit',
-  },
+  paper: {},
 };
 
 export default searchCardStyle;
