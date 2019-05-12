@@ -43,53 +43,54 @@ const styles = theme => ({
   },
 });
 
-const userInfo = {
-  name: 'Nico Graves',
-  bio:
-    "Hello! My name is Nico and I am a senior student at San Francisco State. We have a lovely spot open in our house that is just waiting to be filled by you. The house is very relaxed and we're looking for a chill roomate to come live with us. Feel free to email me, thanks!",
-  avatar:
-    'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTIwNjA4NjM0MDQxNjMyMjY4/danny-devito-9542289-1-402.jpg',
-  userType: 'Student',
-  email: 'thredhead242@Gmail.com',
-};
-
 // This an entry point to our components
-class UserProfileCard extends React.Component {
-  render() {
-    // console.log(this.props.search);
-    const { classes } = this.props;
+const UserProfileCard = props => {
+  // console.log(this.props.search);
+  const { classes, firstName, lastName, phone, picture, email, landlordID } = props;
 
-    return (
-      <div className={classes.root}>
-        <Card className={classes.card}>
-          <CardContent>
-            <Avatar alt="Nico Graves" src={userInfo.avatar} className={classes.avatar} />
-            <Typography variant="h6" component="h2">
-              {userInfo.name}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              {userInfo.userType}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              {userInfo.email}
-            </Typography>
-            <Paper elevation={0.5}>
-              <Typography component="p">{userInfo.bio}</Typography>
-            </Paper>
-          </CardContent>
-          <CardActions>
-            <Button variant="contained" className={classes.butt}>
-              Edit
-            </Button>
-          </CardActions>
-        </Card>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={classes.root}>
+      <Card className={classes.card}>
+        <CardContent>
+          <Avatar alt="Nico Graves" src={picture} className={classes.avatar} />
+          <Typography variant="h6" component="h2">
+            {firstName} {lastName}
+          </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+            {landlordID ? 'Landlord' : 'Student'}
+          </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+            {email}
+          </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+            {phone}
+          </Typography>
+          <Paper elevation={0.5}>
+            <Typography component="p">{`Hello! My name is ${firstName} and I am a senior student at San Francisco State. We have a lovely spot open in our house that is just waiting to be filled by you. The house is very relaxed and we're looking for a chill roomate to come live with us. Feel free to email me, thanks!`}</Typography>
+          </Paper>
+        </CardContent>
+        <CardActions>
+          <Button variant="contained" className={classes.butt}>
+            Edit
+          </Button>
+        </CardActions>
+      </Card>
+    </div>
+  );
+};
 
 UserProfileCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  phone: PropTypes.string,
+  email: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  landlordID: PropTypes.string.isRequired,
+};
+
+UserProfileCard.defaultProps = {
+  phone: '',
 };
 
 function mapStateToProps({ search }) {

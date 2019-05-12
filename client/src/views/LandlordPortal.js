@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -26,20 +27,31 @@ const styles = theme => ({
 
 class LandlordPortal extends React.Component {
   componentDidMount() {
-    // takes you to the top of the page automaically
+    // takes you to the top of the page automatically
     window.scrollTo(0, 0);
+
+    // Below two lines Can be deleted once development is done
+    const { fetchUser } = this.props;
+    fetchUser();
   }
 
-  render() {
+  renderContent = () => {
     const { classes, auth } = this.props;
-    console.log(auth);
-    return (
-      <div className={classes.root}>
-        <NavigationBar />
+
+    if (auth !== null) {
+      const { first_name, last_name, email, phone, picture, landlord_id } = auth;
+      return (
         <main className={classes.content}>
           <Grid container spacing={8} className={classes.grid}>
             <Grid item xs={3} className={classes.gridItem}>
-              <UserProfileCard />
+              <UserProfileCard
+                firstName={first_name}
+                lastName={last_name}
+                phone={phone}
+                picture={picture}
+                email={email}
+                landlordID={landlord_id}
+              />
             </Grid>
             <Grid item xs={9} className={classes.gridItem}>
               <ListingList />
@@ -47,6 +59,17 @@ class LandlordPortal extends React.Component {
           </Grid>
           <Footer />
         </main>
+      );
+    }
+    return null;
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <NavigationBar />
+        {this.renderContent()}
       </div>
     );
   }
@@ -55,6 +78,7 @@ class LandlordPortal extends React.Component {
 LandlordPortal.propTypes = {
   classes: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  fetchUser: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ auth }) {
