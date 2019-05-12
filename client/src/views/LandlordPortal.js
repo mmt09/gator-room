@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
+
 import Footer from '../components/Footer/Footer';
 import NavigationBar from './common/NavigationBar';
 import UserProfileCard from './portals/UserProfileCard';
-import ListingList from './portals/ListingList'
-
+import ListingList from './portals/ListingList';
+import * as actions from '../actions';
 
 const styles = theme => ({
   root: {
@@ -17,10 +19,9 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 2,
   },
-  grid : {
-    alignContent : "center",
+  grid: {
+    alignContent: 'center',
   },
-  
 });
 
 class LandlordPortal extends React.Component {
@@ -30,36 +31,36 @@ class LandlordPortal extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-
+    const { classes, auth } = this.props;
+    console.log(auth);
     return (
-   
       <div className={classes.root}>
         <NavigationBar />
         <main className={classes.content}>
-        <Grid container spacing = {6} className = {classes.grid}>
-            <Grid item xs = {3}className = {classes.gridItem}>
-                <UserProfileCard/>
+          <Grid container spacing={8} className={classes.grid}>
+            <Grid item xs={3} className={classes.gridItem}>
+              <UserProfileCard />
             </Grid>
-            <Grid item xs = {9} className = {classes.gridItem}>
-                <ListingList/>
+            <Grid item xs={9} className={classes.gridItem}>
+              <ListingList />
             </Grid>
-        </Grid>
-     
-          
-      <Footer/>   
+          </Grid>
+          <Footer />
         </main>
-
-        
       </div>
-    
-
-      
     );
   }
 }
 
 LandlordPortal.propTypes = {
   classes: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
-export default withStyles(styles, { withTheme: true })(LandlordPortal);
+
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+export default connect(
+  mapStateToProps,
+  actions
+)(withStyles(styles, { withTheme: true })(LandlordPortal));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import MarkerImage from '../../assets/img/map-marker-md.png';
 
@@ -66,6 +66,6 @@ class SimpleMap extends Component {
 SimpleMap.propTypes = {
   center: PropTypes.object,
   zoom: PropTypes.number,
-  locationArray: PropTypes.arrayOf(number),
+  locationArray: PropTypes.arrayOf(PropTypes.object),
 };
 export default SimpleMap;
