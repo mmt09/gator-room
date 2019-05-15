@@ -73,7 +73,7 @@ class Upload extends Component {
       const formData = new FormData();
       formData.append('file', file, file.name);
 
-      req.open('POST', 'http://localhost:3000/upload');
+      req.open('POST', 'http://localhost:3000/api/upload');
       req.send(formData);
     });
   }
@@ -87,7 +87,7 @@ class Upload extends Component {
           <img
             className="CheckIcon"
             alt="done"
-            src="baseline-check_circle_outline-24px.svg"
+            src="../../../../assets/svg/baseline-check_circle_outline-24px.svg"
             style={{
               opacity: uploadProgress && uploadProgress.state === 'done' ? 0.5 : 0,
             }}
