@@ -6,6 +6,9 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import ListingLocationForm from 'components/ListingUploadForms/ListingLocationForm';
+import ListingFiltersForm from 'components/ListingUploadForms/ListingFiltersForm';
 
 const styles = theme => ({
   root: {
@@ -18,6 +21,11 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
+  stepperContent: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+  },
+  backNextButtons: {},
 });
 
 function getSteps() {
@@ -118,6 +126,10 @@ class HorizontalLinearStepper extends React.Component {
           })}
         </Stepper>
         <div>
+          <div className={classes.stepperContent}>
+            {activeStep == 0 ? <ListingLocationForm /> : null}
+            {activeStep == 1 ? <ListingFiltersForm /> : null}
+          </div>
           {activeStep === steps.length ? (
             <div>
               <Typography className={classes.instructions}>
@@ -130,8 +142,8 @@ class HorizontalLinearStepper extends React.Component {
           ) : (
             <div>
               <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-              
-              <div>
+
+              <div className={classes.backNextButtons}>
                 <Button
                   disabled={activeStep === 0}
                   onClick={this.handleBack}
