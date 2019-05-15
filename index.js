@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const cors = require('cors');
+const upload = require('./services/upload');
 
 // const Sequelize = require('sequelize');
 const keys = require('./config/keys');
@@ -21,6 +23,15 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
+
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+app.post('/api/upload', upload);
 
 app.use(
   bodyParser.urlencoded({
