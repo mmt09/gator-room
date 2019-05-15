@@ -51,6 +51,7 @@
         "allowArrowFunctions": true,
         "allowBind": true
       }
-    ]
+    ],
+    "camelcase": [2, { "ignoreDestructuring": true }]
   }
 }
