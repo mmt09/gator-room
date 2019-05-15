@@ -5,6 +5,8 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const cors = require('cors');
+const busboy = require('connect-busboy');
+const fs = require('fs-extra');
 const upload = require('./services/upload');
 
 // const Sequelize = require('sequelize');
@@ -12,6 +14,10 @@ const keys = require('./config/keys');
 require('./services/passport');
 
 const app = express();
+
+// Registers and ensures existence of upload path
+const uploadPath = path.join(__dirname, 'fu/');
+fs.ensureDir(uploadPath);
 
 /**
  * Runs code in production mode
@@ -24,14 +30,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
-app.post('/api/upload', upload);
+// Set 2MiB buffer
+app.use(
+  busboy({
+    highWaterMark: 2 * 1024 * 1024,
+  })
+);
 
 app.use(
   bodyParser.urlencoded({
@@ -63,9 +67,20 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 // route handler
 require('./routes/listingRoutes')(app);
 require('./routes/googleAuthRoutes')(app);
+require('./services/upload')(app);
+
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+app.post('/api/upload', upload);
 
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
