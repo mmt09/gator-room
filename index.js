@@ -7,7 +7,6 @@ const passport = require('passport');
 const cors = require('cors');
 const busboy = require('connect-busboy');
 const fs = require('fs-extra');
-const upload = require('./services/upload');
 
 // const Sequelize = require('sequelize');
 const keys = require('./config/keys');
@@ -16,7 +15,7 @@ require('./services/passport');
 const app = express();
 
 // Registers and ensures existence of upload path
-const uploadPath = path.join(__dirname, 'fu/');
+const uploadPath = path.join(__dirname, 'fileUpload/');
 fs.ensureDir(uploadPath);
 
 /**
@@ -71,7 +70,6 @@ app.use(passport.session());
 // route handler
 require('./routes/listingRoutes')(app);
 require('./routes/googleAuthRoutes')(app);
-require('./services/upload')(app);
 
 const corsOptions = {
   origin: '*',
@@ -80,7 +78,20 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.post('/api/upload', upload);
+app.route('/api/upload').post((req, res, next) => {
+  req.pipe(req.busboy);
+
+  req.busboy.on('file', (fieldname, file, filename) => {
+    console.log(`Upload of '${filename}' started`);
+
+    const fstream = fs.createWriteStream(path.join(uploadPath, filename));
+    file.pipe(fstream);
+    fstream.on('close', () => {
+      console.log(`Upload of '${filename}' finished`);
+      res.redirect('back');
+    });
+  });
+});
 
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
