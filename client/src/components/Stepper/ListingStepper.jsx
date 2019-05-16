@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import ListingLocationForm from 'components/ListingUploadForms/ListingLocationForm';
 import ListingFiltersForm from 'components/ListingUploadForms/ListingFiltersForm';
+import ListingDescriptionForm from 'components/ListingUploadForms/ListingDescriptionForm';
 
 const styles = theme => ({
   root: {
@@ -129,6 +130,7 @@ class HorizontalLinearStepper extends React.Component {
           <div className={classes.stepperContent}>
             {activeStep == 0 ? <ListingLocationForm /> : null}
             {activeStep == 1 ? <ListingFiltersForm /> : null}
+            {activeStep == 2 ? <ListingDescriptionForm /> : null}
           </div>
           {activeStep === steps.length ? (
             <div>
