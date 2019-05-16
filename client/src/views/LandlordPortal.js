@@ -9,6 +9,7 @@ import Footer from '../components/Footer/Footer';
 import NavigationBar from './common/NavigationBar';
 import UserProfileCard from './portals/UserProfileCard';
 import ListingList from './portals/ListingList';
+import Upload from './common/FileUpload/upload/Upload';
 import * as actions from '../actions';
 
 const styles = theme => ({
@@ -52,6 +53,7 @@ class LandlordPortal extends React.Component {
                 email={email}
                 landlordID={landlord_id}
               />
+              <Upload />
             </Grid>
             <Grid item xs={9} className={classes.gridItem}>
               <ListingList />

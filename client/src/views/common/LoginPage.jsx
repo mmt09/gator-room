@@ -41,7 +41,6 @@ class LoginPage extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchLogin } = this.props;
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
       function() {
