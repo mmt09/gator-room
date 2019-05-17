@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
-
+import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import NavigationBar from './common/NavigationBar';
 import UserProfileCard from './portals/UserProfileCard';
@@ -24,6 +25,12 @@ const styles = theme => ({
   grid: {
     alignContent: 'center',
   },
+  errorComponent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
 });
 
 class LandlordPortal extends React.Component {
@@ -39,7 +46,7 @@ class LandlordPortal extends React.Component {
   renderContent = () => {
     const { classes, auth } = this.props;
 
-    if (auth !== null) {
+    if (auth) {
       const { first_name, last_name, email, phone, picture, landlord_id } = auth;
       return (
         <main className={classes.content}>
@@ -61,6 +68,23 @@ class LandlordPortal extends React.Component {
           </Grid>
           <Footer />
         </main>
+      );
+    }
+    if (auth === false) {
+      return (
+        <div className={classes.errorComponent}>
+          <h2 className={classes.title}>
+            Please{' '}
+            <Link underline="hover" component={RouterLink} to="/LoginPage">
+              login
+            </Link>{' '}
+            or{' '}
+            <Link underline="hover" component={RouterLink} to="/SignUpPage">
+              sign up
+            </Link>{' '}
+            first to access your landlord portal
+          </h2>
+        </div>
       );
     }
     return null;
