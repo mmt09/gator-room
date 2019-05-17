@@ -30,7 +30,7 @@ const styles = theme => ({
 
 class ListingFiltersForm extends React.Component {
   state = {
-    checked: ['wifi'],
+    checked: []
   };
 
   handleToggle = value => () => {
@@ -64,8 +64,8 @@ class ListingFiltersForm extends React.Component {
           <ListItemText primary="Laundry" />
           <ListItemSecondaryAction>
             <Switch
-              onChange={this.handleToggle('wifi')}
-              checked={this.state.checked.indexOf('wifi') !== -1}
+              onChange={this.handleToggle('laundry')}
+              checked={this.state.checked.indexOf('laundry') !== -1}
             />
           </ListItemSecondaryAction>
         </ListItem>
@@ -77,8 +77,8 @@ class ListingFiltersForm extends React.Component {
           <ListItemText primary="Pets" />
           <ListItemSecondaryAction>
             <Switch
-              onChange={this.handleToggle('wifi')}
-              checked={this.state.checked.indexOf('wifi') !== -1}
+              onChange={this.handleToggle('pets')}
+              checked={this.state.checked.indexOf('pets') !== -1}
             />
           </ListItemSecondaryAction>
         </ListItem>
@@ -90,8 +90,8 @@ class ListingFiltersForm extends React.Component {
           <ListItemText primary="Parking" />
           <ListItemSecondaryAction>
             <Switch
-              onChange={this.handleToggle('wifi')}
-              checked={this.state.checked.indexOf('wifi') !== -1}
+              onChange={this.handleToggle('parking')}
+              checked={this.state.checked.indexOf('parking') !== -1}
             />
           </ListItemSecondaryAction>
         </ListItem>
@@ -103,11 +103,27 @@ class ListingFiltersForm extends React.Component {
           <ListItemText primary="Smoking" />
           <ListItemSecondaryAction>
             <Switch
-              onChange={this.handleToggle('wifi')}
-              checked={this.state.checked.indexOf('wifi') !== -1}
+              onChange={this.handleToggle('smoking')}
+              checked={this.state.checked.indexOf('smoking') !== -1}
             />
           </ListItemSecondaryAction>
         </ListItem>
+
+        <ListItem>
+          <ListItemIcon>
+            <WifiIcon />
+          </ListItemIcon>
+          <ListItemText primary="Handicap Accessibility" />
+          <ListItemSecondaryAction>
+            <Switch
+              onChange={this.handleToggle('handicap')}
+              checked={this.state.checked.indexOf('handicap') !== -1}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+
+
+
       </List>
     );
   }
