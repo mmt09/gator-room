@@ -49,7 +49,6 @@ const uploadStyle = {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '50px',
     padding: '0px',
     overflow: 'hidden',
     boxSizing: 'border-box',
@@ -58,7 +57,6 @@ const uploadStyle = {
   checkIcon: {
     opacity: 0.5,
     marginLeft: '32px',
-    marginBottom: 5,
   },
 
   progressWrapper: {
