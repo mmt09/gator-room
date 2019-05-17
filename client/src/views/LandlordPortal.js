@@ -9,7 +9,7 @@ import Footer from '../components/Footer/Footer';
 import NavigationBar from './common/NavigationBar';
 import UserProfileCard from './portals/UserProfileCard';
 import ListingList from './portals/ListingList';
-import Upload from './common/FileUpload/upload/Upload';
+import Upload from './common/fileUploadComponents/upload/Upload';
 import * as actions from '../actions';
 
 const styles = theme => ({

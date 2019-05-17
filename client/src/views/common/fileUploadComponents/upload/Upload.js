@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import Dropzone from '../dropzone/Dropzone';
 
-import uploadStyle from './uploadStyle.jsx';
+import uploadStyle from './uploadStyle';
 import Progress from '../progress/Progress';
 
 class Upload extends Component {

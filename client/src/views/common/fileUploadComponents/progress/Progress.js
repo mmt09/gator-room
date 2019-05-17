@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import progressStyle from './progressStyle.jsx';
+import progressStyle from './progressStyle';
 
 class Progress extends Component {
   constructor(props) {
