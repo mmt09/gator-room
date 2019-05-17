@@ -1,5 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import './Dropzone.css';
+import withStyles from '@material-ui/core/styles/withStyles';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
+import dropzoneStyle from './dropzone.jsx';
 
 class Dropzone extends Component {
   constructor(props) {
@@ -14,14 +19,9 @@ class Dropzone extends Component {
     this.onDrop = this.onDrop.bind(this);
   }
 
-  openFileDialog() {
-    if (this.props.disabled) return;
-    this.fileInputRef.current.click();
-  }
-
   onFilesAdded(evt) {
     if (this.props.disabled) return;
-    const files = evt.target.files;
+    const { files } = evt.target;
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
@@ -30,7 +30,7 @@ class Dropzone extends Component {
 
   onDragOver(event) {
     event.preventDefault();
-    if (this.props.disabed) return;
+    if (this.props.disabled) return;
     this.setState({ hightlight: true });
   }
 
@@ -40,8 +40,8 @@ class Dropzone extends Component {
 
   onDrop(event) {
     event.preventDefault();
-    if (this.props.disabed) return;
-    const files = event.dataTransfer.files;
+    if (this.props.disabled) return;
+    const { files } = event.dataTransfer;
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
@@ -49,36 +49,53 @@ class Dropzone extends Component {
     this.setState({ hightlight: false });
   }
 
-  fileListToArray(list) {
+  fileListToArray = list => {
     const array = [];
-    for (var i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
       array.push(list.item(i));
     }
     return array;
+  };
+
+  openFileDialog() {
+    if (this.props.disabled) return;
+    this.fileInputRef.current.click();
   }
 
   render() {
+    const { classes, disabled } = this.props;
+    const { hightlight } = this.state;
+    const isHighLight = hightlight ? classes.highlight : classes.noHighlight;
+
     return (
       <div
-        className={`Dropzone ${this.state.hightlight ? 'Highlight' : ''}`}
+        className={classNames(classes.dropzone, isHighLight)}
         onDragOver={this.onDragOver}
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}
         onClick={this.openFileDialog}
-        style={{ cursor: this.props.disabled ? 'default' : 'pointer' }}
+        onKeyPress={this.openFileDialog}
+        style={{ cursor: disabled ? 'default' : 'pointer' }}
+        role="button"
+        tabIndex={0}
       >
         <input
           ref={this.fileInputRef}
-          className="FileInput"
+          className={classes.fileInput}
           type="file"
           multiple
           onChange={this.onFilesAdded}
         />
-        <img alt="upload" className="Icon" src="baseline-cloud_upload-24px.svg" />
+        <img alt="upload" className={classes.icon} src="baseline-cloud_upload-24px.svg" />
         <span>Upload Files</span>
       </div>
     );
   }
 }
 
-export default Dropzone;
+Dropzone.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+  onFilesAdded: PropTypes.func.isRequired,
+};
+
+export default withStyles(dropzoneStyle)(Dropzone);

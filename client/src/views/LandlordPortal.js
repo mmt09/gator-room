@@ -53,10 +53,10 @@ class LandlordPortal extends React.Component {
                 email={email}
                 landlordID={landlord_id}
               />
-              <Upload />
             </Grid>
             <Grid item xs={9} className={classes.gridItem}>
               <ListingList />
+              <Upload />
             </Grid>
           </Grid>
           <Footer />
