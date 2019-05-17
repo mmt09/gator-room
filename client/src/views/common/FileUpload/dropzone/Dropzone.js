@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import dropzoneStyle from './dropzone.jsx';
+import dropzoneStyle from './dropzoneStyle';
 
 class Dropzone extends Component {
   constructor(props) {
@@ -34,6 +34,7 @@ class Dropzone extends Component {
     this.setState({ hightlight: true });
   }
 
+  // eslint-disable-next-line no-unused-vars
   onDragLeave(event) {
     this.setState({ hightlight: false });
   }
