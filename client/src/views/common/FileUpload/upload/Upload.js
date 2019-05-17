@@ -108,8 +108,9 @@ class Upload extends Component {
   }
 
   renderActions() {
-    // console.log(this.state.files.length < 0);
+    const { classes } = this.props;
     const { files, uploading, successfullUploaded } = this.state;
+
     if (successfullUploaded) {
       return (
         <Button
@@ -117,16 +118,17 @@ class Upload extends Component {
           color="secondary"
           onClick={() => this.setState({ files: [], successfullUploaded: false })}
         >
-          Clear
+          Clear to upload more
         </Button>
       );
     }
     return (
       <Button
-        disabled={files.length < 0 || uploading}
+        disabled={files.length === 0 || uploading}
         onClick={this.uploadFiles}
         variant="contained"
         color="secondary"
+        className={classes.button}
       >
         Upload
       </Button>
