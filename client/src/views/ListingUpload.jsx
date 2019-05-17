@@ -2,7 +2,8 @@ import React from 'react';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import Header from 'components/Header/Header.jsx';
+import Header from '../components/Header/Header.jsx';
+
 import HeaderLinks from 'components/Header/HeaderLinks.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 
@@ -70,8 +71,8 @@ class ListingUpload extends React.Component {
               <ListingStepper />
             </Card>
           </div>
-          <Footer whiteFont />
         </div>
+        <Footer whiteFont />
       </div>
     );
   }

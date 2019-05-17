@@ -42,6 +42,9 @@ const styles = theme => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
+  gridContainer : {
+    overflow : "auto"
+  }
 });
 
 const tileData = [
@@ -59,12 +62,7 @@ const tileData = [
 ];
 
 class ListingLocationForm extends React.Component {
-  state = {
-    name: '',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-  };
+  state = {};
 
   handleChange = name => event => {
     this.setState({
@@ -76,14 +74,13 @@ class ListingLocationForm extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Grid container spacing={24}>
+      <Grid container spacing={24} className = {classes.gridContainer}>
         <Grid item xs={12} sm={6}>
           <form className={classes.container} noValidate autoComplete="off">
             <TextField
               id="outlined-address"
               label="Street Address"
               className={classes.textField}
-              value={this.state.name}
               onChange={this.handleChange('name')}
               margin="normal"
               variant="outlined"
