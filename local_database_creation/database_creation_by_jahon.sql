@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `gatorroom`.`landlord` (
   `phone` VARCHAR(20) NULL DEFAULT NULL,
   `google_id` VARCHAR(250) NULL DEFAULT NULL,
   `picture` LONGTEXT NULL DEFAULT NULL,
+  `about` MEDIUMTEXT DEFAULT NULL,
   `listing_id` INT(11) UNSIGNED,
   PRIMARY KEY (`landlord_id`))
 ENGINE = InnoDB
