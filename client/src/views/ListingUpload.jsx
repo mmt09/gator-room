@@ -2,14 +2,12 @@ import React from 'react';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import Header from '../components/Header/Header.jsx';
 
 import HeaderLinks from 'components/Header/HeaderLinks.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 
 import Card from 'components/Card/Card.jsx';
 
-import { Link as RouterLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -17,6 +15,7 @@ import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 
 import image from 'assets/img/landing-bg.jpg';
 import ListingStepper from 'components/Stepper/ListingStepper';
+import Header from '../components/Header/Header.jsx';
 import * as actions from '../actions';
 
 class ListingUpload extends React.Component {
@@ -48,7 +47,7 @@ class ListingUpload extends React.Component {
 
   render() {
     const { classes, fetchLogin, ...rest } = this.props;
-    const {} = this.state;
+    // const {} = this.state;
     return (
       <div>
         <Header
@@ -89,4 +88,4 @@ function mapStateToProps({ login }) {
 export default connect(
   mapStateToProps,
   actions
-)(withRouter(withStyles(loginPageStyle)(ListingUpload)));
+)((withStyles(loginPageStyle)(ListingUpload)));

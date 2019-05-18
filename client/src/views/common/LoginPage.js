@@ -18,7 +18,6 @@ import CardBody from 'components/Card/CardBody.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -40,16 +39,16 @@ class LoginPage extends React.Component {
     this.updatePassword = this.updatePassword.bind(this);
   }
 
-  componentDidMount() {
-    const { fetchLogin } = this.props;
-    // we add a hidden class to the card and after 700 ms we delete it and the transition appears
-    setTimeout(
-      function() {
-        this.setState({ cardAnimaton: '' });
-      }.bind(this),
-      700
-    );
-  }
+  // componentDidMount() {
+  //   const { fetchLogin } = this.props;
+  //   // we add a hidden class to the card and after 700 ms we delete it and the transition appears
+  //   setTimeout(
+  //     function() {
+  //       this.setState({ cardAnimaton: '' });
+  //     }.bind(this),
+  //     700
+  //   );
+  // }
 
   updateUsername(event) {
     const { target } = event;
@@ -71,7 +70,7 @@ class LoginPage extends React.Component {
 
   render() {
     const { classes, fetchLogin, ...rest } = this.props;
-    const { username, password } = this.state;
+    const { username, password, cardAnimaton } = this.state;
     return (
       <div>
         <Header
@@ -92,7 +91,7 @@ class LoginPage extends React.Component {
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={4}>
-                <Card className={classes[this.state.cardAnimaton]}>
+                <Card className={classes[cardAnimaton]}>
                   <form className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Login</h4>
@@ -162,4 +161,4 @@ function mapStateToProps({ login }) {
 export default connect(
   mapStateToProps,
   actions
-)(withRouter(withStyles(loginPageStyle)(LoginPage)));
+)((withStyles(loginPageStyle)(LoginPage)));
