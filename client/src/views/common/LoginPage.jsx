@@ -18,7 +18,7 @@ import CardBody from 'components/Card/CardBody.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -168,4 +168,4 @@ function mapStateToProps({ login }) {
 export default connect(
   mapStateToProps,
   actions
-)(withRouter(withStyles(loginPageStyle)(LoginPage)));
+)((withStyles(loginPageStyle)(LoginPage)));
