@@ -2,58 +2,39 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-
-// Authentication Packages
-const expressValidator = require('express-validator');
-const session = require('express-session');
+const cookieSession = require('cookie-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const MySQLStore = require('express-mysql-session')(session);
-const bcrypt = require('bcrypt');
+const cors = require('cors');
+const busboy = require('connect-busboy');
+const fs = require('fs-extra');
 
-const db = require('./routes/db');
+// const Sequelize = require('sequelize');
 const keys = require('./config/keys');
+require('./services/passport');
 
 const app = express();
 
-// function authenticationMiddleware() {
-//   (req, res, next) => {
-//     // console.log('req.session.passport.user: ${JSON.stringify(req.session.passport)}');
-//     if (req.isAuthenticated()) return next();
-//     res.redirect('/LoginPage');
-//   };
-// }
+// Registers and ensures existence of upload path
+const uploadPath = path.join(__dirname, 'fileUpload/');
+fs.ensureDir(uploadPath);
 
-app.use(express.static('client/build'));
+/**
+ * Runs code in production mode
+ */
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
-// app.post('/StudentPortal', authenticationMiddleware(), (req, res) => {
-//   res.render('StudentPortal', { title: 'Profile' });
-// });
-
-app.post('/LoginPage', (req, res) => {
-  res.render('/LoginPage', { title: 'Login' });
-});
-
-app.post(
-  '/LoginPage',
-  passport.authenticate('local', {
-    successRedirect: '/StudentPortal',
-    failureRedirect: '/LoginPage',
+// Set 2MiB buffer
+app.use(
+  busboy({
+    highWaterMark: 2 * 1024 * 1024,
   })
 );
-
-// Destroys session in database store and redirect to home page.
-app.post('/Logout', (req, res) => {
-  req.logout();
-  req.session.destroy(() => {
-    res.clearCookie('connect.sid');
-    res.redirect('/');
-  });
-});
 
 app.use(
   bodyParser.urlencoded({
@@ -62,37 +43,55 @@ app.use(
 );
 
 app.use(bodyParser.json());
-app.use(expressValidator());
 
-// route handler
-require('./routes/listingRoutes')(app);
-require('./routes/signupRoutes')(app);
+// cookies
+app.use(
+  cookieSession({
+    // How long cooke can exist inside of browser before it's automatically expired
+    // 30 days in milliseconds
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    // key to encrypt a cookie
+    keys: [keys.cookieKey],
+  })
+);
 
-// const options = {
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'password',
-//   database: 'gatorroom',
-// };
+// const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
+//   host: keys.host,
+//   dialect: 'mysql',
+// });
 
-// /* Stores session data in the database rather than the node process.
-//  * This retains the session in case node restarts or terminates.
-//  * Explicitly logging out will wipe the session data.
-//  */
-// const sessionStore = new MySQLStore(options);
-
-// app.use(
-//   session({
-//     secret: 'owienfowpesdfe',
-//     resave: false,
-//     store: sessionStore,
-//     saveUninitialized: true,
-//     // cookie: { secure: true }
-//   })
-// );
+// // Authentication Packages and Models handlers
+// require('./models/Student')(sequelize);
+// require('./models/Landlord')(sequelize);
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// route handler
+require('./routes/listingRoutes')(app);
+require('./routes/googleAuthRoutes')(app);
+
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+app.route('/api/upload').post((req, res, next) => {
+  req.pipe(req.busboy);
+
+  req.busboy.on('file', (fieldname, file, filename) => {
+    console.log(`Upload of '${filename}' started`);
+
+    const fstream = fs.createWriteStream(path.join(uploadPath, filename));
+    file.pipe(fstream);
+    fstream.on('close', () => {
+      console.log(`Upload of '${filename}' finished`);
+      res.redirect('back');
+    });
+  });
+});
 
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;

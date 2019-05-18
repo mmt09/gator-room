@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 // nodejs library to set properties for components
 import PropTypes from 'prop-types';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 // @material-ui/core components
 import Link from '@material-ui/core/Link';
@@ -65,7 +65,16 @@ class Header extends React.Component {
   }
 
   render() {
-    const { classes, color, rightLinks, leftLinks, brand, fixed, absolute } = this.props;
+    const {
+      classes,
+      color,
+      rightLinks,
+      leftLinks,
+      brand,
+      fixed,
+      absolute,
+      notLandingPage,
+    } = this.props;
     const appBarClasses = classNames({
       [classes.appBar]: true,
       [classes[color]]: color,
@@ -83,6 +92,10 @@ class Header extends React.Component {
           {brandComponent !== undefined ? brandComponent : null}
           <div className={classes.flex}>
             {this.state.scrolled === true ? (
+              <Hidden smDown implementation="css">
+                {leftLinks}
+              </Hidden>
+            ) : notLandingPage ? (
               <Hidden smDown implementation="css">
                 {leftLinks}
               </Hidden>
@@ -140,6 +153,7 @@ Header.propTypes = {
   brand: PropTypes.string,
   fixed: PropTypes.bool,
   absolute: PropTypes.bool,
+  notLandingPage: PropTypes.bool,
   // this will cause the sidebar to change the color from
   // this.props.color (see above) to changeColorOnScroll.color
   // when the window.pageYOffset is heigher or equal to
