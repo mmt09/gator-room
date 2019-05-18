@@ -6,7 +6,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import ListingLocationForm from 'components/ListingUploadForms/ListingLocationForm';
 import ListingFiltersForm from 'components/ListingUploadForms/ListingFiltersForm';
 import ListingDescriptionForm from 'components/ListingUploadForms/ListingDescriptionForm';
@@ -128,9 +128,9 @@ class HorizontalLinearStepper extends React.Component {
         </Stepper>
         <div>
           <div className={classes.stepperContent}>
-            {activeStep == 0 ? <ListingLocationForm /> : null}
-            {activeStep == 1 ? <ListingFiltersForm /> : null}
-            {activeStep == 2 ? <ListingDescriptionForm /> : null}
+            {activeStep === 0 ? <ListingLocationForm /> : null}
+            {activeStep === 1 ? <ListingFiltersForm /> : null}
+            {activeStep === 2 ? <ListingDescriptionForm /> : null}
           </div>
           {activeStep === steps.length ? (
             <div>
