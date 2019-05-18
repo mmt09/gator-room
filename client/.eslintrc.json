@@ -52,6 +52,7 @@
         "allowBind": true
       }
     ],
-    "camelcase": [2, { "ignoreDestructuring": true }]
+    "camelcase": [2, { "ignoreDestructuring": true }],
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }]
   }
 }

@@ -86,7 +86,7 @@ UserProfileCard.propTypes = {
   phone: PropTypes.string,
   email: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
-  landlordID: PropTypes.string.isRequired,
+  landlordID: PropTypes.number.isRequired,
 };
 
 UserProfileCard.defaultProps = {

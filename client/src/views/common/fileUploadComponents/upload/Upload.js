@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
+
 import Dropzone from '../dropzone/Dropzone';
-import './Upload.css';
+
+import uploadStyle from './uploadStyle';
 import Progress from '../progress/Progress';
 
 class Upload extends Component {
@@ -26,9 +30,10 @@ class Upload extends Component {
   }
 
   async uploadFiles() {
+    const { files } = this.state;
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
-    this.state.files.forEach(file => {
+    files.forEach(file => {
       promises.push(this.sendRequest(file));
     });
     try {
@@ -42,12 +47,13 @@ class Upload extends Component {
   }
 
   sendRequest(file) {
+    const { uploadProgress } = this.state;
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
       req.upload.addEventListener('progress', event => {
         if (event.lengthComputable) {
-          const copy = { ...this.state.uploadProgress };
+          const copy = { ...uploadProgress };
           copy[file.name] = {
             state: 'pending',
             percentage: (event.loaded / event.total) * 100,
@@ -56,15 +62,15 @@ class Upload extends Component {
         }
       });
 
-      req.upload.addEventListener('load', event => {
-        const copy = { ...this.state.uploadProgress };
+      req.upload.addEventListener('load', () => {
+        const copy = { ...uploadProgress };
         copy[file.name] = { state: 'done', percentage: 100 };
         this.setState({ uploadProgress: copy });
         resolve(req.response);
       });
 
-      req.upload.addEventListener('error', event => {
-        const copy = { ...this.state.uploadProgress };
+      req.upload.addEventListener('error', () => {
+        const copy = { ...uploadProgress };
         copy[file.name] = { state: 'error', percentage: 0 };
         this.setState({ uploadProgress: copy });
         reject(req.response);
@@ -73,75 +79,90 @@ class Upload extends Component {
       const formData = new FormData();
       formData.append('file', file, file.name);
 
-      req.open('POST', 'http://localhost:1337/api/upload');
+      req.open('POST', '/api/upload');
       req.send(formData);
     });
   }
 
   renderProgress(file) {
-    const uploadProgress = this.state.uploadProgress[file.name];
-    if (this.state.uploading || this.state.successfullUploaded) {
+    const { classes } = this.props;
+    const { uploading, successfullUploaded, uploadProgress } = this.state;
+
+    const uploadProgressResult = uploadProgress[file.name];
+    if (uploading || successfullUploaded) {
       return (
-        <div className="ProgressWrapper">
-          <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
+        <div className={classes.progressWrapper}>
+          <Progress progress={uploadProgressResult ? uploadProgressResult.percentage : 0} />
           <img
-            className="CheckIcon"
+            className={classes.checkIcon}
             alt="done"
             src="baseline-check_circle_outline-24px.svg"
             style={{
-              opacity: uploadProgress && uploadProgress.state === 'done' ? 0.5 : 0,
+              opacity: uploadProgressResult && uploadProgressResult.state === 'done' ? 0.5 : 0,
             }}
           />
         </div>
       );
     }
+    return null;
   }
 
   renderActions() {
-    if (this.state.successfullUploaded) {
+    const { classes } = this.props;
+    const { files, uploading, successfullUploaded } = this.state;
+
+    if (successfullUploaded) {
       return (
-        <button onClick={() => this.setState({ files: [], successfullUploaded: false })}>
-          Clear
-        </button>
-      );
-    } else {
-      return (
-        <button
-          disabled={this.state.files.length < 0 || this.state.uploading}
-          onClick={this.uploadFiles}
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => this.setState({ files: [], successfullUploaded: false })}
         >
-          Upload
-        </button>
+          Clear to upload more
+        </Button>
       );
     }
+    return (
+      <Button
+        disabled={files.length === 0 || uploading}
+        onClick={this.uploadFiles}
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+      >
+        Upload
+      </Button>
+    );
   }
 
   render() {
+    const { classes } = this.props;
+    const { uploading, successfullUploaded, files } = this.state;
     return (
-      <div className="Upload">
-        <span className="Title">Upload Files</span>
-        <div className="Content">
+      <div className={classes.upload}>
+        <span className={classes.title}>Upload Files</span>
+        <div className={classes.content}>
           <div>
             <Dropzone
               onFilesAdded={this.onFilesAdded}
-              disabled={this.state.uploading || this.state.successfullUploaded}
+              disabled={uploading || successfullUploaded}
             />
           </div>
-          <div className="Files">
-            {this.state.files.map(file => {
+          <div className={classes.files}>
+            {files.map(file => {
               return (
-                <div key={file.name} className="Row">
-                  <span className="Filename">{file.name}</span>
+                <div key={file.name} className={classes.row}>
+                  <span className={classes.filename}>{file.name}</span>
                   {this.renderProgress(file)}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="Actions">{this.renderActions()}</div>
+        <div className={classes.actions}>{this.renderActions()}</div>
       </div>
     );
   }
 }
 
-export default Upload;
+export default withStyles(uploadStyle)(Upload);
