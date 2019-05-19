@@ -1,4 +1,3 @@
-/* eslint-disable object-shorthand */
 import { combineReducers } from 'redux';
 import searchReducer from './search_reducer';
 import allListingsReducer from './all_listings_reducer';
@@ -12,7 +11,7 @@ export default combineReducers({
   search: searchReducer,
   allListings: allListingsReducer,
   listingDetails: listingDetailsReducer,
-  listingUploadReducer: listingUploadReducer,
+  listingUpload: listingUploadReducer,
   signup: signupReducer,
   login: loginReducer,
   auth: authReducer,

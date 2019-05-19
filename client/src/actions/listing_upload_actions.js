@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { FETCH_LISTING_UPLOAD } from './types';
 
-export const fetchSignup = (
+export const fetchListingUpload = (
   streetAddress,
   city,
   zip,
@@ -10,6 +10,7 @@ export const fetchSignup = (
   bathroom,
   kitchen,
   price,
+  description,
   callback
 ) => async dispatch => {
   const { data } = await axios.post('/api/listingUpload', {
@@ -20,6 +21,7 @@ export const fetchSignup = (
     bathroom,
     kitchen,
     price,
+    description,
   });
   dispatch({ type: FETCH_LISTING_UPLOAD, payload: data });
   callback();

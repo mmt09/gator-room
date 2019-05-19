@@ -7,6 +7,12 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Grid from '@material-ui/core/Grid';
+import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import CardBody from 'components/Card/Card';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import Upload from '../../views/common/fileUploadComponents/upload/Upload';
 
 const styles = theme => ({
   container: {
@@ -42,9 +48,9 @@ const styles = theme => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
-  gridContainer : {
-    overflow : "auto"
-  }
+  gridContainer: {
+    overflow: 'auto',
+  },
 });
 
 const tileData = [
@@ -62,6 +68,26 @@ const tileData = [
 ];
 
 class ListingLocationForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      streetAddress: '',
+      city: '',
+      zip: '',
+      bedroom: '',
+      bathroom: '',
+      kitchen: '',
+      price: '',
+    };
+    this.updateStreetAddress = this.updateStreetAddress.bind(this);
+    this.updateCity = this.updateCity.bind(this);
+    this.updateZip = this.updateZip.bind(this);
+    this.updateBedroom = this.updateBedroom.bind(this);
+    this.updateBathroom = this.updateBathroom.bind(this);
+    this.updateKitchen = this.updateKitchen.bind(this);
+    this.updatePrice = this.updatePrice.bind(this);
+  }
+
   state = {};
 
   handleChange = name => event => {
@@ -70,66 +96,115 @@ class ListingLocationForm extends React.Component {
     });
   };
 
+  updateStreetAddress(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ streetAddress: text });
+  }
+
+  updateCity(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ city: text });
+  }
+
+  updateZip(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ zip: text });
+  }
+
+  updateBedroom(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ bedroom: text });
+  }
+
+  updateBathroom(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ bathroom: text });
+  }
+
+  updateKitchen(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ kitchen: text });
+  }
+
+  updatePrice(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ price: text });
+  }
+
+  uploadListing() {
+    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price } = this.state;
+    const { fetchListingUpload } = this.props;
+    fetchListingUpload(streetAddress, city, zip, bedroom, bathroom, kitchen, price, () => {});
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, fetchListingUpload } = this.props;
+    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price } = this.state;
 
     return (
-      <Grid container spacing={24} className = {classes.gridContainer}>
+      <Grid container spacing={24} className={classes.gridContainer}>
         <Grid item xs={12} sm={6}>
           <form className={classes.container} noValidate autoComplete="off">
             <TextField
-              id="outlined-address"
+              id="streetAddress"
               label="Street Address"
               className={classes.textField}
-              onChange={this.handleChange('name')}
+              onChange={this.updateStreetAddress}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="city"
               label="City"
-              className={classes.textField}
+              className={this.updateCity}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="zip"
               label="Zip Code"
-              className={classes.textField}
+              className={this.updateZip}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="bedroom"
               label="Bedrooms"
-              className={classes.textField}
+              className={this.updateBedroom}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="bathroom"
               label="Bathrooms"
-              className={classes.textField}
+              className={this.updateBathroom}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="kitchen"
               label="Kitchens"
-              className={classes.textField}
+              className={this.updateKitchen}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="price"
               label="Monthly Rent"
-              className={classes.textField}
+              className={this.updatePrice}
               margin="normal"
               variant="outlined"
             />
@@ -146,7 +221,9 @@ class ListingLocationForm extends React.Component {
             type="file"
           />
 
-          <label htmlFor="raised-button-file">
+          <Upload />
+
+          {/* <label htmlFor="raised-button-file">
             <div className={classes.housePhotoList}>
               <GridList className={classes.gridList} cols={2.5}>
                 {tileData.map(tile => (
@@ -167,7 +244,7 @@ class ListingLocationForm extends React.Component {
             <Button variant="raised" component="span" className={classes.button}>
               How about some photos?
             </Button>
-          </label>
+          </label> */}
         </Grid>
       </Grid>
     );
@@ -178,4 +255,11 @@ ListingLocationForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ListingLocationForm);
+function mapStateToProps({ listingUpload }) {
+  return { listingUpload };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withRouter(withStyles(styles)(ListingLocationForm)));
