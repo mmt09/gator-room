@@ -38,6 +38,10 @@ module.exports = sequelize => {
         type: Sequelize.TEXT('long'),
         allowNull: true,
       },
+      about: {
+        type: Sequelize.TEXT('medium'),
+        allowNull: true,
+      },
       listing_id: {
         type: Sequelize.INTEGER({ length: 11, unsigned: true }),
         allowNull: true,
