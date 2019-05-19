@@ -7,7 +7,12 @@ const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
 });
 
 const Landlord = sequelize.import('../models/Landlord.js');
-
+/**
+ * Later might have to refactor this routes to make them universal and add logic for each
+ * So it could be reused to update student profile information with if condition passed by client
+ * or do everything on front end (buttons will have different routes based on who is logged in)
+ * And the routes will be similar for Student model
+ */
 module.exports = app => {
   app.post('/api/current_landlord_phone', async (req, res) => {
     const { landlordID, phone } = req.body;
