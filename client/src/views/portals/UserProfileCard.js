@@ -11,6 +11,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import PhoneNumberMask from 'views/common/PhoneNumberMask';
+import Success from 'components/Typography/Success.jsx';
+import Danger from 'components/Typography/Danger.jsx';
+
+import * as actions from '../../actions';
 
 const styles = theme => ({
   butt: {
@@ -58,6 +62,17 @@ class UserProfileCard extends React.Component {
     this.editButtonPress = this.editButtonPress.bind(this);
     this.updateAboutInput = this.updateAboutInput.bind(this);
     this.updatePhoneInput = this.updatePhoneInput.bind(this);
+    this.saveButtonPress = this.saveButtonPress.bind(this);
+  }
+
+  componentDidMount() {
+    const { phone, about } = this.props;
+    if (phone !== null) {
+      this.setState({ phoneValue: phone });
+    }
+    if (about !== null) {
+      this.setState({ aboutValue: about });
+    }
   }
 
   updateAboutInput(event) {
@@ -75,6 +90,19 @@ class UserProfileCard extends React.Component {
   editButtonPress() {
     const { inputDisabled } = this.state;
     this.setState({ inputDisabled: !inputDisabled });
+  }
+
+  saveButtonPress() {
+    const { updateLandlordPhone, updateLandlordAbout, phone, about, landlordID } = this.props;
+    const { aboutValue, phoneValue } = this.state;
+
+    if (phone !== phoneValue) {
+      updateLandlordPhone(landlordID, phoneValue);
+    }
+    if (about !== aboutValue) {
+      updateLandlordAbout(landlordID, aboutValue);
+    }
+    this.editButtonPress();
   }
 
   renderButton() {
@@ -98,16 +126,27 @@ class UserProfileCard extends React.Component {
         variant="contained"
         color="secondary"
         className={classes.butt}
-        onClick={this.editButtonPress}
+        onClick={this.saveButtonPress}
       >
         Save
       </Button>
     );
   }
 
+  renderResponse() {
+    const { classes, landlordUpdated } = this.props;
+    if (landlordUpdated === 'Done') {
+      return <Success className={classes.pos}>{landlordUpdated}</Success>;
+    }
+    if (landlordUpdated !== 'Done' && landlordUpdated !== null) {
+      return <Danger className={classes.pos}>{landlordUpdated}</Danger>;
+    }
+    return null;
+  }
+
   render() {
     // console.log(this.props.search);
-    const { classes, firstName, lastName, phone, picture, email, landlordID, about } = this.props;
+    const { classes, firstName, lastName, picture, email, landlordID } = this.props;
     const { inputDisabled, aboutValue, phoneValue } = this.state;
     return (
       <div className={classes.root}>
@@ -123,9 +162,6 @@ class UserProfileCard extends React.Component {
             <Typography className={classes.pos} color="textSecondary">
               {email}
             </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              {phone}
-            </Typography>
             <Paper elevation={0.5}>
               <CustomInput
                 labelText="Your Phone Number"
@@ -136,7 +172,7 @@ class UserProfileCard extends React.Component {
                 inputProps={{
                   inputComponent: PhoneNumberMask,
                   disabled: inputDisabled,
-                  value: phone || phoneValue,
+                  value: phoneValue,
                   onChange: this.updatePhoneInput,
                 }}
               />
@@ -152,10 +188,11 @@ class UserProfileCard extends React.Component {
                   rows: 5,
                   placeholder: 'Enter a brief information about yourself',
                   disabled: inputDisabled,
-                  value: about || aboutValue,
+                  value: aboutValue,
                   onChange: this.updateAboutInput,
                 }}
               />
+              {this.renderResponse()}
             </Paper>
           </CardContent>
           <CardActions>{this.renderButton()}</CardActions>
@@ -174,15 +211,22 @@ UserProfileCard.propTypes = {
   picture: PropTypes.string.isRequired,
   landlordID: PropTypes.number.isRequired,
   about: PropTypes.string,
+  updateLandlordPhone: PropTypes.func.isRequired,
+  updateLandlordAbout: PropTypes.func.isRequired,
+  landlordUpdated: PropTypes.string,
 };
 
 UserProfileCard.defaultProps = {
   phone: '',
   about: '',
+  landlordUpdated: '',
 };
 
-function mapStateToProps({ search }) {
-  return { search };
+function mapStateToProps({ landlordUpdated }) {
+  return { landlordUpdated };
 }
 
-export default connect(mapStateToProps)(withStyles(styles, { withTheme: true })(UserProfileCard));
+export default connect(
+  mapStateToProps,
+  actions
+)(withStyles(styles, { withTheme: true })(UserProfileCard));

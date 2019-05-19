@@ -5,3 +5,5 @@ export const FETCH_LISTING_DETAILS = 'fetch_listing_details';
 export const FETCH_SIGNUP = 'fetch_signup';
 export const FETCH_LOGIN = 'fetch_login';
 export const FETCH_USER = 'fetch_user';
+export const UPDATE_LANDLORD_PHONE = 'update_landlord_phone';
+export const UPDATE_LANDLORD_ABOUT = 'update_landlord_about';
