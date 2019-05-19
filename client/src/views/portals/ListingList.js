@@ -9,56 +9,45 @@ import { Link as RouterLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import ListingCard from './ListingCard';
 
-
-
-
 const styles = theme => ({
-    root: {
-        width: '100%',
-        backgroundColor: theme.palette.background.paper,
-        position: 'relative',
-        overflow: 'auto',
-        maxHeight : 700,
-        display : "flex",
-        minHeight: '73vh',
-        minWidth :  600,
-    },
-    booty : {
-        margin : 'auto',
-        width : '100%'
-    },
-
-  });
-
+  root: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
+    maxHeight: 700,
+    display: 'flex',
+    minHeight: '73vh',
+    minWidth: 600,
+  },
+  booty: {
+    margin: 'auto',
+    width: '100%',
+  },
+});
 
 class ListingList extends React.Component {
-
   render() {
     const { classes } = this.props;
 
     return (
-        <Card className={classes.root}>
+      <Card className={classes.root}>
         <List>
-  
-          <ListItem >
-            <ListingCard/>
+          <ListItem>
+            <ListingCard />
           </ListItem>
 
-       
-
-        <ListItem className = {classes.booty}>
-        <Button
-          color="transparent"
-          className={classes.booty}
-          component={RouterLink}
-          to="/ListingUpload"
-        >
-          <Typography color="primary">Upload New Listing</Typography>
-        </Button>
-
-        </ListItem>
+          <ListItem className={classes.booty}>
+            <Button
+              color="default"
+              className={classes.booty}
+              component={RouterLink}
+              to="/ListingUpload"
+            >
+              <Typography color="primary">Upload New Listing</Typography>
+            </Button>
+          </ListItem>
         </List>
-       
       </Card>
     );
   }

@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import PhoneNumberMask from 'views/common/PhoneNumberMask';
 
 const styles = theme => ({
   butt: {
@@ -51,8 +52,24 @@ class UserProfileCard extends React.Component {
     super(props);
     this.state = {
       inputDisabled: true,
+      aboutValue: '',
+      phoneValue: '',
     };
     this.editButtonPress = this.editButtonPress.bind(this);
+    this.updateAboutInput = this.updateAboutInput.bind(this);
+    this.updatePhoneInput = this.updatePhoneInput.bind(this);
+  }
+
+  updateAboutInput(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ aboutValue: text });
+  }
+
+  updatePhoneInput(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ phoneValue: text });
   }
 
   editButtonPress() {
@@ -90,9 +107,8 @@ class UserProfileCard extends React.Component {
 
   render() {
     // console.log(this.props.search);
-    const { classes, firstName, lastName, phone, picture, email, landlordID } = this.props;
-    const { inputDisabled } = this.state;
-
+    const { classes, firstName, lastName, phone, picture, email, landlordID, about } = this.props;
+    const { inputDisabled, aboutValue, phoneValue } = this.state;
     return (
       <div className={classes.root}>
         <Card className={classes.card}>
@@ -112,6 +128,19 @@ class UserProfileCard extends React.Component {
             </Typography>
             <Paper elevation={0.5}>
               <CustomInput
+                labelText="Your Phone Number"
+                id="phone"
+                formControlProps={{
+                  fullWidth: true,
+                }}
+                inputProps={{
+                  inputComponent: PhoneNumberMask,
+                  disabled: inputDisabled,
+                  value: phone || phoneValue,
+                  onChange: this.updatePhoneInput,
+                }}
+              />
+              <CustomInput
                 labelText="About you"
                 id="message"
                 formControlProps={{
@@ -121,8 +150,10 @@ class UserProfileCard extends React.Component {
                 inputProps={{
                   multiline: true,
                   rows: 5,
-                  placeholder: 'Enter a brief information about you',
+                  placeholder: 'Enter a brief information about yourself',
                   disabled: inputDisabled,
+                  value: about || aboutValue,
+                  onChange: this.updateAboutInput,
                 }}
               />
             </Paper>
@@ -142,10 +173,12 @@ UserProfileCard.propTypes = {
   email: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   landlordID: PropTypes.number.isRequired,
+  about: PropTypes.string,
 };
 
 UserProfileCard.defaultProps = {
   phone: '',
+  about: '',
 };
 
 function mapStateToProps({ search }) {

@@ -47,7 +47,7 @@ class LandlordPortal extends React.Component {
     const { classes, auth } = this.props;
 
     if (auth) {
-      const { first_name, last_name, email, phone, picture, landlord_id } = auth;
+      const { first_name, last_name, email, phone, picture, landlord_id, about } = auth;
       return (
         <main className={classes.content}>
           <Grid container spacing={8} className={classes.grid}>
@@ -59,6 +59,7 @@ class LandlordPortal extends React.Component {
                 picture={picture}
                 email={email}
                 landlordID={landlord_id}
+                about={about}
               />
             </Grid>
             <Grid item xs={9} className={classes.gridItem}>
