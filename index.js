@@ -70,6 +70,7 @@ app.use(passport.session());
 // route handler
 require('./routes/listingRoutes')(app);
 require('./routes/googleAuthRoutes')(app);
+require('./routes/landlordRoutes')(app);
 
 const corsOptions = {
   origin: '*',
