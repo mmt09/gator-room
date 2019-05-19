@@ -113,7 +113,7 @@ class UserProfileCard extends React.Component {
       <div className={classes.root}>
         <Card className={classes.card}>
           <CardContent>
-            <Avatar alt="Nico Graves" src={picture} className={classes.avatar} />
+            <Avatar alt={`${firstName} ${lastName}`} src={picture} className={classes.avatar} />
             <Typography variant="h6" component="h2">
               {firstName} {lastName}
             </Typography>
