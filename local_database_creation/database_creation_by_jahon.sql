@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `gatorroom`.`listing` (
   `num_bathroom` INT(11) NOT NULL,
   `num_kitchen` INT(11) NOT NULL,
   `amount` DECIMAL(10,0) NOT NULL,
+  `description` MEDIUMTEXT, NOT NULL,
   `image_id` INT(10) NULL DEFAULT NULL,
   PRIMARY KEY (`listing_id`),
   INDEX `image_id_idx` (`image_id` ASC) VISIBLE,
