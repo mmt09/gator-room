@@ -46,7 +46,7 @@ function getStepContent(step) {
   }
 }
 
-class HorizontalLinearStepper extends React.Component {
+class ListingStepper extends React.Component {
   state = {
     activeStep: 0,
     skipped: new Set(),
@@ -180,8 +180,8 @@ class HorizontalLinearStepper extends React.Component {
   }
 }
 
-HorizontalLinearStepper.propTypes = {
+ListingStepper.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles)(HorizontalLinearStepper);
+export default withStyles(styles)(ListingStepper);

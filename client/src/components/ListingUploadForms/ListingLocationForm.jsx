@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+// import Button from '@material-ui/core/Button';
+// import GridList from '@material-ui/core/GridList';
+// import GridListTile from '@material-ui/core/GridListTile';
+// import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Grid from '@material-ui/core/Grid';
-import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import CardBody from 'components/Card/Card';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -53,19 +51,19 @@ const styles = theme => ({
   },
 });
 
-const tileData = [
-  {
-    img:
-      'https://lonelyplanetimages.imgix.net/assets/image/221313592d7ae33ae818ea43b85c8cbf6c6c2d7751ab5bb49f12461e3bb48c88/7696207b827f52ec09362e191f29b5037b2f4b012191b266da0b20072c01583c.jpg',
-  },
-  {
-    img:
-      'https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fblogs-images.forbes.com%2Fthumbnails%2Fblog_2007%2Fpt_2007_4136_o.jpg%3Ft%3D1347040076',
-  },
-  {
-    img: 'https://static.move.com/blogs/2012/5/0515garcia6.jpg',
-  },
-];
+// const tileData = [
+//   {
+//     img:
+//       'https://lonelyplanetimages.imgix.net/assets/image/221313592d7ae33ae818ea43b85c8cbf6c6c2d7751ab5bb49f12461e3bb48c88/7696207b827f52ec09362e191f29b5037b2f4b012191b266da0b20072c01583c.jpg',
+//   },
+//   {
+//     img:
+//       'https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fblogs-images.forbes.com%2Fthumbnails%2Fblog_2007%2Fpt_2007_4136_o.jpg%3Ft%3D1347040076',
+//   },
+//   {
+//     img: 'https://static.move.com/blogs/2012/5/0515garcia6.jpg',
+//   },
+// ];
 
 class ListingLocationForm extends React.Component {
   constructor(props) {
@@ -145,7 +143,8 @@ class ListingLocationForm extends React.Component {
   }
 
   render() {
-    const { classes, fetchListingUpload } = this.props;
+    // const { classes, fetchListingUpload } = this.props;
+    const { classes } = this.props;
     const { streetAddress, city, zip, bedroom, bathroom, kitchen, price } = this.state;
 
     return (
@@ -154,6 +153,7 @@ class ListingLocationForm extends React.Component {
           <form className={classes.container} noValidate autoComplete="off">
             <TextField
               id="streetAddress"
+              value={streetAddress}
               label="Street Address"
               className={classes.textField}
               onChange={this.updateStreetAddress}
@@ -163,48 +163,60 @@ class ListingLocationForm extends React.Component {
 
             <TextField
               id="city"
+              value={city}
               label="City"
-              className={this.updateCity}
+              className={this.textField}
+              onChange={this.updateCity}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
               id="zip"
+              value={zip}
               label="Zip Code"
-              className={this.updateZip}
+              className={this.textField}
+              onChange={this.updateZip}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
               id="bedroom"
+              value={bedroom}
               label="Bedrooms"
-              className={this.updateBedroom}
+              className={this.textField}
+              onChange={this.updateBedroom}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
               id="bathroom"
+              value={bathroom}
               label="Bathrooms"
-              className={this.updateBathroom}
+              className={this.textField}
+              onChange={this.updateBathroom}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
               id="kitchen"
+              value={kitchen}
               label="Kitchens"
-              className={this.updateKitchen}
+              className={this.textField}
+              onChange={this.updateKitchen}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
               id="price"
+              value={price}
               label="Monthly Rent"
-              className={this.updatePrice}
+              className={this.textField}
+              onChange={this.updatePrice}
               margin="normal"
               variant="outlined"
             />

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 const styles = theme => ({
   container: {
@@ -22,7 +25,21 @@ const styles = theme => ({
 });
 
 class ListingDescriptionForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      description: '',
+    };
+    this.updateDescription = this.updateDescription.bind(this);
+  }
+
   state = {};
+
+  updateDescription(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ description: text });
+  }
 
   handleChange = name => event => {
     this.setState({
@@ -32,6 +49,7 @@ class ListingDescriptionForm extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { description } = this.state;
 
     return (
       <Grid container spacing={24}>
@@ -47,6 +65,7 @@ class ListingDescriptionForm extends React.Component {
             margin="normal"
             helperText="Be Descriptive!"
             variant="outlined"
+            fullWidth
           />
         </Grid>
       </Grid>
