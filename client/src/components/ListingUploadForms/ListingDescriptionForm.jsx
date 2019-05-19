@@ -59,13 +59,13 @@ class ListingDescriptionForm extends React.Component {
             label="Multiline"
             multiline
             rowsMax="4"
-            value={description}
+            value={this.state.multiline}
             onChange={this.handleChange('multiline')}
             className={classes.textField}
             margin="normal"
             helperText="Be Descriptive!"
             variant="outlined"
-            // fullWidth
+            fullWidth
           />
         </Grid>
       </Grid>

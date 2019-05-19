@@ -9,7 +9,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Switch from '@material-ui/core/Switch';
 import WifiIcon from '@material-ui/icons/Wifi';
-
+import HandicapIcon from '@material-ui/icons/Accessible';
+import PetIcon from '@material-ui/icons/Pets';
+import SmokeIcon from '@material-ui/icons/SmokeFree';
+import CarIcon from '@material-ui/icons/DirectionsCar';
+import LaundryIcon from '@material-ui/icons/LocalLaundryService';
 
 const styles = theme => ({
   container: {
@@ -30,7 +34,7 @@ const styles = theme => ({
 
 class ListingFiltersForm extends React.Component {
   state = {
-    checked: []
+    checked: [],
   };
 
   handleToggle = value => () => {
@@ -59,7 +63,7 @@ class ListingFiltersForm extends React.Component {
       >
         <ListItem>
           <ListItemIcon>
-            <WifiIcon />
+            <LaundryIcon />
           </ListItemIcon>
           <ListItemText primary="Laundry" />
           <ListItemSecondaryAction>
@@ -72,7 +76,7 @@ class ListingFiltersForm extends React.Component {
 
         <ListItem>
           <ListItemIcon>
-            <WifiIcon />
+            <PetIcon />
           </ListItemIcon>
           <ListItemText primary="Pets" />
           <ListItemSecondaryAction>
@@ -85,7 +89,7 @@ class ListingFiltersForm extends React.Component {
 
         <ListItem>
           <ListItemIcon>
-            <WifiIcon />
+            <CarIcon />
           </ListItemIcon>
           <ListItemText primary="Parking" />
           <ListItemSecondaryAction>
@@ -98,7 +102,7 @@ class ListingFiltersForm extends React.Component {
 
         <ListItem>
           <ListItemIcon>
-            <WifiIcon />
+            <SmokeIcon />
           </ListItemIcon>
           <ListItemText primary="Smoking" />
           <ListItemSecondaryAction>
@@ -111,7 +115,7 @@ class ListingFiltersForm extends React.Component {
 
         <ListItem>
           <ListItemIcon>
-            <WifiIcon />
+            <HandicapIcon />
           </ListItemIcon>
           <ListItemText primary="Handicap Accessibility" />
           <ListItemSecondaryAction>
@@ -121,9 +125,6 @@ class ListingFiltersForm extends React.Component {
             />
           </ListItemSecondaryAction>
         </ListItem>
-
-
-
       </List>
     );
   }
