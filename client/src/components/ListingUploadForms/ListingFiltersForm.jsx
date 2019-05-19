@@ -8,8 +8,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Switch from '@material-ui/core/Switch';
-import WifiIcon from '@material-ui/icons/Wifi';
-import HandicapIcon from '@material-ui/icons/Accessible';
 import PetIcon from '@material-ui/icons/Pets';
 import SmokeIcon from '@material-ui/icons/SmokeFree';
 import CarIcon from '@material-ui/icons/DirectionsCar';
@@ -109,19 +107,6 @@ class ListingFiltersForm extends React.Component {
             <Switch
               onChange={this.handleToggle('smoking')}
               checked={this.state.checked.indexOf('smoking') !== -1}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
-
-        <ListItem>
-          <ListItemIcon>
-            <HandicapIcon />
-          </ListItemIcon>
-          <ListItemText primary="Handicap Accessibility" />
-          <ListItemSecondaryAction>
-            <Switch
-              onChange={this.handleToggle('handicap')}
-              checked={this.state.checked.indexOf('handicap') !== -1}
             />
           </ListItemSecondaryAction>
         </ListItem>
