@@ -87,6 +87,7 @@ class ListingLocationForm extends React.Component {
     this.updateKitchen = this.updateKitchen.bind(this);
     this.updatePrice = this.updatePrice.bind(this);
     this.updateDescription = this.updateDescription.bind(this);
+    this.uploadListing = this.uploadListing.bind(this);
   }
 
   state = {};

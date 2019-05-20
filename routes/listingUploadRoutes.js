@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const geocoder = require('node-geocoder');
 const keys = require('../config/keys');
 
 // Connection to database
@@ -14,7 +15,7 @@ module.exports = app => {
   app.post('/api/listingUpload', (req, res) => {
     const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = req.body;
     connection.query(
-      'INSERT INTO listing (address, city, postal_code, num_bedroom, num_kitchen, amount, description VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO listing (address, city, postal_code, num_bedroom, num_bathroom, num_kitchen, amount, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
       [streetAddress, city, zip, bedroom, bathroom, kitchen, price, description],
       err => {
         if (err) throw err;
