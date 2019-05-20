@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 // import GridList from '@material-ui/core/GridList';
 // import GridListTile from '@material-ui/core/GridListTile';
 // import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Button from 'components/CustomButtons/Button.jsx';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -76,6 +77,7 @@ class ListingLocationForm extends React.Component {
       bathroom: '',
       kitchen: '',
       price: '',
+      description: '',
     };
     this.updateStreetAddress = this.updateStreetAddress.bind(this);
     this.updateCity = this.updateCity.bind(this);
@@ -84,6 +86,7 @@ class ListingLocationForm extends React.Component {
     this.updateBathroom = this.updateBathroom.bind(this);
     this.updateKitchen = this.updateKitchen.bind(this);
     this.updatePrice = this.updatePrice.bind(this);
+    this.updateDescription = this.updateDescription.bind(this);
   }
 
   state = {};
@@ -136,16 +139,32 @@ class ListingLocationForm extends React.Component {
     this.setState({ price: text });
   }
 
+  updateDescription(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ description: text });
+  }
+
   uploadListing() {
-    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price } = this.state;
+    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = this.state;
     const { fetchListingUpload } = this.props;
-    fetchListingUpload(streetAddress, city, zip, bedroom, bathroom, kitchen, price, () => {});
+    fetchListingUpload(
+      streetAddress,
+      city,
+      zip,
+      bedroom,
+      bathroom,
+      kitchen,
+      price,
+      description,
+      () => {}
+    );
   }
 
   render() {
     // const { classes, fetchListingUpload } = this.props;
     const { classes } = this.props;
-    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price } = this.state;
+    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = this.state;
 
     return (
       <Grid container spacing={24} className={classes.gridContainer}>
@@ -223,6 +242,20 @@ class ListingLocationForm extends React.Component {
           </form>
         </Grid>
 
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Multiline"
+          multiline
+          rowsMax="4"
+          value={description}
+          onChange={this.updateDescription}
+          className={classes.textField}
+          margin="normal"
+          helperText="Be Descriptive!"
+          variant="outlined"
+          fullWidth
+        />
+
         <Grid item xs={12} sm={6}>
           <input
             accept="image/*"
@@ -234,6 +267,10 @@ class ListingLocationForm extends React.Component {
           />
 
           <Upload />
+
+          <Button simple color="primary" size="lg" onClick={this.uploadListing}>
+            Confirm
+          </Button>
 
           {/* <label htmlFor="raised-button-file">
             <div className={classes.housePhotoList}>
@@ -264,7 +301,8 @@ class ListingLocationForm extends React.Component {
 }
 
 ListingLocationForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  // classes: PropTypes.object.isRequired,
+  fetchListingUpload: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ listingUpload }) {

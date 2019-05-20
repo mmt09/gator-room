@@ -69,6 +69,7 @@ app.use(passport.session());
 
 // route handler
 require('./routes/listingRoutes')(app);
+require('./routes/listingUploadRoutes')(app);
 require('./routes/googleAuthRoutes')(app);
 
 const corsOptions = {
@@ -87,7 +88,7 @@ app.route('/api/upload').post((req, res, next) => {
     const fstream = fs.createWriteStream(path.join(uploadPath, filename));
     file.pipe(fstream);
     fstream.on('close', () => {
-      console.log(`Upload of '${filename}' finished`);
+      console.log(`Upload of '/fileUpload/${filename}' finished`);
       res.redirect('back');
     });
   });

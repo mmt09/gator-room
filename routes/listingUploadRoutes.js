@@ -11,11 +11,14 @@ const connection = mysql.createConnection({
 });
 
 module.exports = app => {
-  app.post('/api/all_listings', (req, res) => {
-    connection.query('SELECT * FROM listing', (err, rows) => {
-      if (err) throw err;
-      const listingJSON = JSON.parse(JSON.stringify(rows));
-      res.send(listingJSON);
-    });
+  app.post('/api/listingUpload', (req, res) => {
+    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = req.body;
+    connection.query(
+      'INSERT INTO listing (address, city, postal_code, num_bedroom, num_kitchen, amount, description VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [streetAddress, city, zip, bedroom, bathroom, kitchen, price, description],
+      err => {
+        if (err) throw err;
+      }
+    );
   });
 };
