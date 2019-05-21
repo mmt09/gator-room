@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 // import TextField from '@material-ui/core/TextField';
 import ListingLocationForm from 'components/ListingUploadForms/ListingLocationForm';
 import ListingFiltersForm from 'components/ListingUploadForms/ListingFiltersForm';
-import ListingDescriptionForm from 'components/ListingUploadForms/ListingDescriptionForm';
+import ListingImagesForm from 'components/ListingUploadForms/ListingImagesForm';
 
 const styles = theme => ({
   root: {
@@ -30,7 +30,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Location, Location, Location!', 'Your House Rules!', 'Tell us about it!'];
+  return ['Location & Tell Us About It!', 'Your House Rules!', 'Upload Photos'];
 }
 
 function getStepContent(step) {
@@ -46,7 +46,7 @@ function getStepContent(step) {
   }
 }
 
-class HorizontalLinearStepper extends React.Component {
+class ListingStepper extends React.Component {
   state = {
     activeStep: 0,
     skipped: new Set(),
@@ -130,7 +130,7 @@ class HorizontalLinearStepper extends React.Component {
           <div className={classes.stepperContent}>
             {activeStep === 0 ? <ListingLocationForm /> : null}
             {activeStep === 1 ? <ListingFiltersForm /> : null}
-            {activeStep === 2 ? <ListingDescriptionForm /> : null}
+            {activeStep === 2 ? <ListingImagesForm /> : null}
           </div>
           {activeStep === steps.length ? (
             <div>
@@ -147,7 +147,7 @@ class HorizontalLinearStepper extends React.Component {
 
               <div className={classes.backNextButtons}>
                 <Button
-                  disabled={activeStep === 0}
+                  disabled={activeStep === 0 || activeStep === 1}
                   onClick={this.handleBack}
                   className={classes.button}
                 >
@@ -180,8 +180,8 @@ class HorizontalLinearStepper extends React.Component {
   }
 }
 
-HorizontalLinearStepper.propTypes = {
+ListingStepper.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles)(HorizontalLinearStepper);
+export default withStyles(styles)(ListingStepper);

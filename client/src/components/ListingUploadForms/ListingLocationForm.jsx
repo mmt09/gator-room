@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+// import Button from '@material-ui/core/Button';
+// import GridList from '@material-ui/core/GridList';
+// import GridListTile from '@material-ui/core/GridListTile';
+// import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Button from 'components/CustomButtons/Button.jsx';
 import Grid from '@material-ui/core/Grid';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Danger from 'components/Typography/Danger.jsx';
+
+import * as actions from '../../actions';
 
 const styles = theme => ({
   container: {
@@ -42,26 +48,35 @@ const styles = theme => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
-  gridContainer : {
-    overflow : "auto"
-  }
+  gridContainer: {
+    overflow: 'auto',
+  },
 });
 
-const tileData = [
-  {
-    img:
-      'https://lonelyplanetimages.imgix.net/assets/image/221313592d7ae33ae818ea43b85c8cbf6c6c2d7751ab5bb49f12461e3bb48c88/7696207b827f52ec09362e191f29b5037b2f4b012191b266da0b20072c01583c.jpg',
-  },
-  {
-    img:
-      'https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fblogs-images.forbes.com%2Fthumbnails%2Fblog_2007%2Fpt_2007_4136_o.jpg%3Ft%3D1347040076',
-  },
-  {
-    img: 'https://static.move.com/blogs/2012/5/0515garcia6.jpg',
-  },
-];
-
 class ListingLocationForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      streetAddress: '',
+      city: '',
+      zip: '',
+      bedroom: '',
+      bathroom: '',
+      kitchen: '',
+      price: '',
+      description: '',
+    };
+    this.updateStreetAddress = this.updateStreetAddress.bind(this);
+    this.updateCity = this.updateCity.bind(this);
+    this.updateZip = this.updateZip.bind(this);
+    this.updateBedroom = this.updateBedroom.bind(this);
+    this.updateBathroom = this.updateBathroom.bind(this);
+    this.updateKitchen = this.updateKitchen.bind(this);
+    this.updatePrice = this.updatePrice.bind(this);
+    this.updateDescription = this.updateDescription.bind(this);
+    this.uploadListing = this.uploadListing.bind(this);
+  }
+
   state = {};
 
   handleChange = name => event => {
@@ -70,104 +85,171 @@ class ListingLocationForm extends React.Component {
     });
   };
 
+  updateStreetAddress(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ streetAddress: text });
+  }
+
+  updateCity(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ city: text });
+  }
+
+  updateZip(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ zip: text });
+  }
+
+  updateBedroom(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ bedroom: text });
+  }
+
+  updateBathroom(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ bathroom: text });
+  }
+
+  updateKitchen(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ kitchen: text });
+  }
+
+  updatePrice(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ price: text });
+  }
+
+  updateDescription(event) {
+    const { target } = event;
+    const text = target.value;
+    this.setState({ description: text });
+  }
+
+  uploadListing() {
+    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = this.state;
+    const { fetchListingUpload } = this.props;
+    fetchListingUpload(
+      streetAddress,
+      city,
+      zip,
+      bedroom,
+      bathroom,
+      kitchen,
+      price,
+      description,
+      () => {}
+    );
+  }
+
   render() {
+    // const { classes, fetchListingUpload } = this.props;
     const { classes } = this.props;
+    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = this.state;
 
     return (
-      <Grid container spacing={24} className = {classes.gridContainer}>
+      <Grid container spacing={24} className={classes.gridContainer}>
         <Grid item xs={12} sm={6}>
           <form className={classes.container} noValidate autoComplete="off">
             <TextField
-              id="outlined-address"
+              id="streetAddress"
+              value={streetAddress}
               label="Street Address"
               className={classes.textField}
-              onChange={this.handleChange('name')}
+              onChange={this.updateStreetAddress}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="city"
+              value={city}
               label="City"
-              className={classes.textField}
+              className={this.textField}
+              onChange={this.updateCity}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="zip"
+              value={zip}
               label="Zip Code"
-              className={classes.textField}
+              className={this.textField}
+              onChange={this.updateZip}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="bedroom"
+              value={bedroom}
               label="Bedrooms"
-              className={classes.textField}
+              className={this.textField}
+              onChange={this.updateBedroom}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="bathroom"
+              value={bathroom}
               label="Bathrooms"
-              className={classes.textField}
+              className={this.textField}
+              onChange={this.updateBathroom}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="kitchen"
+              value={kitchen}
               label="Kitchens"
-              className={classes.textField}
+              className={this.textField}
+              onChange={this.updateKitchen}
               margin="normal"
               variant="outlined"
             />
 
             <TextField
-              id="outlined-zip"
+              id="price"
+              value={price}
               label="Monthly Rent"
-              className={classes.textField}
+              className={this.textField}
+              onChange={this.updatePrice}
               margin="normal"
               variant="outlined"
             />
           </form>
         </Grid>
 
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Multiline"
+          multiline
+          rowsMax="4"
+          value={description}
+          onChange={this.updateDescription}
+          className={classes.textField}
+          margin="normal"
+          helperText="Be Descriptive!"
+          variant="outlined"
+          fullWidth
+        />
+
         <Grid item xs={12} sm={6}>
-          <input
-            accept="image/*"
-            className={classes.input}
-            style={{ display: 'none' }}
-            id="raised-button-file"
-            multiple
-            type="file"
-          />
+          <Danger>Before continuing to the next step you must first confirm your changes</Danger>
 
-          <label htmlFor="raised-button-file">
-            <div className={classes.housePhotoList}>
-              <GridList className={classes.gridList} cols={2.5}>
-                {tileData.map(tile => (
-                  <GridListTile key={tile.img}>
-                    <img src={tile.img} alt={tile.title} />
-                    <GridListTileBar
-                      title={tile.title}
-                      classes={{
-                        root: classes.titleBar,
-                        title: classes.title,
-                      }}
-                    />
-                  </GridListTile>
-                ))}
-              </GridList>
-            </div>
-
-            <Button variant="raised" component="span" className={classes.button}>
-              How about some photos?
-            </Button>
-          </label>
+          <Button color="primary" size="lg" onClick={this.uploadListing}>
+            Confirm
+          </Button>
         </Grid>
       </Grid>
     );
@@ -175,7 +257,15 @@ class ListingLocationForm extends React.Component {
 }
 
 ListingLocationForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  // classes: PropTypes.object.isRequired,
+  fetchListingUpload: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ListingLocationForm);
+function mapStateToProps({ listingUpload }) {
+  return { listingUpload };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withRouter(withStyles(styles)(ListingLocationForm)));

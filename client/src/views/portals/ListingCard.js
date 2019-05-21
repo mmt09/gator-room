@@ -12,6 +12,15 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import GridListTile from '@material-ui/core/GridListTile';
 import SimpleMap from '../common/SimpleMap';
+// const images = importAll(require.context('../../../../fileUpload', false, /\.(gif|jpe?g|svg)$/));
+
+// function importAll(r) {
+//   let images = {};
+//   r.keys().map((item, index) => {
+//     images[item.replace('./', '')] = r(item);
+//   });
+//   return images;
+// }
 
 const styles = theme => ({
   card: {},
