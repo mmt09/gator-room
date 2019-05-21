@@ -53,20 +53,6 @@ const styles = theme => ({
   },
 });
 
-// const tileData = [
-//   {
-//     img:
-//       'https://lonelyplanetimages.imgix.net/assets/image/221313592d7ae33ae818ea43b85c8cbf6c6c2d7751ab5bb49f12461e3bb48c88/7696207b827f52ec09362e191f29b5037b2f4b012191b266da0b20072c01583c.jpg',
-//   },
-//   {
-//     img:
-//       'https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fblogs-images.forbes.com%2Fthumbnails%2Fblog_2007%2Fpt_2007_4136_o.jpg%3Ft%3D1347040076',
-//   },
-//   {
-//     img: 'https://static.move.com/blogs/2012/5/0515garcia6.jpg',
-//   },
-// ];
-
 class ListingLocationForm extends React.Component {
   constructor(props) {
     super(props);
