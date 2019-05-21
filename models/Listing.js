@@ -28,23 +28,23 @@ module.exports = sequelize => {
       },
       picture: {
         type: Sequelize.TEXT('long'),
-        allowNull: false,
+        allowNull: true,
       },
       smoking_filter: {
         type: Sequelize.TINYINT('4'),
-        allowNull: false,
+        allowNull: true,
       },
       pet_filter: {
         type: Sequelize.TINYINT('4'),
-        allowNull: false,
+        allowNull: true,
       },
       parking_filter: {
         type: Sequelize.TINYINT('4'),
-        allowNull: false,
+        allowNull: true,
       },
       laundry_filter: {
         type: Sequelize.TINYINT(4),
-        allowNull: false,
+        allowNull: true,
       },
       num_bedroom: {
         type: Sequelize.INTEGER(11),
@@ -66,8 +66,24 @@ module.exports = sequelize => {
         type: Sequelize.DECIMAL(10, 0),
         allowNull: false,
       },
-      image_id: {
-        type: Sequelize.INTEGER(10),
+      image_1: {
+        type: Sequelize.TEXT('medium'),
+        allowNull: true,
+      },
+      image_2: {
+        type: Sequelize.TEXT('medium'),
+        allowNull: true,
+      },
+      image_3: {
+        type: Sequelize.TEXT('medium'),
+        allowNull: true,
+      },
+      lat: {
+        type: Sequelize.DECIMAL(9, 6),
+        allowNull: true,
+      },
+      long: {
+        type: Sequelize.DECIMAL(9, 6),
         allowNull: true,
       },
     },

@@ -10,8 +10,9 @@ import Button from 'components/CustomButtons/Button.jsx';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Danger from 'components/Typography/Danger.jsx';
+
 import * as actions from '../../actions';
-import Upload from '../../views/common/fileUploadComponents/upload/Upload';
 
 const styles = theme => ({
   container: {
@@ -51,20 +52,6 @@ const styles = theme => ({
     overflow: 'auto',
   },
 });
-
-// const tileData = [
-//   {
-//     img:
-//       'https://lonelyplanetimages.imgix.net/assets/image/221313592d7ae33ae818ea43b85c8cbf6c6c2d7751ab5bb49f12461e3bb48c88/7696207b827f52ec09362e191f29b5037b2f4b012191b266da0b20072c01583c.jpg',
-//   },
-//   {
-//     img:
-//       'https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fblogs-images.forbes.com%2Fthumbnails%2Fblog_2007%2Fpt_2007_4136_o.jpg%3Ft%3D1347040076',
-//   },
-//   {
-//     img: 'https://static.move.com/blogs/2012/5/0515garcia6.jpg',
-//   },
-// ];
 
 class ListingLocationForm extends React.Component {
   constructor(props) {
@@ -258,43 +245,11 @@ class ListingLocationForm extends React.Component {
         />
 
         <Grid item xs={12} sm={6}>
-          <input
-            accept="image/*"
-            className={classes.input}
-            style={{ display: 'none' }}
-            id="raised-button-file"
-            multiple
-            type="file"
-          />
+          <Danger>Before continuing to the next step you must first confirm your changes</Danger>
 
-          <Upload />
-
-          <Button simple color="primary" size="lg" onClick={this.uploadListing}>
+          <Button color="primary" size="lg" onClick={this.uploadListing}>
             Confirm
           </Button>
-
-          {/* <label htmlFor="raised-button-file">
-            <div className={classes.housePhotoList}>
-              <GridList className={classes.gridList} cols={2.5}>
-                {tileData.map(tile => (
-                  <GridListTile key={tile.img}>
-                    <img src={tile.img} alt={tile.title} />
-                    <GridListTileBar
-                      title={tile.title}
-                      classes={{
-                        root: classes.titleBar,
-                        title: classes.title,
-                      }}
-                    />
-                  </GridListTile>
-                ))}
-              </GridList>
-            </div>
-
-            <Button variant="raised" component="span" className={classes.button}>
-              How about some photos?
-            </Button>
-          </label> */}
         </Grid>
       </Grid>
     );

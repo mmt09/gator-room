@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import Upload from '../../views/common/fileUploadComponents/upload/Upload';
 
 const styles = theme => ({
   container: {
@@ -24,7 +23,7 @@ const styles = theme => ({
   },
 });
 
-class ListingDescriptionForm extends React.Component {
+class ListingImagesForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,33 +47,30 @@ class ListingDescriptionForm extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { description } = this.state;
+    const { listingUpdate } = this.props;
 
     return (
       <Grid container spacing={24}>
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Multiline"
-            multiline
-            rowsMax="4"
-            value={this.state.multiline}
-            onChange={this.handleChange('multiline')}
-            className={classes.textField}
-            margin="normal"
-            helperText="Be Descriptive!"
-            variant="outlined"
-            fullWidth
-          />
+        <Grid item xs={12} sm={12} md={12}>
+          <Upload listingID={listingUpdate.listingID} />
         </Grid>
       </Grid>
     );
   }
 }
 
-ListingDescriptionForm.propTypes = {
+ListingImagesForm.propTypes = {
   classes: PropTypes.object.isRequired,
+  listingUpdate: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ListingDescriptionForm);
+function mapStateToProps({ listingUpload }) {
+  return {
+    listingUpdate: listingUpload.listingUpdate,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withStyles(styles)(ListingImagesForm));

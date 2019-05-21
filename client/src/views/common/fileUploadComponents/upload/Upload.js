@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
 
 import Dropzone from '../dropzone/Dropzone';
 
@@ -47,6 +48,7 @@ class Upload extends Component {
   }
 
   sendRequest(file) {
+    const { listingID } = this.props;
     const { uploadProgress } = this.state;
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
@@ -78,7 +80,7 @@ class Upload extends Component {
 
       const formData = new FormData();
       formData.append('file', file, file.name);
-
+      formData.append('field', listingID);
       req.open('POST', '/api/upload');
       req.send(formData);
     });
@@ -164,5 +166,10 @@ class Upload extends Component {
     );
   }
 }
+
+Upload.propTypes = {
+  classes: PropTypes.object.isRequired,
+  listingID: PropTypes.number.isRequired,
+};
 
 export default withStyles(uploadStyle)(Upload);

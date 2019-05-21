@@ -12,6 +12,11 @@ import PetIcon from '@material-ui/icons/Pets';
 import SmokeIcon from '@material-ui/icons/SmokeFree';
 import CarIcon from '@material-ui/icons/DirectionsCar';
 import LaundryIcon from '@material-ui/icons/LocalLaundryService';
+import { connect } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
+import Button from 'components/CustomButtons/Button.jsx';
+import Success from 'components/Typography/Success.jsx';
+import * as actions from '../../actions';
 
 const styles = theme => ({
   container: {
@@ -31,28 +36,30 @@ const styles = theme => ({
 });
 
 class ListingFiltersForm extends React.Component {
-  state = {
-    checked: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      laundry: false,
+      pets: false,
+      parking: false,
+      smoking: false,
+    };
+    this.uploadListingFilters = this.uploadListingFilters.bind(this);
+  }
 
   handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked,
-    });
+    this.setState({ [value]: !this.state[value] });
   };
 
+  uploadListingFilters() {
+    const { listingUpdate, listingFiltersUpload } = this.props;
+    const { laundry, pets, parking, smoking } = this.state;
+    listingFiltersUpload(laundry, pets, parking, smoking, listingUpdate.listingID);
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, listingFiltersResult } = this.props;
+    const { laundry, pets, parking, smoking } = this.state;
 
     return (
       <List
@@ -65,10 +72,7 @@ class ListingFiltersForm extends React.Component {
           </ListItemIcon>
           <ListItemText primary="Laundry" />
           <ListItemSecondaryAction>
-            <Switch
-              onChange={this.handleToggle('laundry')}
-              checked={this.state.checked.indexOf('laundry') !== -1}
-            />
+            <Switch onChange={this.handleToggle('laundry')} checked={laundry} />
           </ListItemSecondaryAction>
         </ListItem>
 
@@ -78,10 +82,7 @@ class ListingFiltersForm extends React.Component {
           </ListItemIcon>
           <ListItemText primary="Pets" />
           <ListItemSecondaryAction>
-            <Switch
-              onChange={this.handleToggle('pets')}
-              checked={this.state.checked.indexOf('pets') !== -1}
-            />
+            <Switch onChange={this.handleToggle('pets')} checked={pets} />
           </ListItemSecondaryAction>
         </ListItem>
 
@@ -91,10 +92,7 @@ class ListingFiltersForm extends React.Component {
           </ListItemIcon>
           <ListItemText primary="Parking" />
           <ListItemSecondaryAction>
-            <Switch
-              onChange={this.handleToggle('parking')}
-              checked={this.state.checked.indexOf('parking') !== -1}
-            />
+            <Switch onChange={this.handleToggle('parking')} checked={parking} />
           </ListItemSecondaryAction>
         </ListItem>
 
@@ -104,12 +102,15 @@ class ListingFiltersForm extends React.Component {
           </ListItemIcon>
           <ListItemText primary="Smoking" />
           <ListItemSecondaryAction>
-            <Switch
-              onChange={this.handleToggle('smoking')}
-              checked={this.state.checked.indexOf('smoking') !== -1}
-            />
+            <Switch onChange={this.handleToggle('smoking')} checked={smoking} />
           </ListItemSecondaryAction>
         </ListItem>
+        <Grid item xs={12} sm={6}>
+          <Button color="primary" size="lg" onClick={this.uploadListingFilters}>
+            Confirm
+          </Button>
+          <Success>{listingFiltersResult}</Success>
+        </Grid>
       </List>
     );
   }
@@ -117,6 +118,19 @@ class ListingFiltersForm extends React.Component {
 
 ListingFiltersForm.propTypes = {
   classes: PropTypes.object.isRequired,
+  listingUpdate: PropTypes.object.isRequired,
+  listingFiltersResult: PropTypes.string.isRequired,
+  listingFiltersUpload: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ListingFiltersForm);
+function mapStateToProps({ listingUpload }) {
+  return {
+    listingUpdate: listingUpload.listingUpdate,
+    listingFiltersResult: listingUpload.listingFiltersResult,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withStyles(styles)(ListingFiltersForm));

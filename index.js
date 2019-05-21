@@ -8,7 +8,7 @@ const cors = require('cors');
 const busboy = require('connect-busboy');
 const fs = require('fs-extra');
 
-// const Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 const keys = require('./config/keys');
 require('./services/passport');
 
@@ -55,6 +55,13 @@ app.use(
   })
 );
 
+const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
+  host: keys.host,
+  dialect: 'mysql',
+});
+
+const Listing = sequelize.import('./models/Listing.js');
+
 // const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
 //   host: keys.host,
 //   dialect: 'mysql',
@@ -79,18 +86,46 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.route('/api/upload').post((req, res, next) => {
+// Used to store image names
+const fileName = [];
+
+app.route('/api/upload').post((req, res) => {
   req.pipe(req.busboy);
 
+  // Store files on folder
   req.busboy.on('file', (fieldname, file, filename) => {
     console.log(`Upload of '${filename}' started`);
-
     const fstream = fs.createWriteStream(path.join(uploadPath, filename));
     file.pipe(fstream);
+    fileName.push(filename);
+
     fstream.on('close', () => {
       console.log(`Upload of '/fileUpload/${filename}' finished`);
       res.redirect('back');
     });
+  });
+
+  // Add images' names to database row
+  req.busboy.on('field', async (fieldname, value) => {
+    try {
+      await Listing.update(
+        {
+          image_1: fileName[0],
+          image_2: fileName[1],
+          image_3: fileName[2],
+        },
+        {
+          where: {
+            listing_id: value,
+          },
+        }
+      );
+      // res.send('Done');
+      console.log('Added images to database');
+    } catch (err) {
+      res.send('Error, please try again');
+      console.log(err);
+    }
   });
 });
 
