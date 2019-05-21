@@ -101,7 +101,7 @@ app.route('/api/upload').post((req, res) => {
     fileName.push(filename);
 
     fstream.on('close', () => {
-      console.log(`Upload of '/fileUpload/${filename}' finished`);
+      console.log(`Upload of '${filename}' finished`);
       res.redirect('back');
     });
   });
@@ -123,6 +123,7 @@ app.route('/api/upload').post((req, res) => {
       );
       // res.send('Done');
       console.log('Added images to database');
+      fileName.length = 0;
     } catch (err) {
       res.send('Error, please try again');
       console.log(err);
