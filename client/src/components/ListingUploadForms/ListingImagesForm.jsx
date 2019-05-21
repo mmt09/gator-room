@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import Upload from '../../views/common/fileUploadComponents/upload/Upload';
 
 const styles = theme => ({
   container: {
@@ -24,7 +25,7 @@ const styles = theme => ({
   },
 });
 
-class ListingDescriptionForm extends React.Component {
+class ListingImagesForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,27 +55,15 @@ class ListingDescriptionForm extends React.Component {
     return (
       <Grid container spacing={24}>
         <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Multiline"
-            multiline
-            rowsMax="4"
-            value={this.state.multiline}
-            onChange={this.handleChange('multiline')}
-            className={classes.textField}
-            margin="normal"
-            helperText="Be Descriptive!"
-            variant="outlined"
-            fullWidth
-          />
+          <Upload />
         </Grid>
       </Grid>
     );
   }
 }
 
-ListingDescriptionForm.propTypes = {
+ListingImagesForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ListingDescriptionForm);
+export default withStyles(styles)(ListingImagesForm);

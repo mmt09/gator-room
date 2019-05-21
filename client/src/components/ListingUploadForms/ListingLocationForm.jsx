@@ -10,8 +10,9 @@ import Button from 'components/CustomButtons/Button.jsx';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Danger from 'components/Typography/Danger.jsx';
+
 import * as actions from '../../actions';
-import Upload from '../../views/common/fileUploadComponents/upload/Upload';
 
 const styles = theme => ({
   container: {
@@ -258,43 +259,11 @@ class ListingLocationForm extends React.Component {
         />
 
         <Grid item xs={12} sm={6}>
-          <input
-            accept="image/*"
-            className={classes.input}
-            style={{ display: 'none' }}
-            id="raised-button-file"
-            multiple
-            type="file"
-          />
+          <Danger>Before continuing to the next step you must first confirm your changes</Danger>
 
-          <Upload />
-
-          <Button simple color="primary" size="lg" onClick={this.uploadListing}>
+          <Button color="primary" size="lg" onClick={this.uploadListing}>
             Confirm
           </Button>
-
-          {/* <label htmlFor="raised-button-file">
-            <div className={classes.housePhotoList}>
-              <GridList className={classes.gridList} cols={2.5}>
-                {tileData.map(tile => (
-                  <GridListTile key={tile.img}>
-                    <img src={tile.img} alt={tile.title} />
-                    <GridListTileBar
-                      title={tile.title}
-                      classes={{
-                        root: classes.titleBar,
-                        title: classes.title,
-                      }}
-                    />
-                  </GridListTile>
-                ))}
-              </GridList>
-            </div>
-
-            <Button variant="raised" component="span" className={classes.button}>
-              How about some photos?
-            </Button>
-          </label> */}
         </Grid>
       </Grid>
     );

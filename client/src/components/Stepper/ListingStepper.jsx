@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 // import TextField from '@material-ui/core/TextField';
 import ListingLocationForm from 'components/ListingUploadForms/ListingLocationForm';
 import ListingFiltersForm from 'components/ListingUploadForms/ListingFiltersForm';
-import ListingDescriptionForm from 'components/ListingUploadForms/ListingDescriptionForm';
+import ListingImagesForm from 'components/ListingUploadForms/ListingImagesForm';
 
 const styles = theme => ({
   root: {
@@ -30,7 +30,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Location, Location, Location!', 'Your House Rules!', 'Tell us about it!'];
+  return ['Location & Tell Us About It!', 'Your House Rules!', 'Upload Photos'];
 }
 
 function getStepContent(step) {
@@ -130,7 +130,7 @@ class ListingStepper extends React.Component {
           <div className={classes.stepperContent}>
             {activeStep === 0 ? <ListingLocationForm /> : null}
             {activeStep === 1 ? <ListingFiltersForm /> : null}
-            {activeStep === 2 ? <ListingDescriptionForm /> : null}
+            {activeStep === 2 ? <ListingImagesForm /> : null}
           </div>
           {activeStep === steps.length ? (
             <div>
@@ -147,7 +147,7 @@ class ListingStepper extends React.Component {
 
               <div className={classes.backNextButtons}>
                 <Button
-                  disabled={activeStep === 0}
+                  disabled={activeStep === 0 || activeStep === 1}
                   onClick={this.handleBack}
                   className={classes.button}
                 >
