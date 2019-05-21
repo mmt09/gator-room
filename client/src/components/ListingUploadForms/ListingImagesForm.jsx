@@ -47,8 +47,7 @@ class ListingImagesForm extends React.Component {
   };
 
   render() {
-    const { classes, listingUpdate, listingImagesResult } = this.props;
-    const { description } = this.state;
+    const { listingUpdate } = this.props;
 
     return (
       <Grid container spacing={24}>
@@ -63,13 +62,11 @@ class ListingImagesForm extends React.Component {
 ListingImagesForm.propTypes = {
   classes: PropTypes.object.isRequired,
   listingUpdate: PropTypes.object.isRequired,
-  listingImagesResult: PropTypes.string.isRequired,
 };
 
 function mapStateToProps({ listingUpload }) {
   return {
     listingUpdate: listingUpload.listingUpdate,
-    listingImagesResult: listingUpload.listingImagesResult,
   };
 }
 
