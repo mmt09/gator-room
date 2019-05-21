@@ -1,40 +1,55 @@
-const mysql = require('mysql');
+/* eslint-disable no-console */
 const NodeGeocoder = require('node-geocoder');
+const Sequelize = require('sequelize');
 const keys = require('../config/keys');
 
 const options = {
   provider: 'google',
-  apiKey: 'AIzaSyCKSxjOsN5bYFi9QtYqbrLoPtknm8yr5E0',
+  apiKey: keys.googleLatLong,
   formatter: null,
 };
 const geocoder = NodeGeocoder(options);
 
 // Connection to database
 // Production keys are stored in config directory, local dev keys are not pushed to server
-const connection = mysql.createConnection({
+const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
   host: keys.host,
-  user: keys.user,
-  password: keys.password,
-  database: keys.database,
+  dialect: 'mysql',
 });
+
+const Listing = sequelize.import('../models/Listing.js');
 
 module.exports = app => {
   app.post('/api/listingUpload', async (req, res) => {
     const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = req.body;
-    // let lat;
-    // let long;
+    let lat;
+    let long;
 
-    await geocoder.geocode(streetAddress, (err, res) => {
-      lat = res[0].latitude;
-      long = res[0].longitude;
-    });
+    try {
+      const result = await geocoder.geocode(streetAddress, city, zip);
+      lat = result[0].latitude;
+      long = result[0].longitude;
+    } catch (err) {
+      console.log(err);
+    }
 
-    connection.query(
-      'INSERT INTO listing (address, city, postal_code, num_bedroom, num_bathroom, num_kitchen, amount, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-      [streetAddress, city, zip, bedroom, bathroom, kitchen, price, description],
-      err => {
-        if (err) throw err;
-      }
-    );
+    try {
+      const listing = await Listing.create({
+        address: streetAddress,
+        city,
+        postal_code: zip,
+        num_bedroom: bedroom,
+        num_kitchen: kitchen,
+        amount: price,
+        description,
+        num_bathroom: bathroom,
+        lat,
+        long,
+      });
+      res.send({ listingID: listing.listing_id });
+    } catch (err) {
+      res.send('Error, please try again');
+      console.log(err);
+    }
   });
 };
