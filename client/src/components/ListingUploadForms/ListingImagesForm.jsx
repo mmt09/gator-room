@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import Upload from '../../views/common/fileUploadComponents/upload/Upload';
@@ -49,13 +47,13 @@ class ListingImagesForm extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, listingUpdate, listingImagesResult } = this.props;
     const { description } = this.state;
 
     return (
       <Grid container spacing={24}>
-        <Grid item xs={12}>
-          <Upload />
+        <Grid item xs={12} sm={12} md={12}>
+          <Upload listingID={0} />
         </Grid>
       </Grid>
     );
@@ -64,6 +62,18 @@ class ListingImagesForm extends React.Component {
 
 ListingImagesForm.propTypes = {
   classes: PropTypes.object.isRequired,
+  listingUpdate: PropTypes.object.isRequired,
+  listingImagesResult: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(ListingImagesForm);
+function mapStateToProps({ listingUpload }) {
+  return {
+    listingUpdate: listingUpload.listingUpdate,
+    listingImagesResult: listingUpload.listingImagesResult,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withStyles(styles)(ListingImagesForm));

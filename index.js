@@ -92,6 +92,10 @@ app.route('/api/upload').post((req, res, next) => {
       res.redirect('back');
     });
   });
+
+  req.busboy.on('field', (fieldname, value) => {
+    console.log(value);
+  });
 });
 
 // listen to this port, either server provided port or local port
