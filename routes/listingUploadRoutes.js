@@ -52,4 +52,28 @@ module.exports = app => {
       console.log(err);
     }
   });
+
+  app.post('/api/listingFiltersUpload', async (req, res) => {
+    const { laundry, pets, parking, smoking, listingID } = req.body;
+
+    try {
+      await Listing.update(
+        {
+          smoking_filter: smoking,
+          pet_filter: pets,
+          parking_filter: parking,
+          laundry_filter: laundry,
+        },
+        {
+          where: {
+            listing_id: listingID,
+          },
+        }
+      );
+      res.send('Done');
+    } catch (err) {
+      res.send('Error, please try again');
+      console.log(err);
+    }
+  });
 };

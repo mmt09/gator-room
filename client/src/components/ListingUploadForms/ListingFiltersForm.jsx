@@ -13,9 +13,9 @@ import SmokeIcon from '@material-ui/icons/SmokeFree';
 import CarIcon from '@material-ui/icons/DirectionsCar';
 import LaundryIcon from '@material-ui/icons/LocalLaundryService';
 import { connect } from 'react-redux';
-import Danger from 'components/Typography/Danger.jsx';
-import Button from 'components/CustomButtons/Button.jsx';
 import Grid from '@material-ui/core/Grid';
+import Button from 'components/CustomButtons/Button.jsx';
+import Success from 'components/Typography/Success.jsx';
 import * as actions from '../../actions';
 
 const styles = theme => ({
@@ -52,15 +52,14 @@ class ListingFiltersForm extends React.Component {
   };
 
   uploadListingFilters() {
+    const { listingUpdate, listingFiltersUpload } = this.props;
     const { laundry, pets, parking, smoking } = this.state;
-
-    console.log('Save');
+    listingFiltersUpload(laundry, pets, parking, smoking, listingUpdate.listingID);
   }
 
   render() {
-    const { classes, listingUpload } = this.props;
+    const { classes, listingFiltersResult } = this.props;
     const { laundry, pets, parking, smoking } = this.state;
-    console.log(listingUpload);
 
     return (
       <List
@@ -110,6 +109,7 @@ class ListingFiltersForm extends React.Component {
           <Button color="primary" size="lg" onClick={this.uploadListingFilters}>
             Confirm
           </Button>
+          <Success>{listingFiltersResult}</Success>
         </Grid>
       </List>
     );
@@ -118,11 +118,16 @@ class ListingFiltersForm extends React.Component {
 
 ListingFiltersForm.propTypes = {
   classes: PropTypes.object.isRequired,
-  listingUpload: PropTypes.object.isRequired,
+  listingUpdate: PropTypes.object.isRequired,
+  listingFiltersResult: PropTypes.string.isRequired,
+  listingFiltersUpload: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ listingUpload }) {
-  return { listingUpload };
+  return {
+    listingUpdate: listingUpload.listingUpdate,
+    listingFiltersResult: listingUpload.listingFiltersResult,
+  };
 }
 
 export default connect(
