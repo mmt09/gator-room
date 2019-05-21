@@ -53,7 +53,7 @@ class ListingImagesForm extends React.Component {
     return (
       <Grid container spacing={24}>
         <Grid item xs={12} sm={12} md={12}>
-          <Upload listingID={0} />
+          <Upload listingID={listingUpdate.listingID} />
         </Grid>
       </Grid>
     );
