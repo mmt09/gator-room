@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `gatorroom`.`listing` (
   `image_3` mediumtext,
   `lat` decimal(9,6) DEFAULT NULL,
   `long` decimal(9,6) DEFAULT NULL,
+  `approved` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`listing_id`),
   INDEX `image_id_idx` (`image_id` ASC) VISIBLE,
   CONSTRAINT `image_id`
