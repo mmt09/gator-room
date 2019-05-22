@@ -1,8 +1,13 @@
 import React from 'react';
+import AdminLogin from 'views/AdminPage/Sections/AdminLogin';
 
 class AdminPage extends React.Component {
   render() {
-    return <div>Welcome back Lord of the Rooms</div>;
+    return (
+      <div>
+        <AdminLogin />
+      </div>
+    );
   }
 }
 
