@@ -2,12 +2,55 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-import MarkerImage from '../../assets/img/map-marker-md.png';
+const K_SIZE = 55;
 
-const Marker = () => (
-  <div>
-    <img src={MarkerImage} alt="marker" height="35" width="25" />
+const styles = () => ({
+  markerWrap: {},
+  markerCenter: {
+    display: 'flex',
+    width: K_SIZE / 1.5,
+    height: K_SIZE / 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    transform: 'rotate(45deg)',
+    // alignSelf: 'center',
+    // backgroundColor: 'red',
+  },
+  circleMarker: {
+    display: 'flex',
+    position: 'absolute',
+    width: K_SIZE,
+    height: K_SIZE,
+    left: -K_SIZE / 2,
+    top: -K_SIZE / 2,
+
+    border: '5px solid',
+    borderRadius: K_SIZE,
+    backgroundColor: 'white',
+    textAlign: 'center',
+    color: '#a353b1',
+    fontSize: 12,
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    borderBottomLeftRadius: 0,
+    borderColor: '#3f51b5',
+
+    // transform: 'rotate(-45deg)',
+    transform: 'translate(-50%, -50%) rotate(-45deg)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 0,
+  },
+});
+
+// eslint-disable-next-line react/prop-types
+const Marker = ({ price, classes }) => (
+  <div className={classes.circleMarker}>
+    {/* <img src={MarkerImage} alt="marker" height="35" width="25" /> */}
+    {/* {price} */}
+    <div className={classes.markerCenter}>${price}</div>
   </div>
 );
 
@@ -21,7 +64,7 @@ class SimpleMap extends Component {
   };
 
   render() {
-    const { center, zoom, locations } = this.props;
+    const { center, zoom, locations, classes } = this.props;
     return (
       // Important! Always set the container height explicitly
 
@@ -35,7 +78,13 @@ class SimpleMap extends Component {
           {/* the key COULD be the unique lat or lng ;) */}
 
           {locations.map(item => (
-            <Marker key={item.listing_id} lat={item.lat} lng={item.long} />
+            <Marker
+              key={item.listing_id}
+              lat={item.lat}
+              lng={item.long}
+              price={item.amount}
+              classes={classes}
+            />
           ))}
         </GoogleMapReact>
       </div>
@@ -47,4 +96,4 @@ SimpleMap.propTypes = {
   zoom: PropTypes.number,
   locations: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-export default SimpleMap;
+export default withStyles(styles)(SimpleMap);
