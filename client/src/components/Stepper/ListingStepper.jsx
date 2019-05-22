@@ -27,8 +27,13 @@ const styles = theme => ({
   stepperContent: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
   },
-  backNextButtons: {},
+  backNextButtons: {
+    marginLeft: 10,
+    marginBottom: 10,
+  },
 });
 
 function getSteps() {
@@ -173,6 +178,7 @@ class ListingStepper extends React.Component {
                     Skip
                   </Button>
                 )}
+
                 <Button
                   variant="contained"
                   color="primary"

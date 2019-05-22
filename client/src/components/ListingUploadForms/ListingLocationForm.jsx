@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 // import GridList from '@material-ui/core/GridList';
 // import GridListTile from '@material-ui/core/GridListTile';
 // import GridListTileBar from '@material-ui/core/GridListTileBar';
-import Button from 'components/CustomButtons/Button.jsx';
+import Button from '../../components/CustomButtons/Button.jsx';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -20,8 +20,14 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
+    margin: 'auto',
+    width: '50%',
+  },
+  descField: {
+    margin: 'auto',
+    width: '50%',
   },
   dense: {
     marginTop: 16,
@@ -50,6 +56,10 @@ const styles = theme => ({
   },
   gridContainer: {
     overflow: 'auto',
+  },
+  button: {
+    margin: 'auto',
+    width: '50%',
   },
 });
 
@@ -156,7 +166,7 @@ class ListingLocationForm extends React.Component {
 
     return (
       <Grid container spacing={24} className={classes.gridContainer}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.textGrid}>
           <form className={classes.container} noValidate autoComplete="off">
             <TextField
               id="streetAddress"
@@ -172,7 +182,7 @@ class ListingLocationForm extends React.Component {
               id="city"
               value={city}
               label="City"
-              className={this.textField}
+              className={classes.textField}
               onChange={this.updateCity}
               margin="normal"
               variant="outlined"
@@ -182,7 +192,7 @@ class ListingLocationForm extends React.Component {
               id="zip"
               value={zip}
               label="Zip Code"
-              className={this.textField}
+              className={classes.textField}
               onChange={this.updateZip}
               margin="normal"
               variant="outlined"
@@ -192,7 +202,7 @@ class ListingLocationForm extends React.Component {
               id="bedroom"
               value={bedroom}
               label="Bedrooms"
-              className={this.textField}
+              className={classes.textField}
               onChange={this.updateBedroom}
               margin="normal"
               variant="outlined"
@@ -202,7 +212,7 @@ class ListingLocationForm extends React.Component {
               id="bathroom"
               value={bathroom}
               label="Bathrooms"
-              className={this.textField}
+              className={classes.textField}
               onChange={this.updateBathroom}
               margin="normal"
               variant="outlined"
@@ -212,7 +222,7 @@ class ListingLocationForm extends React.Component {
               id="kitchen"
               value={kitchen}
               label="Kitchens"
-              className={this.textField}
+              className={classes.textField}
               onChange={this.updateKitchen}
               margin="normal"
               variant="outlined"
@@ -222,35 +232,29 @@ class ListingLocationForm extends React.Component {
               id="price"
               value={price}
               label="Monthly Rent"
-              className={this.textField}
+              className={classes.textField}
               onChange={this.updatePrice}
               margin="normal"
               variant="outlined"
             />
           </form>
         </Grid>
-
         <TextField
           id="outlined-multiline-flexible"
-          label="Multiline"
+          label="Listing Description"
           multiline
-          rowsMax="4"
+          rowsMax="12"
           value={description}
           onChange={this.updateDescription}
-          className={classes.textField}
+          className={classes.descField}
           margin="normal"
           helperText="Be Descriptive!"
           variant="outlined"
           fullWidth
         />
-
-        <Grid item xs={12} sm={6}>
-          <Danger>Before continuing to the next step you must first confirm your changes</Danger>
-
-          <Button color="primary" size="lg" onClick={this.uploadListing}>
-            Confirm
-          </Button>
-        </Grid>
+        <Button color="primary" size="lg" onClick={this.uploadListing} className={classes.button}>
+          Confirm
+        </Button>
       </Grid>
     );
   }
