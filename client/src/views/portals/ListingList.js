@@ -15,10 +15,9 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
-    maxHeight: 700,
     display: 'flex',
     minHeight: '73vh',
-    minWidth: 600,
+    // minWidth: 600,
   },
   booty: {
     margin: 'auto',
