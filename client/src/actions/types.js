@@ -4,6 +4,7 @@ export const FETCH_ALL_LISTINGS = 'fetch_all_listings';
 export const FETCH_LISTING_DETAILS = 'fetch_listing_details';
 export const FETCH_LISTING_UPLOAD = 'fetch_listing_upload';
 export const UPLOAD_LISTING_FILTERS = 'upload_listing_filters';
+export const REMOVE_UPLOADED_LISTING_ID = 'remove_uploaded_listing_id';
 export const FETCH_SIGNUP = 'fetch_signup';
 export const FETCH_LOGIN = 'fetch_login';
 export const FETCH_USER = 'fetch_user';
