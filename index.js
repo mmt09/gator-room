@@ -131,6 +131,62 @@ app.route('/api/upload').post((req, res) => {
   });
 });
 
+/**
+ * WARNING
+ * This script below is ONLY TO RUN ONCE TO UPDATE EXISTING LISTINGS
+ * COMMENT OUT AFTER USING ONCE!!!
+ * You MUST have images named 1.jpg, 2.jpg, and 3.jpg in fileUpload folder in root
+ * It's not perfect and applies the same lat and long to all listings which have null lat and long
+ */
+
+/**
+const options = {
+  provider: 'google',
+  apiKey: keys.googleLatLong,
+  formatter: null,
+};
+const NodeGeocoder = require('node-geocoder');
+
+const geocoder = NodeGeocoder(options);
+
+const updateExisting = async () => {
+  const rawData = await Listing.findAll({ where: { lat: null, long: null } });
+  const listings = JSON.parse(JSON.stringify(rawData, null, 4));
+
+  if (listings !== null) {
+    listings.map(async listing => {
+      // eslint-disable-next-line camelcase
+      const { address, city, postal_code, listing_id } = listing;
+      try {
+        const result = await geocoder.geocode(address, city, postal_code);
+        const lat = result[0].latitude;
+        const long = result[0].longitude;
+        Listing.update(
+          { lat, long, image_1: '1.jpg', image_2: '2.jpg', image_3: '3.jpg' },
+          {
+            where: {
+              image_1: null,
+              image_2: null,
+              image_3: null,
+              listing_id,
+              lat: null,
+              long: null,
+            },
+          }
+        ).then(() => {
+          console.log('Done');
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  }
+};
+
+updateExisting();
+
+ */
+
 // listen to this port, either server provided port or local port
 const PORT = process.env.PORT || 1337;
 app.listen(PORT);

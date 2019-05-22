@@ -5,6 +5,16 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import CarouselSections from './CarouselSections';
 
+function importAll(r) {
+  const images = {};
+  // eslint-disable-next-line
+  r.keys().map(item => {
+    images[item.replace('./', '')] = r(item);
+  });
+  return images;
+}
+const images = importAll(require.context('../../../../../fileUpload', false, /\.(gif|jpe?g|svg)$/));
+
 const styles = theme => ({
   root: {},
   gridList: {
@@ -45,7 +55,7 @@ const styles = theme => ({
  */
 
 const ImageSection = props => {
-  const { classes, mainImage } = props;
+  const { classes, imageOne, imageTwo, imageThree } = props;
 
   const tileData = [
     {
@@ -53,18 +63,18 @@ const ImageSection = props => {
       featured: true,
     },
     {
-      img:
-        'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+      img: '',
       featured: false,
     },
     {
-      img:
-        'https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+      img: '',
       featured: false,
     },
   ];
 
-  tileData[0].img = mainImage;
+  tileData[0].img = imageOne;
+  tileData[1].img = imageTwo;
+  tileData[2].img = imageThree;
 
   return (
     <div className={classes.root}>
@@ -75,7 +85,7 @@ const ImageSection = props => {
       <GridList cellHeight={250} spacing={2} className={classes.gridList} cols={4}>
         {tileData.map(tile => (
           <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 2}>
-            <img src={tile.img} alt={tile.title} />
+            <img src={images[tile.img]} alt={tile.title} />
           </GridListTile>
         ))}
       </GridList>
@@ -85,7 +95,9 @@ const ImageSection = props => {
 
 ImageSection.propTypes = {
   classes: PropTypes.object.isRequired,
-  mainImage: PropTypes.string.isRequired,
+  imageOne: PropTypes.string.isRequired,
+  imageTwo: PropTypes.string.isRequired,
+  imageThree: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(ImageSection);

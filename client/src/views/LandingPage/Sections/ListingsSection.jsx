@@ -45,6 +45,7 @@ class ListingsSection extends React.Component {
               price={listing.amount}
               numberOfBedroom={listing.num_bedroom}
               numberOfBathroom={listing.num_bathroom}
+              imageOne={listing.image_1}
               onClick={() => this.setListing(listing.listing_id)}
             />
           </div>

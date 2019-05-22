@@ -13,6 +13,16 @@ import GridItem from 'components/Grid/GridItem.jsx';
 import Card from 'components/Card/Card.jsx';
 import carouselStyle from 'assets/jss/material-kit-react/views/componentsSections/carouselStyle.jsx';
 
+function importAll(r) {
+  const images = {};
+  // eslint-disable-next-line
+  r.keys().map(item => {
+    images[item.replace('./', '')] = r(item);
+  });
+  return images;
+}
+const images = importAll(require.context('../../../../../fileUpload', false, /\.(gif|jpe?g|svg)$/));
+
 class CarouselSection extends React.Component {
   render() {
     const { classes, imageData } = this.props;
@@ -33,7 +43,7 @@ class CarouselSection extends React.Component {
                 <Carousel {...settings}>
                   {imageData.map(data => (
                     <div key={data.img}>
-                      <img src={data.img} alt="First slide" className="slick-image" />
+                      <img src={images[data.img]} alt="First slide" className="slick-image" />
                     </div>
                   ))}
                 </Carousel>

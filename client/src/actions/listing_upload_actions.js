@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import { FETCH_LISTING_UPLOAD, UPLOAD_LISTING_FILTERS } from './types';
+import { FETCH_LISTING_UPLOAD, UPLOAD_LISTING_FILTERS, REMOVE_UPLOADED_LISTING_ID } from './types';
 
 export const fetchListingUpload = (
   streetAddress,
@@ -42,4 +42,8 @@ export const listingFiltersUpload = (
     listingID,
   });
   dispatch({ type: UPLOAD_LISTING_FILTERS, payload: data });
+};
+
+export const removeUploadedListingID = () => dispatch => {
+  dispatch({ type: REMOVE_UPLOADED_LISTING_ID });
 };

@@ -46,7 +46,6 @@ class ListingPage extends React.Component {
         address,
         city,
         amount,
-        picture,
         laundry_filter,
         num_bathroom,
         num_bedroom,
@@ -55,11 +54,14 @@ class ListingPage extends React.Component {
         pet_filter,
         postal_code,
         smoking_filter,
+        image_1,
+        image_2,
+        image_3,
       } = listingDetails[0];
       return (
         <div className={classNames(classes.main)}>
           <div className={classes.imageContainer}>
-            <ImageSection mainImage={picture} />
+            <ImageSection imageOne={image_1} imageTwo={image_2} imageThree={image_3} />
           </div>
           <div className={classes.container}>
             <GridContainer justify="center">

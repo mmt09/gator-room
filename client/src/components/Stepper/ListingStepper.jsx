@@ -6,10 +6,12 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+
 import ListingLocationForm from 'components/ListingUploadForms/ListingLocationForm';
 import ListingFiltersForm from 'components/ListingUploadForms/ListingFiltersForm';
 import ListingImagesForm from 'components/ListingUploadForms/ListingImagesForm';
+import * as actions from '../../actions';
 
 const styles = theme => ({
   root: {
@@ -52,6 +54,11 @@ class ListingStepper extends React.Component {
     skipped: new Set(),
   };
 
+  componentWillUnmount() {
+    const { removeUploadedListingID } = this.props;
+    removeUploadedListingID();
+  }
+
   isStepOptional = step => step === 1;
 
   handleNext = () => {
@@ -92,9 +99,12 @@ class ListingStepper extends React.Component {
   };
 
   handleReset = () => {
+    const { removeUploadedListingID } = this.props;
     this.setState({
       activeStep: 0,
     });
+
+    removeUploadedListingID();
   };
 
   isStepSkipped(step) {
@@ -102,7 +112,7 @@ class ListingStepper extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, listingUpdate } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
 
@@ -138,7 +148,7 @@ class ListingStepper extends React.Component {
                 All steps completed - you&apos;re finished
               </Typography>
               <Button onClick={this.handleReset} className={classes.button}>
-                Reset
+                Add more
               </Button>
             </div>
           ) : (
@@ -168,6 +178,7 @@ class ListingStepper extends React.Component {
                   color="primary"
                   onClick={this.handleNext}
                   className={classes.button}
+                  disabled={listingUpdate === null ? true : false}
                 >
                   {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
@@ -182,6 +193,17 @@ class ListingStepper extends React.Component {
 
 ListingStepper.propTypes = {
   classes: PropTypes.object,
+  listingUpdate: PropTypes.object.isRequired,
+  removeUploadedListingID: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ListingStepper);
+function mapStateToProps({ listingUpload }) {
+  return {
+    listingUpdate: listingUpload.listingUpdate,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withStyles(styles)(ListingStepper));

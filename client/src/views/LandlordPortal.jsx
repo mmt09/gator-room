@@ -10,7 +10,6 @@ import Footer from '../components/Footer/Footer';
 import NavigationBar from './common/NavigationBar';
 import UserProfileCard from './portals/UserProfileCard';
 import ListingList from './portals/ListingList';
-import Upload from './common/fileUploadComponents/upload/Upload';
 import * as actions from '../actions';
 
 const styles = theme => ({
@@ -23,13 +22,23 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
   },
   grid: {
+    display: 'flex',
+    flexDirection: 'row',
     alignContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
   },
   errorComponent: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+  },
+  userProfileCard: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+    },
   },
 });
 
@@ -51,7 +60,7 @@ class LandlordPortal extends React.Component {
       return (
         <main className={classes.content}>
           <Grid container spacing={8} className={classes.grid}>
-            <Grid item xs={3} className={classes.gridItem}>
+            <Grid item xs={3} className={classes.userProfileCard}>
               <UserProfileCard
                 firstName={first_name}
                 lastName={last_name}
@@ -64,7 +73,6 @@ class LandlordPortal extends React.Component {
             </Grid>
             <Grid item xs={9} className={classes.gridItem}>
               <ListingList />
-              <Upload />
             </Grid>
           </Grid>
           <Footer />
