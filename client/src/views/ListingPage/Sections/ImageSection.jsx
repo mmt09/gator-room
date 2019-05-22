@@ -7,6 +7,7 @@ import CarouselSections from './CarouselSections';
 
 function importAll(r) {
   const images = {};
+  // eslint-disable-next-line
   r.keys().map(item => {
     images[item.replace('./', '')] = r(item);
   });

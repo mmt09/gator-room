@@ -15,6 +15,7 @@ import carouselStyle from 'assets/jss/material-kit-react/views/componentsSection
 
 function importAll(r) {
   const images = {};
+  // eslint-disable-next-line
   r.keys().map(item => {
     images[item.replace('./', '')] = r(item);
   });
