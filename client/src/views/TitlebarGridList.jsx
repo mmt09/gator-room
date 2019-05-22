@@ -28,7 +28,7 @@ class TitlebarGridList extends React.Component {
     const { search, classes } = this.props;
     if (search) {
       return search.map(listing => (
-        <GridItem xs={12} sm={12} md={7} key={listing.listing_id} height = "">
+        <GridItem xs={12} sm={12} md={7} key={listing.listing_id} height="">
           <div className={classes.paper}>
             <ListingInfoCard
               key={listing.listing_id}
@@ -38,6 +38,7 @@ class TitlebarGridList extends React.Component {
               price={listing.amount}
               numberOfBedroom={listing.num_bedroom}
               numberOfBathroom={listing.num_bathroom}
+              imageOne={listing.image_1}
               onClick={() => this.setListing(listing.listing_id)}
             />
           </div>

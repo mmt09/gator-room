@@ -7,6 +7,16 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
+function importAll(r) {
+  const images = {};
+  // eslint-disable-next-line
+  r.keys().map(item => {
+    images[item.replace('./', '')] = r(item);
+  });
+  return images;
+}
+const images = importAll(require.context('../../../../fileUpload', false, /\.(gif|jpe?g|svg)$/));
+
 const styles = theme => ({
   card: {
     marginBottom: theme.spacing.unit * 2,
@@ -20,7 +30,7 @@ const styles = theme => ({
 const ListingInfoCard = props => {
   const {
     classes,
-    picture,
+    imageOne,
     city,
     address,
     price,
@@ -37,7 +47,7 @@ const ListingInfoCard = props => {
           className={classes.media}
           height="200"
           width="130"
-          image={picture}
+          image={images[imageOne]}
           title={`${address}, ${city}`}
         />
         <CardContent>
@@ -57,7 +67,7 @@ const ListingInfoCard = props => {
 
 ListingInfoCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  picture: PropTypes.string.isRequired,
+  imageOne: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
