@@ -81,7 +81,7 @@ class SearchResults extends React.Component {
                 <TitlebarGridList />
               </div>
               <div className={classes.mapContainer}>
-                <SimpleMap />
+                <SimpleMap locations={search} />
               </div>
             </div>
           )}

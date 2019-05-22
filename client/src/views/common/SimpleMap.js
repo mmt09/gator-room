@@ -1,15 +1,91 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import { Redirect, withRouter } from 'react-router';
 
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-import MarkerImage from '../../assets/img/map-marker-md.png';
+const K_SIZE = 55;
 
-const Marker = () => (
-  <div>
-    <img src={MarkerImage} alt="marker" height="35" width="25" />
-  </div>
-);
+const styles = () => ({
+  markerWrap: {},
+  markerCenter: {
+    display: 'flex',
+    width: K_SIZE / 1.5,
+    height: K_SIZE / 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    transform: 'rotate(45deg)',
+    // alignSelf: 'center',
+    // backgroundColor: 'red',
+  },
+  circleMarker: {
+    display: 'flex',
+    position: 'absolute',
+    width: K_SIZE,
+    height: K_SIZE,
+    left: -K_SIZE / 2,
+    top: -K_SIZE / 2,
+
+    border: '5px solid',
+    borderRadius: K_SIZE,
+    backgroundColor: 'white',
+    textAlign: 'center',
+    color: '#a353b1',
+    fontSize: 12,
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    borderBottomLeftRadius: 0,
+    borderColor: '#3f51b5',
+
+    transform: 'translate(-50%, -50%) rotate(-45deg)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 0,
+    '&:focus': {
+      boxShadow: '0px 0px 5px 2px #ff2e63 !important',
+    },
+  },
+  hoverCircleMarker: {
+    display: 'flex',
+    position: 'absolute',
+    width: K_SIZE,
+    height: K_SIZE,
+    left: -K_SIZE / 2,
+    top: -K_SIZE / 2,
+
+    borderRadius: K_SIZE,
+    backgroundColor: 'white',
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    borderBottomLeftRadius: 0,
+    borderColor: '#ff2e63',
+
+    transform: 'translate(-50%, -50%) rotate(-45deg)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 0,
+
+    border: '5px solid',
+    color: '#f6416c',
+    '&:focus': {
+      boxShadow: '0px 0px 5px 2px #ff2e63 !important',
+    },
+  },
+});
+
+// eslint-disable-next-line react/prop-types
+const Marker = ({ price, classes, onClick, $hover }) => {
+  const style = $hover ? classes.hoverCircleMarker : classes.circleMarker;
+
+  return (
+    <div className={style} onClick={onClick} onKeyPress={onClick} role="button" tabIndex="0">
+      <div className={classes.markerCenter}>${price}</div>
+    </div>
+  );
+};
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -18,45 +94,48 @@ class SimpleMap extends Component {
       lng: -122.4782,
     },
     zoom: 13.5,
-    locationArray: [
-      { id: 1, lat: 37.720857, lng: -122.470528 },
-      { id: 2, lat: 37.718379, lng: -122.466625 },
-      { id: 3, lat: 37.716546, lng: -122.477049 },
-      { id: 4, lat: 37.716614, lng: -122.482754 },
-      { id: 5, lat: 37.715799, lng: -122.48284 },
-      { id: 6, lat: 37.715324, lng: -122.472888 },
-      { id: 7, lat: 37.720077, lng: -122.464823 },
-      { id: 8, lat: 37.714679, lng: -122.46401 },
-      { id: 9, lat: 37.725813, lng: -122.466755 },
-      { id: 10, lat: 37.727646, lng: -122.473146 },
-      { id: 11, lat: 37.757265, lng: -122.503914 },
-      { id: 12, lat: 37.752651, lng: -122.482208 },
-      { id: 13, lat: 37.748104, lng: -122.472685 },
-      { id: 14, lat: 37.744303, lng: -122.500311 },
-      { id: 15, lat: 37.786439, lng: -122.48607 },
-      { id: 16, lat: 37.763915, lng: -122.472256 },
-      { id: 17, lat: 37.776195, lng: -122.444453 },
-      { id: 18, lat: 37.789423, lng: -122.451059 },
-      { id: 19, lat: 37.782979, lng: -122.464099 },
-    ],
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      toListing: false,
+      listingID: null,
+    };
+  }
+
+  onPinClick = listingID => {
+    this.setState({ toListing: true, listingID });
   };
 
   render() {
-    const { center, zoom, locationArray } = this.props;
+    const { center, zoom, locations, classes } = this.props;
+    const { toListing, listingID } = this.state;
+
+    if (toListing === true) {
+      return <Redirect push to={`/listings/${listingID}`} />;
+    }
     return (
       // Important! Always set the container height explicitly
-
       <div style={{ height: '80vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCKSxjOsN5bYFi9QtYqbrLoPtknm8yr5E0' }}
           defaultCenter={center}
           defaultZoom={zoom}
+          hoverDistance={K_SIZE / 2}
         >
           {/* if you create <Markers/> using Array.map, each <Marker> needs a key, which CANNOT be the Array index */}
           {/* the key COULD be the unique lat or lng ;) */}
 
-          {locationArray.map(item => (
-            <Marker key={item.id} lat={item.lat} lng={item.lng} />
+          {locations.map(item => (
+            <Marker
+              key={item.listing_id}
+              lat={item.lat}
+              lng={item.long}
+              price={item.amount}
+              classes={classes}
+              onClick={() => this.onPinClick(item.listing_id)}
+            />
           ))}
         </GoogleMapReact>
       </div>
@@ -66,6 +145,6 @@ class SimpleMap extends Component {
 SimpleMap.propTypes = {
   center: PropTypes.object,
   zoom: PropTypes.number,
-  locationArray: PropTypes.arrayOf(PropTypes.object),
+  locations: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-export default SimpleMap;
+export default withRouter(withStyles(styles)(SimpleMap));

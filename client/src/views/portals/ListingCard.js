@@ -11,7 +11,7 @@ import Chip from '@material-ui/core/Chip';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import GridListTile from '@material-ui/core/GridListTile';
-import SimpleMap from '../common/SimpleMap';
+// import SimpleMap from '../common/SimpleMap';
 // const images = importAll(require.context('../../../../fileUpload', false, /\.(gif|jpe?g|svg)$/));
 
 // function importAll(r) {
@@ -128,9 +128,7 @@ class ListingCard extends React.Component {
           <Divider />
           <CardContent className={classes.listingPhoto}>
             <GridList className={classes.gridList} cols={2.5}>
-              <GridListTile>
-                <SimpleMap />
-              </GridListTile>
+              <GridListTile>{/* <SimpleMap /> */}</GridListTile>
               {tileData.map(tile => (
                 <GridListTile key={tile.img}>
                   <img src={tile.img} alt={tile.title} />
