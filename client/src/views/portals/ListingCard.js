@@ -128,9 +128,7 @@ class ListingCard extends React.Component {
           <Divider />
           <CardContent className={classes.listingPhoto}>
             <GridList className={classes.gridList} cols={2.5}>
-              <GridListTile>
-                <SimpleMap />
-              </GridListTile>
+              <GridListTile>{/* <SimpleMap /> */}</GridListTile>
               {tileData.map(tile => (
                 <GridListTile key={tile.img}>
                   <img src={tile.img} alt={tile.title} />
