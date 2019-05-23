@@ -6,3 +6,4 @@ export * from './signup_actions';
 export * from './login_actions';
 export * from './auth_actions';
 export * from './landlord_actions';
+export * from './admin_actions';

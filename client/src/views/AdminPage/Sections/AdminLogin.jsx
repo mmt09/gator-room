@@ -21,6 +21,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 // import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 
@@ -35,6 +36,7 @@ class LoginPage extends React.Component {
       cardAnimation: 'cardHidden',
       username: '',
       password: '',
+      result: '',
     };
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -68,17 +70,17 @@ class LoginPage extends React.Component {
     const { username, password } = this.state;
     const { loginAdmin } = this.props;
     if (username === 'admin@gatorroom.xyz' && password === 'notsecurepassword') {
-      console.log(true);
+      this.setState({ result: 'Success' });
+      loginAdmin();
     } else {
-      console.log(false);
+      this.setState({ result: 'Wrong email or password' });
     }
-
-    // loginAdmin(username, password);
   }
 
   render() {
     const { classes, ...rest } = this.props;
-    const { cardAnimation, username, password } = this.state;
+    const { cardAnimation, username, password, result } = this.state;
+    const resultStyle = result === 'Success' ? classes.success : classes.error;
     return (
       <div>
         <Header
@@ -105,6 +107,7 @@ class LoginPage extends React.Component {
                       <h4>Admin Login</h4>
                     </CardHeader>
                     <p className={classes.divider}>Your Admin credentials</p>
+                    <p className={classNames(classes.divider, resultStyle)}>{result}</p>
 
                     <CardBody>
                       <CustomInput
@@ -163,11 +166,7 @@ LoginPage.propTypes = {
   loginAdmin: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ login }) {
-  return { login };
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   actions
 )(withStyles(loginPageStyle)(LoginPage));
