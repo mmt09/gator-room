@@ -13,7 +13,6 @@ import SmokeIcon from '@material-ui/icons/SmokeFree';
 import CarIcon from '@material-ui/icons/DirectionsCar';
 import LaundryIcon from '@material-ui/icons/LocalLaundryService';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import Button from 'components/CustomButtons/Button.jsx';
 import Success from 'components/Typography/Success.jsx';
 import * as actions from '../../actions';
@@ -32,6 +31,12 @@ const styles = theme => ({
   },
   menu: {
     width: 200,
+  },
+  button: {
+    marginLeft: '5%',
+    marginBottom: '5%',
+    marginTop: '5%',
+    width: '100%',
   },
 });
 
@@ -105,12 +110,16 @@ class ListingFiltersForm extends React.Component {
             <Switch onChange={this.handleToggle('smoking')} checked={smoking} />
           </ListItemSecondaryAction>
         </ListItem>
-        <Grid item xs={12} sm={6}>
-          <Button color="primary" size="lg" onClick={this.uploadListingFilters}>
-            Confirm
-          </Button>
-          <Success>{listingFiltersResult}</Success>
-        </Grid>
+
+        <Button
+          color="primary"
+          size="lg"
+          onClick={this.uploadListingFilters}
+          className={classes.button}
+        >
+          Confirm
+        </Button>
+        <Success>{listingFiltersResult}</Success>
       </List>
     );
   }
