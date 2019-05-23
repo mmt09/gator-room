@@ -18,17 +18,6 @@ const app = express();
 const uploadPath = path.join(__dirname, 'fileUpload/');
 fs.ensureDir(uploadPath);
 
-/**
- * Runs code in production mode
- */
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
-
 // Set 2MiB buffer
 app.use(
   busboy({
@@ -110,15 +99,18 @@ app.route('/api/upload').post((req, res) => {
   // Add images' names to database row
   req.busboy.on('field', async (fieldname, value) => {
     try {
-      await Listing.update({
-        image_1: fileName[0],
-        image_2: fileName[1],
-        image_3: fileName[2],
-      }, {
-        where: {
-          listing_id: value,
+      await Listing.update(
+        {
+          image_1: fileName[0],
+          image_2: fileName[1],
+          image_3: fileName[2],
         },
-      });
+        {
+          where: {
+            listing_id: value,
+          },
+        }
+      );
       // res.send('Done');
       console.log('Added images to database');
       fileName.length = 0;
@@ -136,7 +128,6 @@ app.route('/api/upload').post((req, res) => {
  * You MUST have images named 1.jpg, 2.jpg, and 3.jpg in fileUpload folder in root
  * It's not perfect and applies the same lat and long to all listings which have null lat and long
  */
-
 
 // const options = {
 //   provider: 'google',
@@ -196,8 +187,17 @@ app.route('/api/upload').post((req, res) => {
 
 // updateExisting();
 
-
-
 // listen to this port, either server provided port or local port
+
+/**
+ * Runs code in production mode
+ */
+// if (process.env.NODE_ENV === 'production') {
+app.use(express.static('client/build'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+// }
 const PORT = process.env.PORT || 1337;
 app.listen(PORT);

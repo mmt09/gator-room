@@ -25,7 +25,7 @@ class LandlordContactSection extends React.Component {
             </div>
             <GridContainer>
               <div className={classes.typo}>
-                <EmailAdminButton landlordEmail={landlordData.email} />
+                <EmailAdminButton />
               </div>
             </GridContainer>
           </div>
