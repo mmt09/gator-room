@@ -84,36 +84,36 @@ class ListingPage extends React.Component {
                 <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Laundry"
-                    description={laundry_filter === 0 ? 'Yes' : 'No'}
+                    description={laundry_filter === 1 ? 'Yes' : 'No'}
                     icon={Laundry}
-                    iconColor={laundry_filter === 0 ? 'success' : 'danger'}
+                    iconColor={laundry_filter === 1 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
                 <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Parking"
-                    description={parking_filter === 0 ? 'Yes' : 'No'}
+                    description={parking_filter === 1 ? 'Yes' : 'No'}
                     icon={LocalParking}
-                    iconColor={parking_filter === 0 ? 'success' : 'danger'}
+                    iconColor={parking_filter === 1 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
                 <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Pets"
-                    description={pet_filter === 0 ? 'Yes' : 'No'}
+                    description={pet_filter === 1 ? 'Yes' : 'No'}
                     icon={Pet}
-                    iconColor={pet_filter === 0 ? 'success' : 'danger'}
+                    iconColor={pet_filter === 1 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>
                 <GridItem xs={6} md={3} sm={3}>
                   <InfoArea
                     title="Smoking allowed"
-                    description={smoking_filter === 0 ? 'Yes' : 'No'}
+                    description={smoking_filter === 1 ? 'Yes' : 'No'}
                     icon={SmokingRooms}
-                    iconColor={smoking_filter === 0 ? 'success' : 'danger'}
+                    iconColor={smoking_filter === 1 ? 'success' : 'danger'}
                     vertical
                   />
                 </GridItem>

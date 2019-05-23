@@ -55,7 +55,6 @@ class AdminDashboard extends React.Component {
   };
 
   render() {
-    const { allListings } = this.props;
     const { classes } = this.props;
     const { toListing, listingID } = this.state;
 
