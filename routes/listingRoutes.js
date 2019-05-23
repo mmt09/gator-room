@@ -31,8 +31,8 @@ module.exports = app => {
   app.post('/api/search_apartment', (req, res) => {
     const search = req.body.searchParams;
     connection.query(
-      'SELECT * FROM listing WHERE postal_code = ? OR city = ?',
-      [search, search],
+      'SELECT * FROM listing WHERE city LIKE ? OR postal_code LIKE ?',
+      [('%' + search + '%'), ('%' + search + '%')],
       (err, rows) => {
         if (err) throw err;
         const listingJSON = JSON.parse(JSON.stringify(rows));
