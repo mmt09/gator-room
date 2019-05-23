@@ -64,9 +64,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // route handler
+require('./routes/googleAuthRoutes')(app);
 require('./routes/listingRoutes')(app);
 require('./routes/listingUploadRoutes')(app);
-require('./routes/googleAuthRoutes')(app);
 require('./routes/landlordRoutes')(app);
 require('./routes/adminRoutes')(app);
 
