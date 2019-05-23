@@ -14,3 +14,4 @@ export const LOGIN_ADMIN = 'login_admin';
 export const APPROVE_LISTING = 'approve_listing';
 export const DISAPPROVE_LISTING = 'disapprove_listing';
 export const FETCH_LANDLORD_LISTINGS = 'fetch_landlord_listings';
+export const FETCH_LISTING_LANDLORD = 'fetch_listing_landlord';
