@@ -77,8 +77,7 @@ class ListingList extends React.Component {
   };
 
   render() {
-    const { classes, landlordListings } = this.props;
-    console.log(landlordListings);
+    const { classes } = this.props;
 
     const { toListing, listingID } = this.state;
 
