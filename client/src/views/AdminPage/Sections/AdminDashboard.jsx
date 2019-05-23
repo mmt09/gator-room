@@ -31,6 +31,14 @@ class AdminDashboard extends React.Component {
     this.setState({ toListing: true, listingID });
   };
 
+  approveListing = listingID => {
+    console.log(listingID);
+  };
+
+  disapproveListing = listingID => {
+    console.log(listingID);
+  };
+
   renderListing = () => {
     const { allListings, classes } = this.props;
     if (allListings) {
@@ -49,11 +57,15 @@ class AdminDashboard extends React.Component {
               approved={listing.approved}
               onClick={() => this.setListing(listing.listing_id)}
             />
-            <div key={listing.listing_id} className={classes.approvalButtons}>
-              <Button color="success" round>
+            <div className={classes.approvalButtons}>
+              <Button color="success" round onClick={() => this.approveListing(listing.listing_id)}>
                 Yes
               </Button>
-              <Button color="danger" round>
+              <Button
+                color="danger"
+                round
+                onClick={() => this.disapproveListing(listing.listing_id)}
+              >
                 No
               </Button>
             </div>
