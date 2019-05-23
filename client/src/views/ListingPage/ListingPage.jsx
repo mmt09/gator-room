@@ -21,8 +21,7 @@ import ImageSection from 'views/ListingPage/Sections/ImageSection';
 import listingStyle from 'assets/jss/material-kit-react/views/listingComponent.jsx';
 import GridContainer from 'components/Grid/GridContainer.jsx';
 import GridItem from 'components/Grid/GridItem.jsx';
-import EmailAdminButton from 'views/common/EmailAdminButton';
-
+import LandlordContactSection from 'views/ListingPage/Sections/LandlordContactSection';
 import InfoArea from 'components/InfoArea/InfoArea.jsx';
 // @material-ui/icons
 
@@ -33,14 +32,14 @@ import ListingDetailsSections from './Sections/ListingDetailsSections';
 
 class ListingPage extends React.Component {
   componentDidMount() {
-    const { match, fetchListingDetails } = this.props;
+    const { match, fetchListingDetails, fetchListingLandlord } = this.props;
     fetchListingDetails(match.params.id);
+    fetchListingLandlord(match.params.id);
     window.scrollTo(0, 0);
   }
 
   renderListing = () => {
-    const { listingDetails, classes } = this.props;
-    // console.log(listingDetails);
+    const { listingDetails, classes, listingLandlord } = this.props;
     if (listingDetails.length !== 0) {
       const {
         address,
@@ -124,7 +123,7 @@ class ListingPage extends React.Component {
             <ListingDetailsSections description={description} />
             <Divider variant="middle" />
             <div className={classes.contactContainer}>
-              <EmailAdminButton />
+              <LandlordContactSection landlordData={listingLandlord[0]} />
             </div>
           </div>
           <div />
@@ -149,10 +148,12 @@ ListingPage.propTypes = {
   match: PropTypes.object.isRequired,
   fetchListingDetails: PropTypes.func.isRequired,
   listingDetails: PropTypes.arrayOf(object).isRequired,
+  fetchListingLandlord: PropTypes.func.isRequired,
+  listingLandlord: PropTypes.arrayOf(object).isRequired,
 };
 
-function mapStateToProps({ listingDetails }) {
-  return { listingDetails };
+function mapStateToProps({ listingDetails, listingLandlord }) {
+  return { listingDetails, listingLandlord };
 }
 
 export default connect(

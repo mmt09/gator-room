@@ -9,6 +9,7 @@ import authReducer from './auth_reducer';
 import landlordReducer from './landlord_reducer';
 import adminReducer from './admin_reducer';
 import landLordListings from './landlord_listings_reducer';
+import listingLandlordReducer from './listing_landlord_reducer';
 
 export default combineReducers({
   search: searchReducer,
@@ -21,4 +22,5 @@ export default combineReducers({
   landlordUpdated: landlordReducer,
   admin: adminReducer,
   landlordListings: landLordListings,
+  listingLandlord: listingLandlordReducer,
 });
