@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 // @material-ui/core components
@@ -7,23 +8,24 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx';
+import EmailAdminButton from 'views/common/EmailAdminButton';
 
 import listingDetailsStyle from 'assets/jss/material-kit-react/views/listingPageSections/listingDetailsStyle.jsx';
 
-class ListingDetailsSections extends React.Component {
+class LandlordContactSection extends React.Component {
   render() {
-    // eslint-disable-next-line react/prop-types
-    const { classes, description } = this.props;
+    const { classes, landlordData } = this.props;
+    console.log(landlordData);
     return (
       <div className={classes.section}>
         <div className={classes.container}>
           <div id="typography">
             <div className={classes.title}>
-              <h3>About</h3>
+              <h3>Landlord Information</h3>
             </div>
             <GridContainer>
               <div className={classes.typo}>
-                <p>{description}</p>
+                <EmailAdminButton />
               </div>
             </GridContainer>
           </div>
@@ -33,4 +35,4 @@ class ListingDetailsSections extends React.Component {
   }
 }
 
-export default withStyles(listingDetailsStyle)(ListingDetailsSections);
+export default withStyles(listingDetailsStyle)(LandlordContactSection);
