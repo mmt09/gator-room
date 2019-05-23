@@ -20,9 +20,7 @@ module.exports = app => {
   });
 
   app.post('/api/listing_details', (req, res) => {
-    const {
-      listingID
-    } = req.body;
+    const { listingID } = req.body;
     connection.query('SELECT * FROM listing WHERE listing_id = ?', [listingID], (err, rows) => {
       if (err) throw err;
       const listingJSON = JSON.parse(JSON.stringify(rows));
@@ -34,7 +32,20 @@ module.exports = app => {
     const search = req.body.searchParams;
     connection.query(
       'SELECT * FROM listing WHERE city LIKE ? OR postal_code LIKE ?',
-      [('%' + search + '%'), ('%' + search + '%')],
+      ['%' + search + '%', '%' + search + '%'],
+      (err, rows) => {
+        if (err) throw err;
+        const listingJSON = JSON.parse(JSON.stringify(rows));
+        res.send(listingJSON);
+      }
+    );
+  });
+
+  app.post('/api/landlord_listings', (req, res) => {
+    const id = req.body.landlordID;
+    connection.query(
+      'SELECT L1.* FROM listing L1, landlord LL1, landlord_has_listing LHL1 WHERE L1.listing_id = LHL1.listing_id AND LHL1.landlord_id = LL1.landlord_id AND LL1.landlord_id = ?',
+      [id],
       (err, rows) => {
         if (err) throw err;
         const listingJSON = JSON.parse(JSON.stringify(rows));
