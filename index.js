@@ -79,6 +79,7 @@ require('./routes/listingRoutes')(app);
 require('./routes/listingUploadRoutes')(app);
 require('./routes/googleAuthRoutes')(app);
 require('./routes/landlordRoutes')(app);
+require('./routes/adminRoutes')(app);
 
 const corsOptions = {
   origin: '*',

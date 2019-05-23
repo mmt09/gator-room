@@ -39,6 +39,7 @@ class TitlebarGridList extends React.Component {
               numberOfBedroom={listing.num_bedroom}
               numberOfBathroom={listing.num_bathroom}
               imageOne={listing.image_1}
+              approved={listing.approved}
               onClick={() => this.setListing(listing.listing_id)}
             />
           </div>

@@ -27,16 +27,29 @@ class AdminDashboard extends React.Component {
     fetchAllListings();
   }
 
+  componentDidUpdate(prevProps) {
+    const { fetchAllListings, listingApproved, listingDisapproved } = this.props;
+    // Typical usage (don't forget to compare props):
+    if (listingApproved !== prevProps.listingApproved) {
+      fetchAllListings();
+    }
+    if (listingDisapproved !== prevProps.listingDisapproved) {
+      fetchAllListings();
+    }
+  }
+
   setListing = listingID => {
     this.setState({ toListing: true, listingID });
   };
 
   approveListing = listingID => {
-    console.log(listingID);
+    const { adminApproveListing } = this.props;
+    adminApproveListing(listingID);
   };
 
   disapproveListing = listingID => {
-    console.log(listingID);
+    const { adminDisapproveListing } = this.props;
+    adminDisapproveListing(listingID);
   };
 
   renderListing = () => {
@@ -101,10 +114,18 @@ class AdminDashboard extends React.Component {
 AdminDashboard.propTypes = {
   fetchAllListings: PropTypes.func.isRequired,
   allListings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  listingApproved: PropTypes.object.isRequired,
+  listingDisapproved: PropTypes.object.isRequired,
+  adminApproveListing: PropTypes.func.isRequired,
+  adminDisapproveListing: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ allListings }) {
-  return { allListings };
+function mapStateToProps({ allListings, admin }) {
+  return {
+    allListings,
+    listingApproved: admin.listingApproved,
+    listingDisapproved: admin.listingDisapproved,
+  };
 }
 export default connect(
   mapStateToProps,
