@@ -72,7 +72,7 @@ class LandlordPortal extends React.Component {
               />
             </Grid>
             <Grid item xs={9} className={classes.gridItem}>
-              <ListingList />
+              <ListingList landlordID={landlord_id} />
             </Grid>
           </Grid>
           <Footer />

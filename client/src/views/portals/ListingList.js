@@ -7,7 +7,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import ListingCard from './ListingCard';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 const styles = theme => ({
   root: {
@@ -26,15 +27,18 @@ const styles = theme => ({
 });
 
 class ListingList extends React.Component {
-  render() {
-    const { classes } = this.props;
+  componentDidMount() {
+    // Below two lines Can be deleted once development is done
+    const { fetchLandlordListings, landlordID } = this.props;
+    fetchLandlordListings(landlordID);
+  }
 
+  render() {
+    const { classes, landlordID } = this.props;
     return (
       <Card className={classes.root}>
         <List>
-          <ListItem>
-            <ListingCard />
-          </ListItem>
+          <ListItem>{landlordID}</ListItem>
 
           <ListItem className={classes.booty}>
             <Button
@@ -54,6 +58,15 @@ class ListingList extends React.Component {
 
 ListingList.propTypes = {
   classes: PropTypes.object.isRequired,
+  landlordID: PropTypes.number.isRequired,
+  fetchLandlordListings: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ListingList);
+function mapStateToProps({ landlordListings }) {
+  return { landlordListings };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(withStyles(styles)(ListingList));
