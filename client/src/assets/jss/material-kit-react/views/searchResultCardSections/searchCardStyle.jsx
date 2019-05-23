@@ -16,6 +16,17 @@ const searchCardStyle = {
     color: '#999',
   },
   paper: {},
+  adminSection: {
+    padding: '70px 0',
+    textAlign: 'center',
+    overflow: 'hidden',
+  },
+  adminPaper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  approvalButtons: {},
 };
 
 export default searchCardStyle;
