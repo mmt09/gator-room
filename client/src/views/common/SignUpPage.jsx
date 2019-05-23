@@ -243,8 +243,8 @@ class SignUpPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg" onClick={this.registerUser}>
-                        Register
+                      <Button simple color="primary" size="lg">
+                        Register  
                       </Button>
                     </CardFooter>
                   </form>
