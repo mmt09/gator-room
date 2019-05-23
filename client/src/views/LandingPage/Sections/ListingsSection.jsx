@@ -34,24 +34,26 @@ class ListingsSection extends React.Component {
   renderListing = () => {
     const { allListings, classes } = this.props;
     if (allListings) {
-      return allListings.slice(0, 6).map(listing => (
-        <GridItem xs={12} sm={12} md={4} key={listing.listing_id}>
-          <div className={classes.paper}>
-            <ListingInfoCard
-              key={listing.listing_id}
-              picture={listing.picture}
-              city={listing.city}
-              address={listing.address}
-              price={listing.amount}
-              numberOfBedroom={listing.num_bedroom}
-              numberOfBathroom={listing.num_bathroom}
-              imageOne={listing.image_1}
-              approved={listing.approved}
-              onClick={() => this.setListing(listing.listing_id)}
-            />
-          </div>
-        </GridItem>
-      ));
+      return allListings.slice(0, 6).map(listing =>
+        listing.approved === 1 ? (
+          <GridItem xs={12} sm={12} md={4} key={listing.listing_id}>
+            <div className={classes.paper}>
+              <ListingInfoCard
+                key={listing.listing_id}
+                picture={listing.picture}
+                city={listing.city}
+                address={listing.address}
+                price={listing.amount}
+                numberOfBedroom={listing.num_bedroom}
+                numberOfBathroom={listing.num_bathroom}
+                imageOne={listing.image_1}
+                approved={listing.approved}
+                onClick={() => this.setListing(listing.listing_id)}
+              />
+            </div>
+          </GridItem>
+        ) : null
+      );
     }
     return null;
   };
