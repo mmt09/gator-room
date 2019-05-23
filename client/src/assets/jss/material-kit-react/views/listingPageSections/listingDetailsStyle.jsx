@@ -35,6 +35,19 @@ const listingDetailsStyle = {
     position: 'absolute',
     width: '260px',
   },
+  avatar: {
+    margin: 10,
+    width: 100,
+    height: 100,
+    display: 'flex',
+  },
+  avatarContainer: {
+    display: 'flex',
+    alignSelf: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   marginLeft: {
     marginLeft: 'auto !important',
   },
