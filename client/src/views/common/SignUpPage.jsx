@@ -252,6 +252,10 @@ class SignUpPage extends React.Component {
               </GridItem>
             </GridContainer>
           </div>
+          <br />
+          <br />
+          <br />
+
           <Footer whiteFont />
         </div>
       </div>
