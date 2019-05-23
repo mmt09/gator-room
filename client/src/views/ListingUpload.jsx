@@ -70,7 +70,7 @@ class ListingUpload extends React.Component {
             </Card>
           </div>
         </div>
-        <Footer whiteFont />
+        <Footer />
       </div>
     );
   }
