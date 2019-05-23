@@ -18,10 +18,21 @@ const sequelize = new Sequelize(keys.database, keys.user, keys.password, {
 });
 
 const Listing = sequelize.import('../models/Listing.js');
+const HasListing = sequelize.import('../models/HasListing.js');
 
 module.exports = app => {
   app.post('/api/listingUpload', async (req, res) => {
-    const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = req.body;
+    const {
+      streetAddress,
+      city,
+      zip,
+      bedroom,
+      bathroom,
+      kitchen,
+      price,
+      description,
+      landlordID,
+    } = req.body;
     let lat;
     let long;
 
@@ -47,6 +58,11 @@ module.exports = app => {
         long,
       });
       res.send({ listingID: listing.listing_id });
+
+      await HasListing.create({
+        landlord_id: landlordID,
+        listing_id: listing.listing_id,
+      });
     } catch (err) {
       res.send('Error, please try again');
       console.log(err);

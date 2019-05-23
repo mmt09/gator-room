@@ -144,7 +144,7 @@ class ListingLocationForm extends React.Component {
 
   uploadListing() {
     const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = this.state;
-    const { fetchListingUpload } = this.props;
+    const { fetchListingUpload, auth } = this.props;
     fetchListingUpload(
       streetAddress,
       city,
@@ -154,15 +154,15 @@ class ListingLocationForm extends React.Component {
       kitchen,
       price,
       description,
+      auth.landlord_id,
       () => {}
     );
   }
 
   render() {
     // const { classes, fetchListingUpload } = this.props;
-    const { classes } = this.props;
+    const { classes, auth } = this.props;
     const { streetAddress, city, zip, bedroom, bathroom, kitchen, price, description } = this.state;
-
     return (
       <Grid container spacing={24} className={classes.gridContainer}>
         <Grid item xs={12} sm={6} className={classes.textGrid}>
@@ -264,8 +264,8 @@ ListingLocationForm.propTypes = {
   fetchListingUpload: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ listingUpload }) {
-  return { listingUpload };
+function mapStateToProps({ auth, listingUpload }) {
+  return { auth, listingUpload };
 }
 
 export default connect(

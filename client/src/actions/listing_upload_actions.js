@@ -11,6 +11,7 @@ export const fetchListingUpload = (
   kitchen,
   price,
   description,
+  landlordID,
   callback
 ) => async dispatch => {
   const { data } = await axios.post('/api/listingUpload', {
@@ -22,6 +23,7 @@ export const fetchListingUpload = (
     kitchen,
     price,
     description,
+    landlordID,
   });
   dispatch({ type: FETCH_LISTING_UPLOAD, payload: data });
   callback();
