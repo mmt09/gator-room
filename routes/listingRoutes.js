@@ -53,4 +53,17 @@ module.exports = app => {
       }
     );
   });
+
+  app.post('/api/listing_landlord', (req, res) => {
+    const id = req.body.listingID;
+    connection.query(
+      'SELECT LL1.* FROM listing L1, landlord LL1, landlord_has_listing LHL1 WHERE LL1.landlord_id = LHL1.landlord_id AND LHL1.listing_id = L1.listing_id AND L1.listing_id = ?',
+      [id],
+      (err, rows) => {
+        if (err) throw err;
+        const landlordJSON = JSON.parse(JSON.stringify(rows));
+        res.send(landlordJSON);
+      }
+    );
+  });
 };
