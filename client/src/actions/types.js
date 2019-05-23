@@ -10,3 +10,6 @@ export const FETCH_LOGIN = 'fetch_login';
 export const FETCH_USER = 'fetch_user';
 export const UPDATE_LANDLORD_PHONE = 'update_landlord_phone';
 export const UPDATE_LANDLORD_ABOUT = 'update_landlord_about';
+export const LOGIN_ADMIN = 'login_admin';
+export const APPROVE_LISTING = 'approve_listing';
+export const DISAPPROVE_LISTING = 'disapprove_listing';

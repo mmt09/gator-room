@@ -40,6 +40,11 @@ function Footer({ ...props }) {
                 About us
               </Link>
             </ListItem>
+            <ListItem className={classes.inlineBlock}>
+              <Link underline="none" component={RouterLink} to="/admin">
+                Admin page
+              </Link>
+            </ListItem>
           </List>
         </div>
         <div className={classes.right}>

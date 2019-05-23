@@ -86,6 +86,11 @@ module.exports = sequelize => {
         type: Sequelize.DECIMAL(9, 6),
         allowNull: true,
       },
+      approved: {
+        type: Sequelize.TINYINT(4),
+        defaultValue: 0,
+        allowNull: false,
+      },
     },
     {
       sequelize,

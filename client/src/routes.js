@@ -21,6 +21,7 @@ import CarlosProfile from './views/aboutPages/CarlosVelasco/Profile';
 import NicoProfile from './views/aboutPages/NicoGraves/Profile';
 import MichaelNelsonProfile from './views/aboutPages/MichaelNelson/Profile';
 import DavidProfile from './views/aboutPages/DavidHernandez/Profile';
+import AdminPage from './views/AdminPage/AdminPage';
 
 const Routes = props => {
   return (
@@ -41,7 +42,8 @@ const Routes = props => {
         <Route path="/listings/:id" component={ListingPage} />
         <Route path="/LoginPage" component={LoginPage} />
         <Route path="/SignUpPage" component={SignUpPage} />
-        <Route path='/ListingUpload' component = {ListingUpload} / >
+        <Route path="/ListingUpload" component={ListingUpload} />
+        <Route exact path="/Admin" component={AdminPage} />
         <Route component={NotFound} />
       </Switch>
     </Router>

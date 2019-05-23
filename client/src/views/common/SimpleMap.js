@@ -127,16 +127,18 @@ class SimpleMap extends Component {
           {/* if you create <Markers/> using Array.map, each <Marker> needs a key, which CANNOT be the Array index */}
           {/* the key COULD be the unique lat or lng ;) */}
 
-          {locations.map(item => (
-            <Marker
-              key={item.listing_id}
-              lat={item.lat}
-              lng={item.long}
-              price={item.amount}
-              classes={classes}
-              onClick={() => this.onPinClick(item.listing_id)}
-            />
-          ))}
+          {locations.map(item =>
+            item.approved === 1 ? (
+              <Marker
+                key={item.listing_id}
+                lat={item.lat}
+                lng={item.long}
+                price={item.amount}
+                classes={classes}
+                onClick={() => this.onPinClick(item.listing_id)}
+              />
+            ) : null
+          )}
         </GoogleMapReact>
       </div>
     );

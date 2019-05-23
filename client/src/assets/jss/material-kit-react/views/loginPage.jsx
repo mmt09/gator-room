@@ -85,6 +85,12 @@ const signupPageStyle = {
   inputIconsColor: {
     color: '#495057',
   },
+  success: {
+    color: '#08d9d6',
+  },
+  error: {
+    color: '#ff2e63',
+  },
 };
 
 export default signupPageStyle;

@@ -36,6 +36,7 @@ const ListingInfoCard = props => {
     price,
     numberOfBedroom,
     numberOfBathroom,
+    approved,
     onClick,
   } = props;
   return (
@@ -59,6 +60,7 @@ const ListingInfoCard = props => {
             {` · ${numberOfBedroom}`} {numberOfBedroom === 1 ? `Bedroom` : `Bedrooms`}
             {` · ${numberOfBathroom}`} {numberOfBathroom === 1 ? `Bathroom` : `Bathrooms`}
           </Typography>
+          <Typography color="textSecondary">Approved: {approved === 0 ? 'No' : 'Yes'}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -73,7 +75,12 @@ ListingInfoCard.propTypes = {
   price: PropTypes.number.isRequired,
   numberOfBedroom: PropTypes.number.isRequired,
   numberOfBathroom: PropTypes.number.isRequired,
+  approved: PropTypes.number,
   onClick: PropTypes.func.isRequired,
+};
+
+ListingInfoCard.defaultProps = {
+  approved: 0,
 };
 
 export default withStyles(styles)(ListingInfoCard);
