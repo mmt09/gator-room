@@ -11,6 +11,7 @@ import NotFound from './views/NotFound';
 import ListingPage from './views/ListingPage/ListingPage';
 import LoginPage from './views/common/LoginPage';
 import SignUpPage from './views/common/SignUpPage';
+import ListingUpload from './views/ListingUpload';
 
 // Community Members
 import JakhongirProfile from './views/aboutPages/JakhongirKhusanov/Profile';
@@ -20,6 +21,7 @@ import CarlosProfile from './views/aboutPages/CarlosVelasco/Profile';
 import NicoProfile from './views/aboutPages/NicoGraves/Profile';
 import MichaelNelsonProfile from './views/aboutPages/MichaelNelson/Profile';
 import DavidProfile from './views/aboutPages/DavidHernandez/Profile';
+import AdminPage from './views/AdminPage/AdminPage';
 
 const Routes = props => {
   return (
@@ -40,6 +42,8 @@ const Routes = props => {
         <Route path="/listings/:id" component={ListingPage} />
         <Route path="/LoginPage" component={LoginPage} />
         <Route path="/SignUpPage" component={SignUpPage} />
+        <Route path="/ListingUpload" component={ListingUpload} />
+        <Route exact path="/Admin" component={AdminPage} />
         <Route component={NotFound} />
       </Switch>
     </Router>

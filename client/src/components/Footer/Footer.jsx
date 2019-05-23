@@ -26,6 +26,8 @@ function Footer({ ...props }) {
   return (
     <footer className={footerClasses}>
       <div className={classes.container}>
+        SFSU Software Engineering Project CSC 648-848, Spring 2018. For Demonstration Only.
+        <br />
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
@@ -36,6 +38,11 @@ function Footer({ ...props }) {
             <ListItem className={classes.inlineBlock}>
               <Link underline="none" component={RouterLink} to="/about">
                 About us
+              </Link>
+            </ListItem>
+            <ListItem className={classes.inlineBlock}>
+              <Link underline="none" component={RouterLink} to="/admin">
+                Admin page
               </Link>
             </ListItem>
           </List>

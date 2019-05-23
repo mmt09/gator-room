@@ -19,8 +19,12 @@ const styles = theme => ({
 
 // This an entry point to our components
 class App extends React.Component {
+  componentDidMount() {
+    const { fetchUser } = this.props;
+    fetchUser();
+  }
+
   render() {
-    // console.log(this.props.search);
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -32,13 +36,10 @@ class App extends React.Component {
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
+  fetchUser: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ search }) {
-  return { search };
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   actions
 )(withStyles(styles, { withTheme: true })(App));

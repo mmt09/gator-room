@@ -12,7 +12,7 @@ import listingDetailsStyle from 'assets/jss/material-kit-react/views/listingPage
 
 class ListingDetailsSections extends React.Component {
   render() {
-    const { classes } = this.props;
+    const { classes, description } = this.props;
     return (
       <div className={classes.section}>
         <div className={classes.container}>
@@ -22,15 +22,7 @@ class ListingDetailsSections extends React.Component {
             </div>
             <GridContainer>
               <div className={classes.typo}>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus
-                  quam id leo in. Viverra orci sagittis eu volutpat. Et netus et malesuada fames ac
-                  turpis egestas sed tempus. Venenatis tellus in metus vulputate. Leo a diam
-                  sollicitudin tempor. Sed vulputate mi sit amet mauris commodo quis. Aliquet nec
-                  ullamcorper sit amet risus nullam eget. Ullamcorper velit sed ullamcorper morbi
-                  tincidunt. Lacus suspendisse faucibus interdum posuere lorem.
-                </p>
+                <p>{description}</p>
               </div>
             </GridContainer>
           </div>
