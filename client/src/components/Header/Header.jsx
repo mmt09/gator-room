@@ -83,7 +83,7 @@ class Header extends React.Component {
     });
     const brandComponent = (
       <Link component={RouterLink} color="inherit" underline="none" to="/">
-        <Button className={classes.title}>{brand}</Button>
+        <Button className={classes.title}>{brand} </Button>
       </Link>
     );
     return (
