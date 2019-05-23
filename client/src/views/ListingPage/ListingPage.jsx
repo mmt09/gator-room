@@ -46,6 +46,7 @@ class ListingPage extends React.Component {
         address,
         city,
         amount,
+        description,
         laundry_filter,
         num_bathroom,
         num_bedroom,
@@ -120,7 +121,7 @@ class ListingPage extends React.Component {
               </GridContainer>
             </div>
             <Divider variant="middle" />
-            <ListingDetailsSections />
+            <ListingDetailsSections description={description} />
             <Divider variant="middle" />
             <div className={classes.contactContainer}>
               <EmailAdminButton />
