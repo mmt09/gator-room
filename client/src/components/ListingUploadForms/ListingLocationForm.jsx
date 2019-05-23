@@ -10,7 +10,6 @@ import Button from '../../components/CustomButtons/Button.jsx';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Danger from 'components/Typography/Danger.jsx';
 
 import * as actions from '../../actions';
 
@@ -20,9 +19,8 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    // marginLeft: theme.spacing.unit,
-    // marginRight: theme.spacing.unit,
-    margin: 'auto',
+    display: 'flex',
+    flexWrap: 'wrap',
     width: '50%',
   },
   descField: {
@@ -58,8 +56,9 @@ const styles = theme => ({
     overflow: 'auto',
   },
   button: {
-    margin: 'auto',
-    width: '50%',
+    marginLeft: '10%',
+    marginBottom: '5%',
+    width: '100%',
   },
 });
 

@@ -2,7 +2,6 @@ import React from 'react';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
 
-
 import HeaderLinks from 'components/Header/HeaderLinks.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 
@@ -88,4 +87,4 @@ function mapStateToProps({ login }) {
 export default connect(
   mapStateToProps,
   actions
-)((withStyles(loginPageStyle)(ListingUpload)));
+)(withStyles(loginPageStyle)(ListingUpload));

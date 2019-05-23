@@ -23,6 +23,7 @@ const styles = theme => ({
   instructions: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
+    marginLeft: '2%',
   },
   stepperContent: {
     marginTop: theme.spacing.unit,

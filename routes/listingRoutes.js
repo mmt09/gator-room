@@ -20,7 +20,9 @@ module.exports = app => {
   });
 
   app.post('/api/listing_details', (req, res) => {
-    const { listingID } = req.body;
+    const {
+      listingID
+    } = req.body;
     connection.query('SELECT * FROM listing WHERE listing_id = ?', [listingID], (err, rows) => {
       if (err) throw err;
       const listingJSON = JSON.parse(JSON.stringify(rows));
