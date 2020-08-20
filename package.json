@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/CSC-648-SFSU/csc648-sp19-team103#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
     "connect-busboy": "0.0.2",
